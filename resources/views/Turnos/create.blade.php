@@ -3,7 +3,7 @@
 @section('title', 'Crear turnos')
 
 @section('titleContent')
-    <h1 class="text-center my-4 fw-bold text-dark">Crear turnos</h1>
+<h1 class="text-center my-4 fw-bold text-dark">Crear turnos</h1>
 @endsection
 
 @section('Content')
@@ -12,27 +12,40 @@
     /* Fondo degradado animado */
     body {
         background: linear-gradient(-45deg,
-            #a8edea,   /* azul pastel */
-            #fed6e3,   /* rosa pastel */
-            #cfd9df,   /* gris pastel */
-            #d7fbe8,   /* verde menta pastel */
-            #e0c3fc    /* lila pastel */
-        );
+                #a8edea,
+                /* azul pastel */
+                #fed6e3,
+                /* rosa pastel */
+                #cfd9df,
+                /* gris pastel */
+                #d7fbe8,
+                /* verde menta pastel */
+                #e0c3fc
+                /* lila pastel */
+            );
         background-size: 400% 400%;
         animation: gradientBG 15s ease infinite;
     }
 
     @keyframes gradientBG {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
+        0% {
+            background-position: 0% 50%;
+        }
+
+        50% {
+            background-position: 100% 50%;
+        }
+
+        100% {
+            background-position: 0% 50%;
+        }
     }
 
     /* Card estilo vidrio */
     .custom-card {
         transition: all 0.3s ease-in-out;
         border-radius: 20px;
-        box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
         background-color: #ffffffcc;
         backdrop-filter: blur(8px);
         max-width: 550px;
@@ -49,6 +62,7 @@
         transition: 0.3s;
         border: none;
     }
+
     .btnGuardar:hover {
         background-color: #457b9d;
         color: #fff;
@@ -64,6 +78,7 @@
         text-decoration: none;
         transition: 0.3s;
     }
+
     .btnVolver:hover {
         background-color: #f4a261;
         color: #fff;
@@ -79,14 +94,13 @@
 
     .form-control:focus {
         border-color: #a8dadc;
-        box-shadow: 0 0 6px rgba(168,218,220,0.5);
+        box-shadow: 0 0 6px rgba(168, 218, 220, 0.5);
     }
 
     label {
         font-weight: 600;
         color: #333;
     }
-
 </style>
 
 <div class="container py-4">
@@ -98,24 +112,24 @@
             <div class="mb-3">
                 <label for="InicioTurno" class="form-label">Inicio de Turno</label>
                 <input type="datetime-local" id="InicioTurno" name="InicioTurno"
-                       class="form-control @error('InicioTurno') is-invalid @enderror"
-                       value="{{ old('InicioTurno') }}" required>
+                    class="form-control @error('InicioTurno') is-invalid @enderror"
+                    value="{{ old('InicioTurno') }}" required>
                 @error('InicioTurno')
-                    <small class="text-danger">{{ $message }}</small>
+                <small class="text-danger">{{ $message }}</small>
                 @enderror
             </div>
 
             <div class="mb-3">
                 <label for="FinTurno" class="form-label">Fin de turno</label>
                 <input type="datetime-local" id="FinTurno" name="FinTurno"
-                       class="form-control @error('FinTurno') is-invalid @enderror"
-                       value="{{ old('FinTurno') }}" required>
+                    class="form-control @error('FinTurno') is-invalid @enderror"
+                    value="{{ old('FinTurno') }}" required>
                 @error('FinTurno')
-                    <small class="text-danger">{{ $message }}</small>
+                <small class="text-danger">{{ $message }}</small>
                 @enderror
             </div>
 
-           
+
 
             <div class="d-flex justify-content-between mt-4">
                 <a href="{{ route('turno.index') }}" class="btnVolver">

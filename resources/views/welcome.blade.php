@@ -112,7 +112,7 @@
                 <div class="card-body d-flex flex-column align-items-center text-center p-4">
                     <h6 class="card-title fw-bold text-dark">🗂️ Categorías</h6>
                     <p class="card-text text-muted">Clasifica tus productos por categorías.</p>
-                    <a href="" class="btn custom-btn w-100 mt-auto">Ver Categorías</a>
+                    <a href="{{route('categorias.index')}}" class="btn custom-btn w-100 mt-auto">Ver Categorías</a>
                 </div>
             </div>
         </div>

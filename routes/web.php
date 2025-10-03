@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\InventarioController;
 use App\Http\Controllers\TurnoController;
@@ -38,4 +39,13 @@ Route::post('/clientes/destroy/{id}',[ClienteController::class,'destroy'])->name
 Route::get('/clientes/edit/{id}',[ClienteController::class,'edit'])->name('Cliente.edit');
 Route::post('/clientes/update/{id}',[ClienteController::class,'update'])->name('Cliente.update');
 
+
+
+// rutas categorias
+Route::get('/categorias/index',[CategoriasController::class,'index'])->name('categorias.index');
+Route::get('/categorias/create',[CategoriasController::class,'create'])->name('categorias.create');
+Route::post('/categorias/store',[CategoriasController::class,'store'])->name('categorias.store');
+Route::post('/categorias/destroy/{id}',[CategoriasController::class,'destroy'])->name('categorias.destroy');
+Route::get('/categorias/edit/{id}',[CategoriasController::class,'edit'])->name('categorias.edit');
+Route::post('/categorias/update/{id}',[CategoriasController::class,'update'])->name('categorias.update');
 
