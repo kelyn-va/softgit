@@ -1,0 +1,22 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Proveedor extends Model
+{
+    protected $table= "proveedor";
+    protected $fillable=[
+        'nombre',
+        'contacto',
+        'telefono',
+        'direccion'
+    ];
+
+    public function productos()
+    {
+        return $this->hasMany(Producto::class,'idProveedor');
+    }
+        
+}

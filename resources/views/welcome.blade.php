@@ -1,180 +1,274 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Softgit - Panel Principal</title>
 
-@section('title')
-    Bienvenido
-@endsection
+  <!-- Font Awesome + Bootstrap -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
 
-@section('titleContent')
-    <div class="text-center my-5">
-        <h1 class="fw-bold display-4 text-dark"> Bienvenido a Softgit</h1>
-        <p class="text-muted">Accede fácilmente a las secciones principales del sistema</p>
-    </div>
-@endsection
-
-@section('Content')
-
-<style>
+  <style>
     body {
-        background: linear-gradient(-45deg, 
-            #a8edea,
-            #fed6e3,
-            #cfd9df,
-            #d7fbe8,
-            #e0c3fc
-        );
-        background-size: 400% 400%;
-        animation: gradientBG 15s ease infinite;
+      background-color: #ffffff;
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
     }
 
-    @keyframes gradientBG {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
+    header {
+      /* Azul pastel más suave */
+      background: linear-gradient(90deg, #7daee8 0%, #5b9de6 100%);
+      color: white;
+      padding: 22px 0;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
     }
 
-    .custom-card {
-        transition: all 0.3s ease-in-out;
-        border-radius: 20px;
-        box-shadow: 0 6px 12px rgba(0,0,0,0.08);
-        background-color: #ffffffcc;
-        backdrop-filter: blur(8px);
+    header h1 { margin: 0; font-size: 28px; font-weight: 700; }
+    header p { margin: 6px 0 0; font-size: 13px; opacity: 0.95; }
+
+    /* Contenedor principal */
+    .menu-contenedor {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      justify-items: center;
+      gap: 24px;
+      margin: 36px auto;
+      max-width: 1300px;
+      padding: 0 16px 40px;
     }
 
-    .custom-card:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 12px 20px rgba(0,0,0,0.15);
+    /* Fila centrada si hay menos de 5 */
+    .menu-fila-centrada {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-top: -40px; /* 👈 sube las últimas 3 cartas */
+      margin-bottom: 50px;
     }
 
-    .custom-btn {
-        border-radius: 12px;
-        font-weight: 500;
-        background-color: #a8dadc;
-        color: #fff;
-        border: none;
+    /* Tarjetas */
+    .card-menu {
+      background: linear-gradient(180deg, #f5f9ff 0%, #e3efff 100%);
+      border: 1px solid #c2dbff;
+      border-radius: 16px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.06);
+      width: 200px;
+      height: 180px;
+      padding: 16px;
+      text-align: center;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
-    .custom-btn:hover {
-        background-color: #457b9d;
-        color: #fff;
+    .card-menu:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 26px rgba(33,150,243,0.18);
+      background: linear-gradient(180deg, #e1efff 0%, #cbe1ff 100%);
     }
-</style>
 
-<div class="container py-4">
-    <div class="row g-4 justify-content-center">
+    /* Iconos */
+    .icono-fallback {
+      font-size: 36px;
+      color: #5b9de6; /* azul pastel */
+      margin-bottom: 6px;
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
 
-        {{-- Inventario --}}
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-            <div class="card custom-card h-100 border-0">
-                <div class="card-body d-flex flex-column align-items-center text-center p-4">
-                    <h6 class="card-title fw-bold text-dark">🧺 Inventario</h6>
-                    <p class="card-text text-muted">Administra el stock y niveles de productos disponibles.</p>
-                    <a href="{{route('inventario.index')}}" class="btn custom-btn w-100 mt-auto">Ver Inventario</a>
-                </div>
-            </div>
-        </div>
+    .card-menu:hover .icono-fallback {
+      transform: scale(1.2);
+      color: #3a7edb;
+    }
 
-        {{-- Clientes --}}
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-            <div class="card custom-card h-100 border-0">
-                <div class="card-body d-flex flex-column align-items-center text-center p-4">
-                    <h6 class="card-title fw-bold text-dark">👥 Clientes</h6>
-                    <p class="card-text text-muted">Gestiona los datos y relaciones con tus clientes.</p>
-                    <a href="{{route('Cliente.index')}}" class="btn custom-btn w-100 mt-auto">Ver Clientes</a>
-                </div>
-            </div>
-        </div>
+    /* Títulos y texto */
+    .card-menu h5 {
+      font-size: 15px;
+      margin: 0;
+      color: #1e3a8a;
+      font-weight: 600;
+    }
 
-        {{-- Proveedores --}}
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-            <div class="card custom-card h-100 border-0">
-                <div class="card-body d-flex flex-column align-items-center text-center p-4">
-                    <h6 class="card-title fw-bold text-dark">📦 Proveedores</h6>
-                    <p class="card-text text-muted">Controla y administra tus proveedores.</p>
-                    <a href="" class="btn custom-btn w-100 mt-auto">Ver Proveedores</a>
-                </div>
-            </div>
-        </div>
+    .card-menu .text-muted {
+      font-size: 12px;
+      color: #64748b;
+      margin: 4px 0 0;
+      line-height: 1.2;
+    }
 
-        {{-- Productos --}}
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-            <div class="card custom-card h-100 border-0">
-                <div class="card-body d-flex flex-column align-items-center text-center p-4">
-                    <h6 class="card-title fw-bold text-dark">🛍️ Productos</h6>
-                    <p class="card-text text-muted">Administra el catálogo de productos disponibles.</p>
-                    <a href="" class="btn custom-btn w-100 mt-auto">Ver Productos</a>
-                </div>
-            </div>
-        </div>
+    /* Botones */
+    .btn-entrar {
+      background: linear-gradient(90deg, #7daee8, #5b9de6);
+      color: #fff;
+      padding: 6px 12px;
+      border-radius: 10px;
+      font-size: 13px;
+      text-decoration: none;
+      border: none;
+      align-self: center;
+      transition: transform .18s ease, box-shadow .18s ease;
+      box-shadow: 0 4px 12px rgba(123,180,255,0.25);
+    }
 
-        {{-- Categorías --}}
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-            <div class="card custom-card h-100 border-0">
-                <div class="card-body d-flex flex-column align-items-center text-center p-4">
-                    <h6 class="card-title fw-bold text-dark">🗂️ Categorías</h6>
-                    <p class="card-text text-muted">Clasifica tus productos por categorías.</p>
-                    <a href="{{route('categorias.index')}}" class="btn custom-btn w-100 mt-auto">Ver Categorías</a>
-                </div>
-            </div>
-        </div>
+    .btn-entrar:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 18px rgba(91,157,230,0.25);
+      background: linear-gradient(90deg, #5b9de6, #3a7edb);
+    }
 
-        {{-- Ventas --}}
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-            <div class="card custom-card h-100 border-0">
-                <div class="card-body d-flex flex-column align-items-center text-center p-4">
-                    <h6 class="card-title fw-bold text-dark">💰 Ventas</h6>
-                    <p class="card-text text-muted">Consulta y administra tus ventas.</p>
-                    <a href="" class="btn custom-btn w-100 mt-auto">Ver Ventas</a>
-                </div>
-            </div>
-        </div>
+    /* Footer */
+    footer {
+      background: #fff;
+      text-align: center;
+      padding: 12px;
+      color: #4b5563;
+      font-size: 13px;
+      border-top: 1px solid #e3f2fd;
+    }
 
-        {{-- Pagos --}}
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-            <div class="card custom-card h-100 border-0">
-                <div class="card-body d-flex flex-column align-items-center text-center p-4">
-                    <h6 class="card-title fw-bold text-dark">💳 Pagos</h6>
-                    <p class="card-text text-muted">Gestiona pagos realizados y pendientes.</p>
-                    <a href="" class="btn custom-btn w-100 mt-auto">Ver Pagos</a>
-                </div>
-            </div>
-        </div>
+    footer b { color: #5b9de6; }
+  </style>
+</head>
+<body>
 
-        {{-- turnos --}}
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-            <div class="card custom-card h-100 border-0">
-                <div class="card-body d-flex flex-column align-items-center text-center p-4">
-                    <h6 class="card-title fw-bold text-dark"> 🕒 turnos</h6>
-                    <p class="card-text text-muted">Controla los turnos del personal de tu empresa.</p>
-                    <a href="{{route('turno.index')}}" class="btn custom-btn w-100 mt-auto">Ver turnos</a>
-                </div>
-            </div>
-        </div>
+  <header>
+    <h1>Bienvenido a Softgit</h1>
+    <p>Accede fácilmente a los módulos principales del sistema</p>
+  </header>
 
-
-
-
-        {{-- Empleados --}}
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-            <div class="card custom-card h-100 border-0">
-                <div class="card-body d-flex flex-column align-items-center text-center p-4">
-                    <h6 class="card-title fw-bold text-dark">👨‍💼 Empleados</h6>
-                    <p class="card-text text-muted">Controla los datos del personal de tu empresa.</p>
-                    <a href="" class="btn custom-btn w-100 mt-auto">Ver Empleados</a>
-                </div>
-            </div>
-        </div>
-
-        {{-- Auditoría --}}
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-            <div class="card custom-card h-100 border-0">
-                <div class="card-body d-flex flex-column align-items-center text-center p-4">
-                    <h6 class="card-title fw-bold text-dark">🕵️‍♂️ Auditoría</h6>
-                    <p class="card-text text-muted">Consulta los registros de cambios del sistema.</p>
-                    <a href="" class="btn custom-btn w-100 mt-auto">Ver Auditoría</a>
-                </div>
-            </div>
-        </div>
-
+  <div class="menu-contenedor">
+    <!-- Fila 1 -->
+    <div class="card-menu">
+      <div>
+        <div class="icono-fallback"><i class="fas fa-users"></i></div>
+        <h5>Clientes</h5>
+        <p class="text-muted">Gestiona los clientes del sistema.</p>
+      </div>
+      <a href="{{ route('clientes.index') }}" class="btn-entrar">Ir a Clientes</a>
     </div>
-</div>
-@endsection
+    
+
+    <div class="card-menu">
+      <div>
+        <div class="icono-fallback"><i class="fas fa-cubes"></i></div>
+        <h5>Productos</h5>
+        <p class="text-muted">Gestiona el inventario de productos.</p>
+      </div>
+      <a href="#" class="btn-entrar">Ir a Productos</a>
+    </div>
+
+    <div class="card-menu">
+      <div>
+        <div class="icono-fallback"><i class="fas fa-tags"></i></div>
+        <h5>Categorías</h5>
+        <p class="text-muted">Organiza las categorías de productos.</p>
+      </div>
+      <a href="#" class="btn-entrar">Ir a Categorías</a>
+    </div>
+
+    <div class="card-menu">
+      <div>
+        <div class="icono-fallback"><i class="fas fa-warehouse"></i></div>
+        <h5>Inventario</h5>
+        <p class="text-muted">Controla el inventario del sistema.</p>
+      </div>
+      <a href="#" class="btn-entrar">Ir a Inventario</a>
+    </div>
+
+    <div class="card-menu">
+      <div>
+        <div class="icono-fallback"><i class="fas fa-truck"></i></div>
+        <h5>Proveedores</h5>
+        <p class="text-muted">Gestiona el módulo de proveedores.</p>
+      </div>
+      <a href="{{route('proveedor.index')}}" class="btn-entrar">Ir a Proveedores</a>
+    </div>
+
+    <!-- Fila 2 -->
+    <div class="card-menu">
+      <div>
+        <div class="icono-fallback"><i class="fas fa-cash-register"></i></div>
+        <h5>Ventas</h5>
+        <p class="text-muted">Administra las ventas realizadas.</p>
+      </div>
+      <a href="#" class="btn-entrar">Ir a Ventas</a>
+    </div>
+
+    <div class="card-menu">
+      <div>
+        <div class="icono-fallback"><i class="fas fa-undo-alt"></i></div>
+        <h5>Devoluciones</h5>
+        <p class="text-muted">Controla las devoluciones de productos.</p>
+      </div>
+      <a href="#" class="btn-entrar">Ir a Devoluciones</a>
+    </div>
+
+    <div class="card-menu">
+      <div>
+        <div class="icono-fallback"><i class="fas fa-id-badge"></i></div>
+        <h5>Empleados</h5>
+        <p class="text-muted">Gestiona el personal y sus datos.</p>
+      </div>
+      <a href="{{route('empleados.index')}}" class="btn-entrar">Ir a Empleados</a>
+    </div>
+
+    <div class="card-menu">
+      <div>
+        <div class="icono-fallback"><i class="fas fa-clock"></i></div>
+        <h5>Turnos</h5>
+        <p class="text-muted">Administra horarios y turnos.</p>
+      </div>
+      <a href="#" class="btn-entrar">Ir a Turnos</a>
+    </div>
+
+    <div class="card-menu">
+      <div>
+        <div class="icono-fallback"><i class="fas fa-file-invoice-dollar"></i></div>
+        <h5>Detalle de Venta</h5>
+        <p class="text-muted">Gestiona los detalles por venta.</p>
+      </div>
+      <a href="#" class="btn-entrar">Ir a Detalle de Venta</a>
+    </div>
+  </div>
+
+  <!-- Fila 3 centrada -->
+  <div class="menu-fila-centrada">
+    <div class="card-menu">
+      <div>
+        <div class="icono-fallback"><i class="fas fa-credit-card"></i></div>
+        <h5>Métodos de Pago</h5>
+        <p class="text-muted">Configura formas de pago aceptadas.</p>
+      </div>
+      <a href="#" class="btn-entrar">Ir a Métodos de Pago</a>
+    </div>
+
+    <div class="card-menu">
+      <div>
+        <div class="icono-fallback"><i class="fas fa-money-bill-wave"></i></div>
+        <h5>Pagos</h5>
+        <p class="text-muted">Registra y revisa pagos recibidos.</p>
+      </div>
+      <a href="#" class="btn-entrar">Ir a Pagos</a>
+    </div>
+
+    <div class="card-menu">
+      <div>
+        <div class="icono-fallback"><i class="fas fa-user-shield"></i></div>
+        <h5>Auditoría</h5>
+        <p class="text-muted">Revisa logs y auditorías del sistema.</p>
+      </div>
+      <a href="#" class="btn-entrar">Ir a Auditoría</a>
+    </div>
+  </div>
+
+  <footer>
+    Realizado por <b>Karen Julieth Sepúlveda Sánchez</b> - <b>Vanessa García Corzo</b> | 2025
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

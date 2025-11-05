@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ClienteRequest;
 use App\Models\Cliente;
 use App\Models\Clientes;
 use Illuminate\Http\Request;
@@ -30,13 +31,13 @@ class ClienteController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ClienteRequest $request)
     {
         Clientes::create(
             $request->all()
 
         );
-        return redirect()->route('Cliente.index')->with('success','cliente  creado correctamente');
+        return redirect()->route('clientes.index')->with('success','cliente  creado correctamente');
     }
 
 
@@ -67,7 +68,7 @@ class ClienteController extends Controller
         $cliente =Clientes::findorfail($id);
         $cliente->delete();
 
-        return redirect()->route('Cliente.index');
+        return redirect()->route('clientes.index');
 
     }
 }

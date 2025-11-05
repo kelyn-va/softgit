@@ -6,78 +6,8 @@
     <h1 class="text-center my-4 fw-bold text-dark">Actualizar Cliente</h1>
 @endsection
 
-@section('Content')
+@section('content')
 
-<style>
-    /* Fondo degradado animado */
-    body {
-        background: linear-gradient(-45deg, 
-            #a8edea, #fed6e3, #cfd9df, #d7fbe8, #e0c3fc
-        );
-        background-size: 400% 400%;
-        animation: gradientBG 15s ease infinite;
-    }
-
-    @keyframes gradientBG {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
-    }
-
-    /* Tarjeta */
-    .custom-card {
-        border-radius: 20px;
-        background: #ffffffcc;
-        backdrop-filter: blur(8px);
-        box-shadow: 0 6px 12px rgba(0,0,0,0.08);
-        transition: all 0.3s ease-in-out;
-    }
-    .custom-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 12px 20px rgba(0,0,0,0.12);
-    }
-
-    /* Botón volver (más pequeño) */
-    .volverBtn {
-        border-radius: 10px;
-        font-size: 0.85rem;
-        background-color: #8ecae6;
-        color: #fff;
-        padding: 5px 12px;
-        text-decoration: none;
-        transition: 0.3s;
-    }
-    .volverBtn:hover {
-        background-color: #219ebc;
-        color: #fff;
-    }
-
-    /* Botón crear */
-    .crearBtn {
-        border-radius: 12px;
-        font-weight: 500;
-        background-color: #a8dadc;
-        color: #fff;
-        padding: 9px 16px;
-        transition: 0.3s;
-        border: none;
-    }
-    .crearBtn:hover {
-        background-color: #457b9d;
-        color: #fff;
-    }
-
-    /* Inputs */
-    .form-control {
-        border-radius: 12px;
-        border: 1px solid #cbd5e0;
-        transition: all 0.3s ease;
-    }
-    .form-control:focus {
-        border-color: #a8dadc;
-        box-shadow: 0 0 6px #a8dadc80;
-    }
-</style>
 
 <div class="container py-4">
     <div class="row justify-content-center">
@@ -85,7 +15,7 @@
 
            
             <div class="mb-3 text-start">
-                <a href="{{ route('Cliente.index') }}" class="volverBtn d-inline-flex align-items-center gap-1">
+                <a href="{{ route('clientes.index') }}" class="volverBtn d-inline-flex align-items-center gap-1">
                     <i class="bi bi-arrow-left-circle"></i>  🔙 Volver
                 </a>
             </div>
@@ -94,7 +24,7 @@
             <div class="card custom-card shadow-lg border-0">
                 <div class="card-body p-4">
 
-                    <form action="{{route('Cliente.update',$cliente->id)}}" method="POST">
+                    <form action="{{route('clientes.update',$cliente->id)}}" method="POST">
                         @csrf
 
                         <div class="mb-3">

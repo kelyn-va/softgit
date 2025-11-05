@@ -1,51 +1,79 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\InventarioController;
+use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\TurnoController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProveedorController;
 
+// Ruta principal
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-//rutas de inventario
+// Ruta alternativa para home (AdminLTE a veces la busca)
+Route::get('/home', function () {
+    return redirect()->route('welcome');
+})->name('home');
 
-Route::get('/inventario/index',[InventarioController::class,'index'])->name('inventario.index');
-Route::get('/inventario/create',[InventarioController::class,'create'])->name('inventario.create');
-Route::post('/inventario/store',[InventarioController::class,'store'])->name('inventario.store');
-Route::post('/inventario/destroy/{id}',[InventarioController::class,'destroy'])->name('inventario.destroy');
-Route::get('/inventario/edit/{id}',[InventarioController::class,'edit'])->name('inventario.edit');
-Route::post('/inventario/update/{id}',[InventarioController::class,'update'])->name('inventario.update');
+// -------------------- INVENTARIO --------------------
+Route::get('/inventario/index', [InventarioController::class, 'index'])->name('inventario.index');
+Route::get('/inventario/create', [InventarioController::class, 'create'])->name('inventario.create');
+Route::post('/inventario/store', [InventarioController::class, 'store'])->name('inventario.store');
+Route::post('/inventario/destroy/{id}', [InventarioController::class, 'destroy'])->name('inventario.destroy');
+Route::get('/inventario/edit/{id}', [InventarioController::class, 'edit'])->name('inventario.edit');
+Route::post('/inventario/update/{id}', [InventarioController::class, 'update'])->name('inventario.update');
 
+// -------------------- TURNOS --------------------
+Route::get('/turnos/index', [TurnoController::class, 'index'])->name('turnos.index');
+Route::get('/turnos/create', [TurnoController::class, 'create'])->name('turnos.create');
+Route::post('/turnos/store', [TurnoController::class, 'store'])->name('turnos.store');
+Route::post('/turnos/destroy/{id}', [TurnoController::class, 'destroy'])->name('turnos.destroy');
+Route::get('/turnos/edit/{id}', [TurnoController::class, 'edit'])->name('turnos.edit');
+Route::post('/turnos/update/{id}', [TurnoController::class, 'update'])->name('turnos.update');
 
-//rutas de turnos
+// -------------------- CLIENTES --------------------
+Route::get('/clientes/index', [ClienteController::class, 'index'])->name('clientes.index');
+Route::get('/clientes/create', [ClienteController::class, 'create'])->name('clientes.create');
+Route::post('/clientes/store', [ClienteController::class, 'store'])->name('clientes.store');
+Route::post('/clientes/destroy/{id}', [ClienteController::class, 'destroy'])->name('clientes.destroy');
+Route::get('/clientes/edit/{id}', [ClienteController::class, 'edit'])->name('clientes.edit');
+Route::post('/clientes/update/{id}', [ClienteController::class, 'update'])->name('clientes.update');
 
-Route::get('/turnos/index',[TurnoController::class,'index'])->name('turno.index');
-Route::get('/turnos/create',[TurnoController::class,'create'])->name('turno.create');
-Route::post('/turnos/store',[TurnoController::class,'store'])->name('turno.store');
-Route::post('/turnos/destroy/{id}',[TurnoController::class,'destroy'])->name('turno.destroy');
-Route::get('/turnos/edit/{id}',[TurnoController::class,'edit'])->name('turno.edit');
-Route::post('/turnos/update/{id}',[TurnoController::class,'update'])->name('turno.update');
+// -------------------- CATEGORÍAS --------------------
+Route::get('/categorias/index', [CategoriasController::class, 'index'])->name('categorias.index');
+Route::get('/categorias/create', [CategoriasController::class, 'create'])->name('categorias.create');
+Route::post('/categorias/store', [CategoriasController::class, 'store'])->name('categorias.store');
+Route::post('/categorias/destroy/{id}', [CategoriasController::class, 'destroy'])->name('categorias.destroy');
+Route::get('/categorias/edit/{id}', [CategoriasController::class, 'edit'])->name('categorias.edit');
+Route::post('/categorias/update/{id}', [CategoriasController::class, 'update'])->name('categorias.update');
 
+//rutas de proveedor
 
-//rutas  de clientes
+Route::get('/proveedor/index',[ProveedorController::class,'index'])->name('proveedor.index');
+Route::get('/proveedor/create',[ProveedorController::class,'create'])->name('proveedor.create');
+Route::post('/proveedor/store',[ProveedorController::class,'store'])->name('proveedor.store');
+Route::post('/proveedor/destroy/{id}',[ProveedorController::class,'destroy'])->name('proveedor.destroy');
+Route::get('/proveedor/edit/{id}',[ProveedorController::class,'edit'])->name('proveedor.edit');
+Route::post('/proveedor/update/{id}',[ProveedorController::class,'update'])->name('proveedor.update');
 
-Route::get('/clientes/index',[ClienteController::class,'index'])->name('Cliente.index');
-Route::get('/clientes/create',[ClienteController::class,'create'])->name('Cliente.create');
-Route::post('/clientes/store',[ClienteController::class,'store'])->name('Cliente.store');
-Route::post('/clientes/destroy/{id}',[ClienteController::class,'destroy'])->name('Cliente.destroy');
-Route::get('/clientes/edit/{id}',[ClienteController::class,'edit'])->name('Cliente.edit');
-Route::post('/clientes/update/{id}',[ClienteController::class,'update'])->name('Cliente.update');
+//rutas de producto
 
+Route::get('/producto/index',[ProductoController::class,'index'])->name('productos.index');
+Route::get('/producto/create',[ProductoController::class,'create'])->name('productos.create');
+Route::post('/producto/store',[ProductoController::class,'store'])->name('productos.store');
+Route::post('/producto/destroy/{id}',[ProductoController::class,'destroy'])->name('productos.destroy');
+Route::get('/producto/edit/{id}',[ProductoController::class,'edit'])->name('productos.edit');
+Route::post('/producto/update/{id}',[ProductoController::class,'update'])->name('productos.update');
 
+//rutas de empleado
 
-// rutas categorias
-Route::get('/categorias/index',[CategoriasController::class,'index'])->name('categorias.index');
-Route::get('/categorias/create',[CategoriasController::class,'create'])->name('categorias.create');
-Route::post('/categorias/store',[CategoriasController::class,'store'])->name('categorias.store');
-Route::post('/categorias/destroy/{id}',[CategoriasController::class,'destroy'])->name('categorias.destroy');
-Route::get('/categorias/edit/{id}',[CategoriasController::class,'edit'])->name('categorias.edit');
-Route::post('/categorias/update/{id}',[CategoriasController::class,'update'])->name('categorias.update');
-
+Route::get('/empleado/index',[EmpleadoController::class,'index'])->name('empleados.index');
+Route::get('/empleado/create',[EmpleadoController::class,'create'])->name('empleados.create');
+Route::post('/empleado/store',[EmpleadoController::class,'store'])->name('empleados.store');
+Route::post('/empleado/destroy/{id}',[EmpleadoController::class,'destroy'])->name('empleados.destroy');
+Route::get('/empleado/edit/{id}',[EmpleadoController::class,'edit'])->name('empleados.edit');
+Route::post('/empleado/update/{id}',[EmpleadoController::class,'update'])->name('empleados.update');
