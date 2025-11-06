@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\InventarioRequest;
 use App\Models\inventario;
 use App\Models\Iventario;
 use Illuminate\Http\Request;
@@ -28,13 +29,13 @@ class InventarioController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(InventarioRequest $request)
     {
         Inventario::create(
             $request->all()
         );
 
-        return redirect()->route('inventario.index');
+        return redirect()->route('inventario.index') ->with('success', 'Inventario registrado correctamente.');
 
     }
 
@@ -58,12 +59,12 @@ class InventarioController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request,$id)
+    public function update(InventarioRequest $request,$id)
     {
         $inventarios = Inventario::findorFail($id);
         $inventarios->update($request->all());
 
-        return redirect()->route('inventario.index');
+        return redirect()->route('inventario.index')->with('success', 'inventario Actualizado correctamente.');
     }
 
     /**
@@ -74,6 +75,6 @@ class InventarioController extends Controller
         $inventarios = Inventario::findorFail($id);
         $inventarios->delete();
 
-        return redirect()->route('inventario.index');
+        return redirect()->route('inventario.index')->with('success', 'Inventario eliminado  correctamente.');
     }
 }

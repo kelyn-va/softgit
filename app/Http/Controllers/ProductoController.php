@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductoRequest;
 use App\Models\Categorias;
 use App\Models\Inventario;
 use App\Models\Producto;
@@ -27,16 +28,16 @@ class ProductoController extends Controller
     public function create()
     {
         $productos = Producto::all();
-        $productos = Categorias::all();
-        $productos = Proveedor::all();
-        $productos = Inventario::all();
-        return view('productos.create', compact('productos','categoria', 'proveedor', 'nventario'));
+        $categorias = Categorias::all();
+        $proveedores = Proveedor::all();
+        $inventario = Inventario::all();
+        return view('Producto.create', compact('productos','categorias', 'proveedores', 'inventario'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ProductoRequest $request)
     {
     {
         Producto::create(
@@ -72,11 +73,11 @@ class ProductoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(ProductoRequest $request, $id)
     {
         $productos = Producto::findorFail($id);
         $productos->update($request->all());
-        return redirect()->route('productos.index');
+        return redirect()->route('productos.index')->with('success', 'producto creado correctamente.');
     }
 
     /**

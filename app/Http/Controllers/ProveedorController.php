@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProveedorRequest;
 use App\Models\Proveedor;
 use Illuminate\Http\Request;
 
@@ -27,13 +28,13 @@ class ProveedorController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ProveedorRequest $request)
     {
         Proveedor::create(
             $request->all()
         );
         
-        return redirect()->route('proveedor.index');
+        return redirect()->route('proveedor.index')>with('success', 'Proveedor creado correctamente.');
     }
 
     /**
@@ -58,12 +59,12 @@ class ProveedorController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request,$id)
+    public function update(ProveedorRequest $request,$id)
     {
         $proveedores = Proveedor::findorFail($id);
         $proveedores->update($request->all());
 
-        return redirect()->route('proveedor.index');
+        return redirect()->route('proveedor.index')>with('success', 'Proveedor actualizado correctamente.');
     }
 
     /**
@@ -74,6 +75,6 @@ class ProveedorController extends Controller
         $proveedores = Proveedor::findorFail($id);
         $proveedores->delete();
 
-        return redirect()->route('proveedor.index');
+        return redirect()->route('proveedor.index')>with('success', 'Proveedor eliminado  correctamente.');
     }
 }

@@ -308,12 +308,12 @@ return [
         ],
         [
             'text' => 'Proveedores',
-            'route' => '',
+            'route' => 'proveedor.index',
             'icon' => 'fas fa-truck-field text-success',
         ],
         [
             'text' => 'Productos',
-            'route' => '',
+            'route' => 'productos.index',
             'icon' => 'fas fa-cubes text-warning',
         ],
         [
@@ -323,7 +323,7 @@ return [
         ],
         [
             'text' => 'Empleados',
-            'route' => '',
+            'route' => 'empleados.index',
             'icon' => 'fas fa-id-badge text-primary',
         ],
         [
