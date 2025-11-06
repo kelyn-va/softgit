@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Http\Requests\CategoriaRequest;
 use App\Models\Categorias;
 use Illuminate\Http\Request;
 
@@ -26,13 +28,13 @@ class CategoriasController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CategoriaRequest $request)
     {
         Categorias::create(
             $request->all()
         );
 
-        return redirect()->route('categorias.index');
+        return redirect()->route('categorias.index')>with('success', 'Categoría creada exitosamente.');
     }
 
     public function edit($id)
@@ -44,11 +46,11 @@ class CategoriasController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request,  $id)
+    public function update(CategoriaRequest $request,  $id)
     {
         $categorias = Categorias::findorfail($id);
         $categorias -> update($request->all());
-        return redirect()->route('categorias.index');
+        return redirect()->route('categorias.index')->with('success', 'categoria Actualizada correctamente.');
 
     }
 
@@ -60,7 +62,7 @@ class CategoriasController extends Controller
         $categorias= Categorias::findorfail($id);
         $categorias->delete();
 
-        return redirect()->route('categorias.index');
+        return redirect()->route('categorias.index')->with('success', 'Categoria  eliminada  correctamente.');
 
     }
 }

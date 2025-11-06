@@ -158,7 +158,7 @@
         <h5>Productos</h5>
         <p class="text-muted">Gestiona el inventario de productos.</p>
       </div>
-      <a href="#" class="btn-entrar">Ir a Productos</a>
+      <a href="{{route('productos.index')}}" class="btn-entrar">Ir a Productos</a>
     </div>
 
     <div class="card-menu">
@@ -167,7 +167,7 @@
         <h5>Categorías</h5>
         <p class="text-muted">Organiza las categorías de productos.</p>
       </div>
-      <a href="#" class="btn-entrar">Ir a Categorías</a>
+      <a href="{{ route('categorias.index') }}" class="btn-entrar">Ir a Categorías</a>
     </div>
 
     <div class="card-menu">
@@ -176,7 +176,7 @@
         <h5>Inventario</h5>
         <p class="text-muted">Controla el inventario del sistema.</p>
       </div>
-      <a href="#" class="btn-entrar">Ir a Inventario</a>
+      <a href="{{route('inventario.index')}}" class="btn-entrar">Ir a Inventario</a>
     </div>
 
     <div class="card-menu">
@@ -222,7 +222,7 @@
         <h5>Turnos</h5>
         <p class="text-muted">Administra horarios y turnos.</p>
       </div>
-      <a href="#" class="btn-entrar">Ir a Turnos</a>
+      <a href="{{route('turnos.index')}}" class="btn-entrar">Ir a Turnos</a>
     </div>
 
     <div class="card-menu">

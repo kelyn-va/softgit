@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TurnoRequest;
 use App\Models\Turno;
 use Illuminate\Http\Request;
 
@@ -27,13 +28,13 @@ class TurnoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(TurnoRequest $request)
     {
         Turno::create(
             $request->all()
         );
 
-        return redirect()->route('turno.index');
+        return redirect()->route('turno.index')>with('success', 'Turno creado correctamente.');
     }
 
     /**
@@ -56,12 +57,12 @@ class TurnoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(TurnoRequest $request, $id)
     {
         $turnos = Turno::findorFail($id);
         $turnos->update($request->all());
 
-        return redirect()->route('turno.index');
+        return redirect()->route('turno.index')>with('success', 'Turno Actualizado correctamente.');
     }
 
     /**
@@ -72,6 +73,6 @@ class TurnoController extends Controller
          $turnos = Turno::findorFail($id);
         $turnos->delete();
 
-        return redirect()->route('turno.index');
+        return redirect()->route('turno.index')>with('success', 'Turno eliminado  correctamente.');
     }
 }

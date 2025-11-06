@@ -6,14 +6,14 @@
 <h1 class="text-center my-4 fw-bold text-dark">Crear turnos</h1>
 @endsection
 
-@section('Content')
+@section('content')
 
 >
 
 <div class="container py-4">
 
     <div class="card custom-card shadow-lg border-0 p-4">
-        <form action="{{route('turno.store')}}" method="POST">
+        <form action="{{route('turnos.store')}}" method="POST">
             @csrf
 
             <div class="mb-3">
@@ -39,7 +39,7 @@
 
 
             <div class="d-flex justify-content-between mt-4">
-                <a href="{{ route('turno.index') }}" class="btnVolver">
+                <a href="{{ route('turnos.index') }}" class="btnVolver">
                     <i class="bi bi-arrow-left"></i> Volver
                 </a>
                 <button type="submit" class="btnGuardar">

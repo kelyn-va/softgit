@@ -53,11 +53,11 @@ class ClienteController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(  Request $request,$id)
+    public function update(  ClienteRequest $request,$id)
     {
         $cliente = Clientes::findorfail($id);
         $cliente->update($request->all());
-        return redirect()->route('Cliente.index');
+        return redirect()->route('Cliente.index')->with('success', 'Cliente  Actualizado  correctamente.');
     }
 
     /**
@@ -68,7 +68,7 @@ class ClienteController extends Controller
         $cliente =Clientes::findorfail($id);
         $cliente->delete();
 
-        return redirect()->route('clientes.index');
+        return redirect()->route('clientes.index')->with('success', 'Cliente  eliminado  correctamente.');
 
     }
 }

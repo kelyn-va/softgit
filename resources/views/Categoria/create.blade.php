@@ -6,7 +6,7 @@
     <h1 class="text-center my-4 fw-bold text-dark">Crear Categoria</h1>
 @endsection
 
-@section('Content')
+@section('content')
 
 
 
