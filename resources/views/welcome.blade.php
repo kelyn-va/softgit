@@ -158,7 +158,7 @@
         <h5>Productos</h5>
         <p class="text-muted">Gestiona el inventario de productos.</p>
       </div>
-      <a href="#" class="btn-entrar">Ir a Productos</a>
+      <a href="{{route('productos.index')}}" class="btn-entrar">Ir a Productos</a>
     </div>
 
     <div class="card-menu">

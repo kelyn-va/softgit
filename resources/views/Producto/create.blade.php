@@ -28,7 +28,13 @@
                     <form action="{{ route('productos.store') }}" method="POST">
                         @csrf
                         <div class="mb-3">
-                            <label for="nombre" class="form-label fw-semibold">nombre</label>
+                            <label for="nombre" 
+                            
+                            
+                            
+                            
+                            
+                            class="form-label fw-semibold">nombre</label>
                             <input type="text" id="nombre" name="nombre" 
                                 class="form-control @error('nombre') is-invalid @enderror">
                             @error('nombre')
@@ -52,16 +58,78 @@
                             @error('precio')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
+
+
                         </div>
 
                          <div class="mb-3">
                             <label for="stock" class="form-label fw-semibold">stock</label>
-                            <input type="decimal" id="stock" name="stock" 
+                            <input type="int" id="stock" name="stock" 
                                 class="form-control @error('stock') is-invalid @enderror">
                             @error('stock')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
+
+                        <div class="mb-3">
+                            <label for="codigoBarras" class="form-label fw-semibold">codigoBarras</label>
+                            <input type="text" id="codigoBarras" name="codigoBarras" 
+                                class="form-control @error('codigoBarras') is-invalid @enderror">
+                            @error('codigoBarras')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        
+            <div>
+                <label for="idCategoria" class="form-label   @error('idCategoria') is-invalid @enderror">Categoria</label>
+                <select name="idCategoria" id="idCategoria" class="form-select">
+                    <option value="">Seleccione una categoria</option>
+                    @foreach($categorias as $categoria)
+                    <option value="{{$usuario->id}}">{{$categoria->nombre}}</option>
+                    @endforeach
+                </select>
+
+                @error('idCategoria')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+
+
+            <div>
+                <label for="idproveedor" class="form-label   @error('idproveedor') is-invalid @enderror">Proveedor</label>
+                <select name="idproveedor" id="idproveedor" class="form-select">
+                    <option value="">Seleccione un proveedor</option>
+                    @foreach($proveedores as $proveedor)
+                    <option value="{{$proveedor->id}}">{{$proveedor->nombre}}</option>
+                    @endforeach
+                </select>
+
+                @error('idproveedor')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+
+
+
+            <div>
+                <label for="idInventario" class="form-label   @error('idInventario') is-invalid @enderror">Inventario</label>
+                <select name="idInventario" id="idInventario" class="form-select">
+                    <option value="">Seleccione un invetario</option>
+                    @foreach($inventarios as $inventario)
+                    <option value="{{$proveedor->id}}">{{$proveedor->nombre}}</option>
+                    @endforeach
+                </select>
+
+                @error('idproveedor')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+
+
+
+
+
 
                         <div class="text-end">
                             <button type="submit" class="crearBtn">
