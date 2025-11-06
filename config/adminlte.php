@@ -362,12 +362,21 @@ return [
             'icon' => 'fas fa-warehouse text-dark',
         ],
 
+        [
+            'text' => 'Categorias',
+            'route' => 'categorias.index',
+            'icon' => 'fas fa-warehouse text-dark',
+        ],
+
+
         ['header' => 'OTRAS OPCIONES'],
         [
             'text' => 'Salir',
             'url' => '#',
             'icon' => 'fas fa-sign-out-alt text-danger',
         ],
+
+
     ],
 
 
