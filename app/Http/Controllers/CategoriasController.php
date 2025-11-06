@@ -34,7 +34,7 @@ class CategoriasController extends Controller
             $request->all()
         );
 
-        return redirect()->route('categorias.index')>with('success', 'Categoría creada exitosamente.');
+        return redirect()->route('categorias.index')->with('success', 'Categoría creada exitosamente.');
     }
 
     public function edit($id)
