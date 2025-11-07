@@ -58,7 +58,6 @@
 
                                     <form action="{{ route('turnos.destroy', $Turno->id) }}" method="POST" onclick="confirmarEliminacion(event)">
                                         @csrf
-                                        @method('DELETE')
                                         <button type="submit" class="btnEliminar d-flex gap-2 align-items-center">
                                             <i class="bi bi-trash"></i> Eliminar
                                         </button>

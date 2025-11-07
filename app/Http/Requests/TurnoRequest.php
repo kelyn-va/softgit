@@ -20,8 +20,8 @@ class TurnoRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'InicioTurno' => 'required|date_format:H:i',
-            'FinTurno' => 'required|date_format:H:i|after:InicioTurno',
+            'InicioTurno' => 'required|date|',
+            'FinTurno' => 'required|date|after:InicioTurno',
         ];
     }
 
@@ -32,10 +32,10 @@ class TurnoRequest extends FormRequest
     {
         return [
             'InicioTurno.required' => 'El campo "Inicio de turno" es obligatorio.',
-            'InicioTurno.date_format' => 'El formato del inicio de turno debe ser HH:MM (por ejemplo, 08:00).',
+            'InicioTurno.date_format' => 'El formato del inicio de turno debe ser YYYY-MM-DD HH:MM (por ejemplo, 2025-11-07 08:00).',
 
             'FinTurno.required' => 'El campo "Fin de turno" es obligatorio.',
-            'FinTurno.date_format' => 'El formato del fin de turno debe ser HH:MM (por ejemplo, 17:00).',
+            'FinTurno.date_format' => 'El formato del fin de turno debe ser YYYY-MM-DD HH:MM (por ejemplo, 2025-11-07 17:00).',
             'FinTurno.after' => 'El fin del turno debe ser posterior al inicio del turno.',
         ];
     }

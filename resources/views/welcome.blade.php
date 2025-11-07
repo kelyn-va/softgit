@@ -261,7 +261,7 @@
         <h5>Auditoría</h5>
         <p class="text-muted">Revisa logs y auditorías del sistema.</p>
       </div>
-      <a href="#" class="btn-entrar">Ir a Auditoría</a>
+      <a href="{{route('Auditoria.index')}}" class="btn-entrar">Ir a Auditoría</a>
     </div>
   </div>
 
