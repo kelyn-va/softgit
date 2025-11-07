@@ -14,4 +14,8 @@ class Auditoria extends Model
         'idEmpleado'
 
     ];
+    public function empleado()
+    {
+        return $this->belongsTo(Empleado::class, 'idEmpleado');
+    }
 }

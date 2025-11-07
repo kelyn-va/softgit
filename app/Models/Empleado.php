@@ -23,4 +23,11 @@ class Empleado extends Model
         return $this->belongsTo(Turno::class, 'idTurno');
     }
 
+    public function auditorias()
+    {
+        return $this->hasMany(Auditoria::class, 'idEmpleado');
+    }
+
+
+
 }

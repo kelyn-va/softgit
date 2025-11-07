@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuditoriaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\ClienteController;
@@ -77,3 +78,11 @@ Route::post('/empleado/store',[EmpleadoController::class,'store'])->name('emplea
 Route::post('/empleado/destroy/{id}',[EmpleadoController::class,'destroy'])->name('empleados.destroy');
 Route::get('/empleado/edit/{id}',[EmpleadoController::class,'edit'])->name('empleados.edit');
 Route::post('/empleado/update/{id}',[EmpleadoController::class,'update'])->name('empleados.update');
+
+// -------------------- AUDITORÍAS --------------------
+Route::get('/Auditoria/index',[AuditoriaController::class,'index'])->name('Auditoria.index');
+Route::get('/Auditoria/create',[AuditoriaController::class,'create'])->name('Auditoria.create');
+Route::post('/Auditoria/store',[AuditoriaController::class,'store'])->name('Auditoria.store');
+Route::post('/Auditoria/destroy/{id}',[AuditoriaController::class,'destroy'])->name('Auditoria.destroy');
+Route::get('/Auditoria/edit/{id}',[AuditoriaController::class,'edit'])->name('Auditoria.edit');
+Route::post('/Auditoria/update/{id}',[AuditoriaController::class,'update'])->name('Auditoria.update');

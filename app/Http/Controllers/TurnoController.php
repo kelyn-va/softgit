@@ -13,8 +13,8 @@ class TurnoController extends Controller
      */
     public function index()
     {
-        $turnos= Turno::all();
-        return view('Turnos.index',compact('turnos'));
+        $turnos = Turno::all();
+        return view('Turnos.index', compact('turnos'));
     }
 
     /**
@@ -34,7 +34,7 @@ class TurnoController extends Controller
             $request->all()
         );
 
-        return redirect()->route('turno.index')>with('success', 'Turno creado correctamente.');
+        return redirect()->route('turnos.index')->with('success', 'Turno creado correctamente.');
     }
 
     /**
@@ -50,8 +50,8 @@ class TurnoController extends Controller
      */
     public function edit($id)
     {
-        $turnos= Turno::findorFail($id);
-        return view('Turnos.edit',compact('turnos'));
+        $turnos = Turno::findorFail($id);
+        return view('Turnos.edit', compact('turnos'));
     }
 
     /**
@@ -62,7 +62,7 @@ class TurnoController extends Controller
         $turnos = Turno::findorFail($id);
         $turnos->update($request->all());
 
-        return redirect()->route('turno.index')>with('success', 'Turno Actualizado correctamente.');
+        return redirect()->route('turno.index')-> with('success', 'Turno Actualizado correctamente.');
     }
 
     /**
@@ -70,9 +70,9 @@ class TurnoController extends Controller
      */
     public function destroy($id)
     {
-         $turnos = Turno::findorFail($id);
+        $turnos = Turno::findorFail($id);
         $turnos->delete();
 
-        return redirect()->route('turno.index')>with('success', 'Turno eliminado  correctamente.');
+        return redirect()->route('turnos.index')-> with('success', 'Turno eliminado  correctamente.');
     }
 }

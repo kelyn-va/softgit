@@ -3,7 +3,7 @@
 @section('title', 'Crear Empleado')
 
 @section('titleContent')
-    <h1 class="text-center my-4 fw-bold text-dark">Crear Empleado</h1>
+<h1 class="text-center my-4 fw-bold text-dark">Crear Empleado</h1>
 @endsection
 
 @section('content')
@@ -28,49 +28,58 @@
                         @csrf
                         <div class="mb-3">
                             <label for="nombre" class="form-label fw-semibold">nombre</label>
-                            <input type="text" id="nombre" name="nombre" 
+                            <input type="text" id="nombre" name="nombre"
                                 class="form-control @error('nombre') is-invalid @enderror">
                             @error('nombre')
-                                <div class="invalid-feedback">{{ $message }}</div>
+                            <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
 
-                         <div class="mb-3">
+                        <div class="mb-3">
                             <label for="cargo" class="form-label fw-semibold">cargo</label>
-                            <input type="text" id="cargo" name="cargo" 
+                            <input type="text" id="cargo" name="cargo"
                                 class="form-control @error('cargo') is-invalid @enderror">
                             @error('cargo')
-                                <div class="invalid-feedback">{{ $message }}</div>
+                            <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
 
 
                         <div class="mb-3">
                             <label for="usuario" class="form-label fw-semibold">usuario</label>
-                            <input type="text" id="usuario" name="usuario" 
+                            <input type="text" id="usuario" name="usuario"
                                 class="form-control @error('usuario') is-invalid @enderror">
                             @error('usuario')
-                                <div class="invalid-feedback">{{ $message }}</div>
+                            <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
 
                         <div class="mb-3">
-                          <label for="contraseña" class="form-label fw-semibold">contraseña</label>
-                         <input type="text" id="contraseña" name="contraseña" 
-                            class="form-control @error('contraseña') is-invalid @enderror">
-                         @error('contraseña')
+                            <label for="contraseña" class="form-label fw-semibold">contraseña</label>
+                            <input type="text" id="contraseña" name="contraseña"
+                                class="form-control @error('contraseña') is-invalid @enderror">
+                            @error('contraseña')
                             <div class="invalid-feedback">{{ $message }}</div>
-                         @enderror
+                            @enderror
                         </div>
+
+
 
                         <div class="mb-3">
                             <label for="idTurno" class="form-label fw-semibold">idTurno</label>
-                            <input type="text" id="idTurno" name="idTurno" 
-                                class="form-control @error('idTurno') is-invalid @enderror">
+                            <select id="idTurno" name="idTurno"
+                                class="form-select @error('idTurno') is-invalid @enderror">
+                                <option value="">-- Selecciona un turno --</option>
+                                <option value="1">Turno 1</option>
+                                <option value="2">Turno 2</option>
+                                <option value="3">Turno 3</option>
+                               
+                            </select>
                             @error('idTurno')
-                                <div class="invalid-feedback">{{ $message }}</div>
+                            <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
+
 
 
 

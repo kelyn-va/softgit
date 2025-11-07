@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Auditoria;
+use App\Models\Empleado;
 use Illuminate\Http\Request;
 
 class AuditoriaController extends Controller
@@ -12,7 +13,9 @@ class AuditoriaController extends Controller
      */
     public function index()
     {
-        //
+        $auditorias = Auditoria::all();
+        $empleados = Empleado::all();
+        return view('Auditoria.index', compact('auditorias', 'empleados'));
     }
 
     /**
@@ -20,15 +23,23 @@ class AuditoriaController extends Controller
      */
     public function create()
     {
-        //
+    
+    $empleados = Empleado::all(); // Trae todos los empleados
+    return view('Auditoria.create', compact('empleados'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
+
     {
-        //
+
+        Auditoria::create(
+            $request->all()
+        );
+
+        return redirect()->route('Auditoria.index')->with('success', 'Auditoría creada exitosamente.');
     }
 
     /**
@@ -44,22 +55,29 @@ class AuditoriaController extends Controller
      */
     public function edit(Auditoria $auditoria)
     {
-        //
+        $auditoria = Auditoria::findorfail($auditoria->id);
+        return  view('Auditoria.index', compact('auditoria'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Auditoria $auditoria)
+    public function update(Request $request, $id)
     {
-        //
+        $auditoria = Auditoria::findorfail($id);
+        $auditoria->update($request->all());
+
+        return redirect()->route('Auditoria.index')->with('success', 'Auditoría actualizada correctamente.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Auditoria $auditoria)
+    public function destroy(Auditoria $id)
     {
-        //
+        $auditoria = Auditoria::findorfail($id);
+        $auditoria->delete();
+
+        return redirect()->route('Auditoria.index')->with('success', 'Auditoría eliminada correctamente.');
     }
 }

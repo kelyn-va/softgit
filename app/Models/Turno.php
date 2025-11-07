@@ -11,4 +11,9 @@ class Turno extends Model
         'InicioTurno',
         'FinTurno'
     ];
+
+    public function empleados()
+    {
+        return $this->hasMany(Empleado::class, 'idTurno');
+    }
 }
