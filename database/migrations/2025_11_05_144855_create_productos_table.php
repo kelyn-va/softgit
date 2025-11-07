@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('codigoBarras');
             $table->unsignedBigInteger('idCategoria');
             $table->foreign('idCategoria')->references('id')->on('categorias');
-            $table->unsignedBigInteger('idproveedor');
+            $table->unsignedBigInteger('idProveedor');
             $table->foreign('idProveedor')->references('id')->on('proveedor');
             $table->unsignedBigInteger('idInventario');
             $table->foreign('idInventario')->references('id')->on('inventario');

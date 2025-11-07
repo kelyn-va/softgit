@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Inventario extends Model
 {
-    protected $table="Inventario";
+    protected $table="inventario";
 
     protected $fillable=[
         'Cantidad',

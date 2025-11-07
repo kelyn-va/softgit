@@ -15,7 +15,7 @@ class Producto extends Model
         'stock',
         'codigoBarras',
         'idCategoria',
-        'idproveedor',
+        'idProveeedor',
         'idInventario'
         
     ];

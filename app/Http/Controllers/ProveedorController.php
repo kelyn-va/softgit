@@ -30,11 +30,10 @@ class ProveedorController extends Controller
      */
     public function store(ProveedorRequest $request)
     {
-        Proveedor::create(
-            $request->all()
-        );
-        
-        return redirect()->route('proveedor.index')>with('success', 'Proveedor creado correctamente.');
+        Proveedor::create($request->all());
+
+
+        return redirect()->route('proveedor.index')->with('success', 'Proveedor creado correctamente.');
     }
 
     /**

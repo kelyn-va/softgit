@@ -86,7 +86,7 @@
                 <select name="idCategoria" id="idCategoria" class="form-select">
                     <option value="">Seleccione una categoria</option>
                     @foreach($categorias as $categoria)
-                    <option value="{{$usuario->id}}">{{$categoria->nombre}}</option>
+                    <option value="{{$categoria->id}}">{{$categoria->nombre}}</option>
                     @endforeach
                 </select>
 
@@ -116,7 +116,7 @@
                 <label for="idInventario" class="form-label   @error('idInventario') is-invalid @enderror">Inventario</label>
                 <select name="idInventario" id="idInventario" class="form-select">
                     <option value="">Seleccione un invetario</option>
-                    @foreach($inventarios as $inventario)
+                    @foreach($inventario as $inventarios)
                     <option value="{{$proveedor->id}}">{{$proveedor->nombre}}</option>
                     @endforeach
                 </select>

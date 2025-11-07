@@ -20,10 +20,10 @@ class ProveedorRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nombre' => 'required|string|maxLength:100',
-            'contacto' => 'required|string|max:100',
-            'telefono' => 'required|string|max:20',
-            'direccion' => 'required|string|max:150',
+            #'nombre' => 'required|string|max:100',
+            #'contacto' => 'required|string|max:100',
+            #'telefono' => 'required|string|max:20',
+            #'direccion' => 'required|string|max:150',
         ];
     }
 
