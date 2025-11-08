@@ -70,11 +70,13 @@
                             <select id="idTurno" name="idTurno"
                                 class="form-select @error('idTurno') is-invalid @enderror">
                                 <option value="">-- Selecciona un turno --</option>
-                                <option value="1">Turno 1</option>
-                                <option value="2">Turno 2</option>
-                                <option value="3">Turno 3</option>
-                               
+                                @foreach ( $turnos as  $turno)
+                                    
+                                <option value=" {{$turno->id }}">{{$turno->id }}</option>
+                              @endforeach
                             </select>
+                                
+                                
                             @error('idTurno')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror

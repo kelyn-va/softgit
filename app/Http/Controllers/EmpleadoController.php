@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\EmpleadoRequest;
 use App\Models\Empleado;
+use App\Models\Turno;
 use Illuminate\Http\Request;
 
 class EmpleadoController extends Controller
@@ -14,6 +15,7 @@ class EmpleadoController extends Controller
     public function index()
     {
         $empleados=Empleado::all();
+        
         return view('Empleado.index',compact('empleados'));
     }
 
@@ -21,8 +23,10 @@ class EmpleadoController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
+
     {
-        return view('Empleado.create');
+        $turnos=Turno::all();
+        return view('Empleado.create',compact('turnos'));
     }
 
     /**
@@ -50,8 +54,10 @@ class EmpleadoController extends Controller
      */
     public function edit( $id)
     {
+
         $empleados=Empleado::findorFail($id);
-        return view('Empleado.edit',compact('empleados'));
+        $turnos=Turno::all();
+        return view('Empleado.edit',compact('empleados','turnos'));
     }
 
     /**

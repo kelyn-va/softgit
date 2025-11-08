@@ -15,7 +15,7 @@ class Producto extends Model
         'stock',
         'codigoBarras',
         'idCategoria',
-        'idProveeedor',
+        'idProveedor',
         'idInventario'
         
     ];
@@ -28,7 +28,7 @@ class Producto extends Model
 
     public function proveedor()
     {
-        return $this->belongsTo(proveedor::class,'idProveeedor');
+        return $this->belongsTo(Proveedor::class,'idProveedor');
     } 
 
 
