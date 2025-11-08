@@ -28,12 +28,7 @@
                     <form action="{{ route('productos.store') }}" method="POST">
                         @csrf
                         <div class="mb-3">
-                            <label for="nombre" 
-                            
-                            
-                            
-                            
-                            
+                            <label for="nombre"
                             class="form-label fw-semibold">nombre</label>
                             <input type="text" id="nombre" name="nombre" 
                                 class="form-control @error('nombre') is-invalid @enderror">
@@ -42,7 +37,7 @@
                             @enderror
                         </div>
 
-                         <div class="mb-3">
+                        <div class="mb-3">
                             <label for="descripcion" class="form-label fw-semibold">descripcion</label>
                             <input type="text" id="descripcion" name="descripcion" 
                                 class="form-control @error('descripcion') is-invalid @enderror">

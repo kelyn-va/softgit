@@ -63,7 +63,7 @@ class ProveedorController extends Controller
         $proveedores = Proveedor::findorFail($id);
         $proveedores->update($request->all());
 
-        return redirect()->route('proveedor.index')>with('success', 'Proveedor actualizado correctamente.');
+        return redirect()->route('proveedor.index')->with('success', 'Proveedor actualizado correctamente.');
     }
 
     /**
@@ -74,6 +74,6 @@ class ProveedorController extends Controller
         $proveedores = Proveedor::findorFail($id);
         $proveedores->delete();
 
-        return redirect()->route('proveedor.index')>with('success', 'Proveedor eliminado  correctamente.');
+        return redirect()->route('proveedor.index')->with('success', 'Proveedor eliminado  correctamente.');
     }
 }

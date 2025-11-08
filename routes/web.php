@@ -6,6 +6,7 @@ use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\InventarioController;
+use App\Http\Controllers\MetodoPagoController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\TurnoController;
 use App\Http\Controllers\ProveedorController;
@@ -86,3 +87,13 @@ Route::post('/Auditoria/store',[AuditoriaController::class,'store'])->name('Audi
 Route::post('/Auditoria/destroy/{id}',[AuditoriaController::class,'destroy'])->name('Auditoria.destroy');
 Route::get('/Auditoria/edit/{id}',[AuditoriaController::class,'edit'])->name('Auditoria.edit');
 Route::post('/Auditoria/update/{id}',[AuditoriaController::class,'update'])->name('Auditoria.update');
+
+// -------------------- MÉTODOS DE PAGO --------------------
+
+Route::get('/metodoPago/index',[MetodoPagoController::class,'index'])->name('metodoPago.index');
+Route::get('/metodoPago/create',[MetodoPagoController::class,'create'])->name('metodoPago.create');
+Route::post('/metodoPago/store',[MetodoPagoController::class,'store'])->name('metodoPago.store');
+Route::post('/metodoPago/destroy/{id}',[MetodoPagoController::class,'destroy'])->name('metodoPago.destroy');
+Route::get('/metodoPago/edit/{id}',[MetodoPagoController::class,'edit'])->name('metodoPago.edit');
+Route::post('/metodoPago/update/{id}',[MetodoPagoController::class,'update'])->name('metodoPago.update');
+

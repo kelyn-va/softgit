@@ -57,7 +57,7 @@ class ClienteController extends Controller
     {
         $cliente = Clientes::findorfail($id);
         $cliente->update($request->all());
-        return redirect()->route('Cliente.index')->with('success', 'Cliente  Actualizado  correctamente.');
+        return redirect()->route('clientes.index')->with('success', 'Cliente  Actualizado  correctamente.');
     }
 
     /**

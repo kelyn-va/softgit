@@ -26,8 +26,8 @@ class ProductoRequest extends FormRequest
             'stock' => 'required|integer|min:0',
             'codigoBarras' => 'required|string|max:50|unique:productos,codigoBarras,' . $this->route('producto'),
             'idCategoria' => 'required|exists:categorias,id',
-            'idproveedor' => 'required|exists:proveedores,id_proveedor',
-            'idInventario' => 'required|exists:inventarios,id_inventario',
+            'idProveedor' => 'required|exists:proveedor,id',
+            'idInventario' => 'required|exists:inventario,id',
         ];
     }
 
@@ -46,8 +46,8 @@ class ProductoRequest extends FormRequest
             'codigoBarras.unique' => 'Este código de barras ya está registrado.',
             'idCategoria.required' => 'Debes seleccionar una categoría.',
             'idCategoria.exists' => 'La categoría seleccionada no existe.',
-            'idproveedor.required' => 'Debes seleccionar un proveedor.',
-            'idproveedor.exists' => 'El proveedor seleccionado no existe.',
+            'idProveedor.required' => 'Debes seleccionar un proveedor.',
+            'idProveedor.exists' => 'El proveedor seleccionado no existe.',
             'idInventario.required' => 'Debes asociar un inventario.',
             'idInventario.exists' => 'El inventario seleccionado no existe.',
         ];

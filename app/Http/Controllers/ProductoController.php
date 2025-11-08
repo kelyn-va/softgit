@@ -40,6 +40,7 @@ class ProductoController extends Controller
     public function store(ProductoRequest $request)
     {
     {
+        
         Producto::create(
             $request->all()
         );

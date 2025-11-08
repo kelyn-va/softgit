@@ -11,7 +11,7 @@ class ClienteRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true; // Cambia a true para permitir el uso del request
+        return true;
     }
 
     /**
@@ -19,16 +19,20 @@ class ClienteRequest extends FormRequest
      */
     public function rules(): array
     {
+        // Detectamos el ID actual según el nombre del parámetro de la ruta
+        $id = $this->route('cliente') ?? $this->route('id');
+
         return [
             'Nombre'    => 'required|string|max:255',
             'Telefono'  => 'required|string|max:20',
-            'Email'     => 'required|email|unique:clientes,Email',
+            // 💡 Aquí ignoramos el registro actual al validar el correo
+            'Email'     => 'required|email|unique:clientes,email,' . $id,
             'Direccion' => 'required|string|max:255',
         ];
     }
 
     /**
-     * Mensajes personalizados de error (opcional).
+     * Mensajes personalizados de error.
      */
     public function messages(): array
     {
@@ -38,9 +42,9 @@ class ClienteRequest extends FormRequest
             'Email.required'    => 'El correo electrónico es obligatorio.',
             'Email.email'       => 'Debe ingresar un correo electrónico válido.',
             'Email.unique'      => 'Este correo ya está registrado.',
-            'Telefono.required'   => 'El telefono del cliente es obligatorio.',
+            'Telefono.required' => 'El teléfono del cliente es obligatorio.',
             'Telefono.max'      => 'El teléfono no puede tener más de 20 caracteres.',
-            'Direccion.required'   => 'la Direccion del cliente es obligatoria.',
+            'Direccion.required'=> 'La dirección del cliente es obligatoria.',
         ];
     }
 }

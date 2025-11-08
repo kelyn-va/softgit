@@ -343,7 +343,7 @@ return [
         ],
         [
             'text' => 'Métodos de Pago',
-            'route' => '',
+            'route' => 'metodoPago.index',
             'icon' => 'fas fa-credit-card text-purple',
         ],
         [

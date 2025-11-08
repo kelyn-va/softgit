@@ -243,7 +243,7 @@
         <h5>Métodos de Pago</h5>
         <p class="text-muted">Configura formas de pago aceptadas.</p>
       </div>
-      <a href="#" class="btn-entrar">Ir a Métodos de Pago</a>
+      <a href="{{route('metodoPago.index')}}" class="btn-entrar">Ir a Métodos de Pago</a>
     </div>
 
     <div class="card-menu">
