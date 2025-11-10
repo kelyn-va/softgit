@@ -195,7 +195,7 @@
         <h5>Ventas</h5>
         <p class="text-muted">Administra las ventas realizadas.</p>
       </div>
-      <a href="#" class="btn-entrar">Ir a Ventas</a>
+      <a href="{{route('ventas.index')}}" class="btn-entrar">Ir a Ventas</a>
     </div>
 
     <div class="card-menu">
@@ -231,7 +231,7 @@
         <h5>Detalle de Venta</h5>
         <p class="text-muted">Gestiona los detalles por venta.</p>
       </div>
-      <a href="#" class="btn-entrar">Ir a Detalle de Venta</a>
+      <a href="*" class="btn-entrar">Ir a Detalle de Venta</a>
     </div>
   </div>
 

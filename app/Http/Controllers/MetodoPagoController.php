@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\MetodoPagoRequest;
 use App\Models\metodoPago;
 use Illuminate\Http\Request;
 
@@ -27,7 +28,7 @@ class MetodoPagoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(MetodoPagoRequest $request)
     {
         metodoPago::create(
             $request->all()
@@ -56,7 +57,7 @@ class MetodoPagoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request,  $id)
+    public function update(MetodoPagoRequest $request,  $id)
     {
         $metodoPago = metodoPago::findorfail($id);
         $metodoPago -> update($request->all());

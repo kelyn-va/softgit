@@ -27,6 +27,12 @@ class Empleado extends Model
     {
         return $this->hasMany(Auditoria::class, 'idEmpleado');
     }
+    public function ventas()
+    {
+        return $this->hasMany(Ventas::class, 'idempleado');
+    }
+
+
 
 
 

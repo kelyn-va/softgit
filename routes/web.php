@@ -10,6 +10,7 @@ use App\Http\Controllers\MetodoPagoController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\TurnoController;
 use App\Http\Controllers\ProveedorController;
+use App\Http\Controllers\VentasController;
 
 // Ruta principal
 Route::get('/', function () {
@@ -96,4 +97,12 @@ Route::post('/metodoPago/store',[MetodoPagoController::class,'store'])->name('me
 Route::post('/metodoPago/destroy/{id}',[MetodoPagoController::class,'destroy'])->name('metodoPago.destroy');
 Route::get('/metodoPago/edit/{id}',[MetodoPagoController::class,'edit'])->name('metodoPago.edit');
 Route::post('/metodoPago/update/{id}',[MetodoPagoController::class,'update'])->name('metodoPago.update');
+
+// -------------------- VENTAS --------------------
+Route::get('/ventas/index',[VentasController::class,'index'])->name('ventas.index');
+Route::get('/ventas/create',[VentasController::class,'create'])->name('ventas.create');
+Route::post('/ventas/store',[VentasController::class,'store'])->name('ventas.store');
+Route::post('/ventas/destroy/{id}',[VentasController::class,'destroy'])->name('ventas.destroy');
+Route::get('/ventas/edit/{id}',[VentasController::class,'edit'])->name('ventas.edit');
+Route::post('/ventas/update/{id}',[VentasController::class,'update'])->name('ventas.update');
 

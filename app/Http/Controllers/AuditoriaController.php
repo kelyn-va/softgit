@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AuditoriaRequest;
 use App\Models\Auditoria;
 use App\Models\Empleado;
 use Illuminate\Http\Request;
@@ -31,7 +32,7 @@ class AuditoriaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(AuditoriaRequest $request)
 
     {
 
@@ -53,16 +54,16 @@ class AuditoriaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Auditoria $auditoria)
+    public function edit( $id)
     {
-        $auditoria = Auditoria::findorfail($auditoria->id);
+        $auditoria = Auditoria::findorfail($id);
         return  view('Auditoria.index', compact('auditoria'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(AuditoriaRequest $request, $id)
     {
         $auditoria = Auditoria::findorfail($id);
         $auditoria->update($request->all());
@@ -73,7 +74,7 @@ class AuditoriaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Auditoria $id)
+    public function destroy( $id)
     {
         $auditoria = Auditoria::findorfail($id);
         $auditoria->delete();
