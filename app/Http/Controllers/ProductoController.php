@@ -66,15 +66,15 @@ class ProductoController extends Controller
         $productos = Producto::findorFail($id);
         $categorias = Categorias::all();
         $proveedores = Proveedor::all();
-        $inventario = Inventario::all();
-        return view('productos.edit', compact('productos' , 'categorias','proveedores','inventario'));
+        $inventarios = Inventario::all();
+        return view('Producto.edit', compact('productos' , 'categorias','proveedores','inventarios'));
     
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(ProductoRequest $request, $id)
+    public function update(Request $request, $id)
     {
         $productos = Producto::findorFail($id);
         $productos->update($request->all());

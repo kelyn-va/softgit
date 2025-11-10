@@ -68,8 +68,8 @@
                         <td>{{ $producto->precio }}</td>
                         <td>{{ $producto->stock }}</td>
                         <td>{{ $producto->codigoBarras }}</td>
-                        <td>{{ $producto->idCategoria }}</td>
-                        <td>{{ $producto->idProveedor }}</td>
+                        <td>{{ $producto->categoria->nombre }}</td>
+                        <td>{{ $producto->proveedor->nombre }}</td>
                         <td>{{ $producto->idInventario }}</td>
                         <td>
                             <div class="d-flex justify-content-center gap-2">

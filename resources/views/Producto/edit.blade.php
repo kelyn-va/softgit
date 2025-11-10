@@ -6,7 +6,7 @@
     <h1 class="text-center my-4 fw-bold text-dark">Actualizar producto</h1>
 @endsection
 
-@section('Content')
+@section('content')
 
 
 <div class="container py-4">
@@ -98,7 +98,7 @@
                 <select name="idproveedor" id="idproveedor" class="form-select form-select-sm" >
                     <option value="">Seleccione un proveedor</option>
                     @foreach($proveedores as $proveedor)
-                        <option value="{{ $proveedor->id }}" {{ $productos->idproveedor == $proveedor->id ? 'selected' : '' }}>
+                        <option value="{{ $proveedor->id }}" {{ $productos->idProveedor == $proveedor->id ? 'selected' : '' }}>
                             {{ $proveedor->nombre }}
                         </option>
                     @endforeach
@@ -114,7 +114,7 @@
                     <option value="">Seleccione un invetario</option>
                     @foreach($inventarios as $inventario)
                         <option value="{{ $inventario->id }}" {{ $productos->idInventario == $inventario->id ? 'selected' : '' }}>
-                            {{ $inventario->cantidad }}
+                            {{ $inventario->id }}
                         </option>
                     @endforeach
                 </select>
@@ -126,15 +126,11 @@
 
                         <div class="text-end">
                             <button type="submit" class="crearBtn">
-                                ➕ <i class="bi bi-person-plus"></i> Actualizar Categoria
+                                ➕ <i class="bi bi-person-plus"></i> Actualizar producto
                             </button>
                         </div>
                     </form>
 
                 </div>
             </div>
-
-        </div>
-    </div>
-</div>
 @endsection

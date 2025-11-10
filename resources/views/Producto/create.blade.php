@@ -77,6 +77,7 @@
 
                         
             <div>
+
                 <label for="idCategoria" class="form-label   @error('idCategoria') is-invalid @enderror">Categoria</label>
                 <select name="idCategoria" id="idCategoria" class="form-select">
                     <option value="">Seleccione una categoria</option>
@@ -93,14 +94,14 @@
 
             <div>
                 <label for="idproveedor" class="form-label   @error('idproveedor') is-invalid @enderror">Proveedor</label>
-                <select name="idproveedor" id="idproveedor" class="form-select">
+               <select name="idProveedor" id="idProveedor" class="form-select" required>
                     <option value="">Seleccione un proveedor</option>
                     @foreach($proveedores as $proveedor)
                     <option value="{{$proveedor->id}}">{{$proveedor->nombre}}</option>
                     @endforeach
                 </select>
 
-                @error('idproveedor')
+                @error('idProveedor')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
@@ -111,12 +112,13 @@
                 <label for="idInventario" class="form-label   @error('idInventario') is-invalid @enderror">Inventario</label>
                 <select name="idInventario" id="idInventario" class="form-select">
                     <option value="">Seleccione un invetario</option>
-                    @foreach($inventario as $inventarios)
-                    <option value="{{$proveedor->id}}">{{$proveedor->nombre}}</option>
+                    @foreach($inventario as $inv)
+                    <option value="{{ $inv->id }}">{{ $inv->id }}</option>
                     @endforeach
+
                 </select>
 
-                @error('idproveedor')
+                @error('idInventario')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
@@ -128,7 +130,7 @@
 
                         <div class="text-end">
                             <button type="submit" class="crearBtn">
-                                ➕ <i class="bi bi-person-plus"></i> Crear Categoria
+                                ➕ <i class="bi bi-person-plus"></i> Crear Producto
                             </button>
                         </div>
                     </form>
