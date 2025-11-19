@@ -1,0 +1,15 @@
+git add   app/Http/Controllers/ClienteController.php
+        git add   app/Http/Controllers/EmpleadoController.php
+        git add   app/Http/Requests/ClienteRequest.php
+        git add   app/Models/metodoPago.php
+        git add   app/Models/ventas.php
+        git add   config/adminlte.php
+        git add   database/migrations/2025_10_02_132706_create_clientes_table.php
+        git add   database/seeders/DatabaseSeeder.php
+        git add   resources/views/Auditoria/create.blade.php
+        git add   resources/views/Auditoria/edit.blade.php
+        git add   resources/views/Auditoria/index.blade.php
+        git add   resources/views/Cliente/index.blade.php
+        git add   resources/views/layouts/app.blade.php
+        git add   resources/views/welcome.blade.php
+        git add   routes/web.php
