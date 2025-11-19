@@ -12,4 +12,9 @@ class Inventario extends Model
         'Cantidad',
         'FechaActualizacion'
     ];
+
+public function producto()
+{
+    return $this->belongsTo(Producto::class, 'idproducto');
+}
 }

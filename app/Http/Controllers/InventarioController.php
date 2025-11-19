@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\InventarioRequest;
 use App\Models\inventario;
 use App\Models\Iventario;
+use App\Models\Producto;
 use Illuminate\Http\Request;
 
 class InventarioController extends Controller
@@ -14,8 +15,10 @@ class InventarioController extends Controller
      */
     public function index()
     {
-        $inventarios= Inventario::all();
-        return view('inventario.index',compact('inventarios'));
+    $inventarios = Inventario::all();
+  
+
+    return view('inventario.index', compact('inventarios'));
     }
 
     /**
@@ -23,14 +26,16 @@ class InventarioController extends Controller
      */
     public function create()
     {
-        return view('inventario.create');
+     $productos = Producto::all();
+    return view('inventario.create', compact('productos'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(InventarioRequest $request)
-    {
+    { 
+    
         Inventario::create(
             $request->all()
         );

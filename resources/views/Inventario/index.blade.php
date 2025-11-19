@@ -8,8 +8,6 @@
 
 @section('content')
 
-
-
 <div class="container py-4">
 
     <div class="d-flex justify-content-between align-items-center gap-3 mb-4">
@@ -42,18 +40,21 @@
                 <thead>
                     <tr>
                         <th>id</th>
-                        <th>cantidad</th>
-                        <th>fecha de Actualizacion</th>
-                        
+                        <th>Cantidad</th>
+                        <th>Fecha de Actualización</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
+
                 <tbody>
                     @forelse ($inventarios as $Inventario)
                         <tr>
                             <td>{{ $Inventario->id }}</td>
+
+                            {{-- MOSTRAR PRODUCTO ASOCIADO -
                             <td>{{ $Inventario->Cantidad }}</td>
                             <td>{{ $Inventario->FechaActualizacion }}</td>
-                            
+
                             <td>
                                 <div class="d-flex justify-content-center gap-2">
                                     <a href="{{route('inventario.edit', $Inventario->id)}}" class="btnActualizar d-flex gap-2 align-items-center">
@@ -75,6 +76,7 @@
                         </tr>
                     @endforelse
                 </tbody>
+
             </table>
         </div>
     </div>
@@ -101,4 +103,5 @@
         });
     }
 </script>
+
 @endsection

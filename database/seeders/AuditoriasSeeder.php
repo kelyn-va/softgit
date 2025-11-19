@@ -29,7 +29,7 @@ class AuditoriasSeeder extends Seeder
                 'Accion' => $acciones[array_rand($acciones)],
                 'fecha' => now()->subDays(rand(0, 30))->setTime(rand(7, 20), rand(0, 59), 0),
                 'cierreCaja' => rand(100000, 500000) / 10, // 10,000 a 50,000 aprox
-                'idEmpleado' => rand(1, 30), // Empleados del 1 al 30
+                'idEmpleado' => rand(1, 4), // Empleados del 1 al 30
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
