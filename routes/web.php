@@ -8,6 +8,7 @@ use App\Http\Controllers\DetalleVentaController;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\InventarioController;
 use App\Http\Controllers\MetodoPagoController;
+use App\Http\Controllers\PagosController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\TurnoController;
 use App\Http\Controllers\ProveedorController;
@@ -115,4 +116,39 @@ Route::post('/DetalleVenta/destroy/{id}',[DetalleVentaController::class,'destroy
 Route::get('/DetalleVenta/edit/{id}',[DetalleVentaController::class,'edit'])->name('DetalleVenta.edit');
 Route::post('/DetalleVenta/update/{id}',[DetalleVentaController::class,'update'])->name('DetalleVenta.update');
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// -------------------- PAGOS --------------------
+Route::get('/pagos/index',[PagosController::class,'index'])->name('pagos.index');
+Route::get('/pagos/create',[PagosController::class,'create'])->name('pagos.create');
+Route::post('/pagos/store',[PagosController::class,'store'])->name('pagos.store');
+Route::post('/pagos/destroy/{id}',[PagosController::class,'destroy'])->name('pagos.destroy');
+Route::get('/pagos/edit/{id}',[PagosController::class,'edit'])->name('pagos.edit');
+Route::post('/pagos/update/{id}',[PagosController::class,'update'])->name('pagos.update');
 

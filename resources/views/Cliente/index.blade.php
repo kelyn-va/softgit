@@ -10,7 +10,68 @@
 @endsection
 
 @section('content')
+{{-- 🔍 FORMULARIO DE FILTROS --}}
+    <form method="GET" action="{{ route('clientes.index') }}" class="card card-body mb-4">
 
+        <div class="row g-3">
+
+            {{-- Búsqueda general --}}
+            <div class="col-md-4">
+                <label class="form-label">Buscar</label>
+                <input type="text" name="search" class="form-control"
+                       value="{{ request('search') }}"
+                       placeholder="Nombre, teléfono, email, dirección...">
+            </div>
+
+            {{-- Teléfono --}}
+            <div class="col-md-4">
+                <label class="form-label">Teléfono</label>
+                <input type="text" name="telefono" class="form-control"
+                       value="{{ request('telefono') }}">
+            </div>
+
+            {{-- Dirección --}}
+            <div class="col-md-4">
+                <label class="form-label">Dirección</label>
+                <input type="text" name="direccion" class="form-control"
+                       value="{{ request('direccion') }}">
+            </div>
+
+            {{-- Dominio del correo --}}
+            <div class="col-md-4">
+                <label class="form-label">Dominio del correo</label>
+                <input type="text" name="correoDominio" class="form-control"
+                       placeholder="ej: gmail.com"
+                       value="{{ request('correoDominio') }}">
+            </div>
+
+            {{-- Fecha inicio --}}
+            <div class="col-md-4">
+                <label class="form-label">Fecha Inicio</label>
+                <input type="date" name="fechaInicio" class="form-control"
+                       value="{{ request('fechaInicio') }}">
+            </div>
+
+            {{-- Fecha fin --}}
+            <div class="col-md-4">
+                <label class="form-label">Fecha Fin</label>
+                <input type="date" name="fechaFin" class="form-control"
+                       value="{{ request('fechaFin') }}">
+            </div>
+
+        </div>
+
+        <div class="mt-3 d-flex gap-2">
+            <button class="btn btn-primary">
+                <i class="bi bi-funnel"></i> Filtrar
+            </button>
+
+            <a href="{{ route('clientes.index') }}" class="btn btn-secondary">
+                <i class="bi bi-x-circle"></i> Limpiar
+            </a>
+        </div>
+
+    </form>
 
 </style>
 
@@ -36,7 +97,7 @@
 
     <div class="card custom-card shadow-lg border-0">
         <div class="card-body">
-            <table class="table table-striped table-hover align-middle text-center mb-0">
+            <table id="myTable" class="table table-striped table-hover align-middle text-center mb-0">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -83,9 +144,7 @@
 
 </div>
 
-<footer>
-    Realizado por <b>Karen Julieth Sepúlveda Sánchez</b> - <b>Vanessa García Corzo</b> | 2025
-</footer>
+
 
 <script>
     function confirmarEliminacion(event) {
@@ -107,5 +166,27 @@
             }
         });
     }
+</script>
+
+{{-- DataTables con Bootstrap 4 --}}
+<script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.8/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.5.0/js/responsive.bootstrap4.min.js"></script>
+{{-- DataTables con Bootstrap 4 --}}
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.bootstrap4.min.css">
+
+<!-- script de datatables -->
+<script>
+    $(document).ready(function() {
+        $('#myTable').DataTable({
+            responsive: true,
+            autoWidth: true,
+            language: {
+                url: '//cdn.datatables.net/plug-ins/1.13.8/i18n/es-ES.json'
+            }
+        });
+    });
 </script>
 @endsection

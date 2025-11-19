@@ -51,7 +51,7 @@
                             <td>{{ $auditoria->Accion }}</td>
                             <td>{{ $auditoria->fecha }}</td>
                             <td>{{ $auditoria->cierreCaja }}</td>
-                            <td>{{ $auditoria->idEmpleado }}</td>
+                            <td>{{ $auditoria->empleado->nombre }}</td>
                             <td>
                                 <div class="d-flex justify-content-center gap-2">
                                     <a href="{{ route('Auditoria.edit', $auditoria->id) }}" class="btnActualizar">
@@ -80,9 +80,7 @@
 
 </div>
 
-<footer>
-    Realizado por <b>Karen Julieth Sepúlveda Sánchez</b> - <b>Vanessa García Corzo</b> | 2025
-</footer>
+
 
 <script>
     function confirmarEliminacion(event) {

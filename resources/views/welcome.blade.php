@@ -252,7 +252,7 @@
         <h5>Pagos</h5>
         <p class="text-muted">Registra y revisa pagos recibidos.</p>
       </div>
-      <a href="#" class="btn-entrar">Ir a Pagos</a>
+      <a href="{{route('pagos.index')}}" class="btn-entrar">Ir a Pagos</a>
     </div>
 
     <div class="card-menu">

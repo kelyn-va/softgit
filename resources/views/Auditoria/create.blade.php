@@ -64,7 +64,7 @@
                             class="form-select @error('idEmpleado') is-invalid @enderror">
                             <option value="" selected disabled>Seleccione un empleado</option>
                             @foreach ($empleados as $empleado)
-                            <option value="{{ $empleado->id }}">{{ $empleado->Nombre }}</option>
+                            <option value="{{ $empleado->nombre}}">{{ $empleado->nombre }}</option>
                             @endforeach
                         </select>
                         @error('idEmpleado')

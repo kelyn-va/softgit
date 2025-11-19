@@ -68,8 +68,8 @@
                             class="form-select @error('idEmpleado') is-invalid @enderror">
                             <option value="" disabled>Seleccione un empleado</option>
                             @foreach ($empleados as $empleado)
-                                <option value="{{ $empleado->id }}"
-                                    {{ old('idEmpleado', $auditoria->idEmpleado) == $empleado->id ? 'selected' : '' }}>
+                                <option value="{{ $empleado->nombre }}"
+                                    {{ old('idEmpleado', $auditoria->idEmpleado) == $empleado->nombre ? 'selected' : '' }}>
                                     {{ $empleado->Nombre }}
                                 </option>
                             @endforeach

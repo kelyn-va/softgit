@@ -10,4 +10,45 @@ class metodoPago extends Model
     protected $fillable = [
         'descripcion'
     ];
+
+    public function pagos()
+    {
+        return $this->hasMany(pagos::class, 'idmetodopagos');
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

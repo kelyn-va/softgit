@@ -196,11 +196,12 @@ return [
     'classes_content_wrapper' => '',
     'classes_content_header' => '',
     'classes_content' => '',
-    'classes_sidebar' => 'sidebar-light-primary elevation-4',
+    // CAMBIO CLAVE: Usamos 'sidebar-light' para el tema claro y 'primary' para el acento
+    'classes_sidebar' => 'sidebar-light-primary elevation-4', 
     'classes_sidebar_nav' => '',
     'classes_topnav' => 'navbar-white navbar-light',
     'classes_topnav_nav' => 'navbar-expand',
-    'classes_topnav_container' => 'container',
+    'classes_topnav_container' => 'container', 
 
     /*
     |--------------------------------------------------------------------------
@@ -298,7 +299,7 @@ return [
     |
     */
 
-    'menu' => [
+     'menu' => [
         ['header' => 'MENÚ PRINCIPAL'],
 
         [
@@ -318,12 +319,13 @@ return [
         ],
         [
             'text' => 'Devoluciones',
-            'route' => '',
+            // Asegúrate de definir la ruta para Devoluciones si no está definida
+            'route' => '', 
             'icon' => 'fas fa-rotate-left text-secondary',
         ],
         [
             'text' => 'Empleados',
-            'route' => 'empleados.index',
+            'route' =>'empleados.index',
             'icon' => 'fas fa-id-badge text-primary',
         ],
         [
@@ -333,12 +335,14 @@ return [
         ],
         [
             'text' => 'Ventas',
-            'route' => '',
+            // Asegúrate de definir la ruta para Ventas si no está definida
+            'route' => 'ventas.index', 
             'icon' => 'fas fa-cash-register text-danger',
         ],
         [
             'text' => 'Auditoría',
-            'route' => '',
+            // Asegúrate de definir la ruta para Auditoría si no está definida
+            'route' => 'Auditoria.index', 
             'icon' => 'fas fa-magnifying-glass-chart text-dark',
         ],
         [
@@ -348,12 +352,14 @@ return [
         ],
         [
             'text' => 'Pagos',
-            'route' => '',
+            // CORRECCIÓN: Usamos la ruta 'pagos.index' que creamos
+            'route' => 'pagos.index', 
             'icon' => 'fas fa-money-bill-wave text-success',
         ],
         [
             'text' => 'Detalle de Venta',
-            'route' => '',
+            // Asegúrate de definir la ruta para Detalle de Venta si no está definida
+            'route' => 'DetalleVenta.index', 
             'icon' => 'fas fa-file-invoice-dollar text-pink',
         ],
         [
@@ -365,14 +371,15 @@ return [
         [
             'text' => 'Categorias',
             'route' => 'categorias.index',
-            'icon' => 'fas fa-warehouse text-dark',
+            'icon' => 'fas fa-sitemap text-dark', // Cambié el ícono para diferenciarlo del inventario
         ],
 
 
         ['header' => 'OTRAS OPCIONES'],
         [
             'text' => 'Salir',
-            'url' => '#',
+            // DEBES definir la acción de logout correcta. Esto es un ejemplo.
+            'url' => 'logout', 
             'icon' => 'fas fa-sign-out-alt text-danger',
         ],
 

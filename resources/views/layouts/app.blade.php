@@ -143,6 +143,29 @@
 
 <!-- ✅ Soporte para scripts específicos de las vistas -->
 @stack('scripts')
+
+
+{{-- DataTables con Bootstrap 4 --}}
+<script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.8/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.5.0/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.5.0/js/responsive.bootstrap4.min.js"></script>
+{{-- DataTables con Bootstrap 4 --}}
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.bootstrap4.min.css">
+
+<!-- script de datatables -->
+<script>
+    $(document).ready(function() {
+        $('#myTable').DataTable({
+            responsive: true,
+            autoWidth: true,
+            language: {
+                url: '//cdn.datatables.net/plug-ins/1.13.8/i18n/es-ES.json'
+            }
+        });
+    });
+</script>
 @stop
 
 {{-- Footer --}}

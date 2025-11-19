@@ -26,7 +26,13 @@ class ventas extends Model
     }
 
     public function detalleVentas()
+    
     {
         return $this->hasMany(DetalleVenta::class, 'idventa');
+    }
+
+    public function pagos()
+    {
+        return $this->hasMany(pagos::class, 'idventa');
     }
 }

@@ -24,7 +24,7 @@ class ClienteRequest extends FormRequest
 
         return [
             'Nombre'    => 'required|string|max:255',
-            'Telefono'  => 'required|string|max:20',
+            'Telefono'  => 'required|string|max:15',
             // 💡 Aquí ignoramos el registro actual al validar el correo
             'Email'     => 'required|email|unique:clientes,email,' . $id,
             'Direccion' => 'required|string|max:255',
@@ -43,7 +43,7 @@ class ClienteRequest extends FormRequest
             'Email.email'       => 'Debe ingresar un correo electrónico válido.',
             'Email.unique'      => 'Este correo ya está registrado.',
             'Telefono.required' => 'El teléfono del cliente es obligatorio.',
-            'Telefono.max'      => 'El teléfono no puede tener más de 20 caracteres.',
+            'Telefono.max'      => 'El teléfono no puede tener más de 14 caracteres.',
             'Direccion.required'=> 'La dirección del cliente es obligatoria.',
         ];
     }
