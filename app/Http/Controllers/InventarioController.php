@@ -15,10 +15,12 @@ class InventarioController extends Controller
      */
     public function index()
     {
-    $inventarios = Inventario::all();
-  
+        $inventarios = Inventario::all();
+        $productos = Producto::all();
+        $categorias = \App\Models\Categorias::all();
+        $proveedores = \App\Models\Proveedor::all();
 
-    return view('inventario.index', compact('inventarios'));
+        return view('inventario.index', compact('inventarios', 'productos', 'categorias', 'proveedores'));
     }
 
     /**

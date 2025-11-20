@@ -302,16 +302,6 @@ return [
      'menu' => [
         ['header' => 'MENÚ PRINCIPAL'],
         [
-            'text' => 'Proveedores',
-            'route' => 'proveedor.index',
-            'icon' => 'fas fa-truck-field text-success',
-        ],
-        [
-            'text' => 'Productos',
-            'route' => 'productos.index',
-            'icon' => 'fas fa-cubes text-warning',
-        ],
-        [
             'text' => 'Devoluciones',
             // Asegúrate de definir la ruta para Devoluciones si no está definida
             'route' => '', 
@@ -344,14 +334,6 @@ return [
             'route' => 'inventario.index',
             'icon' => 'fas fa-warehouse text-dark',
         ],
-
-        [
-            'text' => 'Categorias',
-            'route' => 'categorias.index',
-            'icon' => 'fas fa-sitemap text-dark', // Cambié el ícono para diferenciarlo del inventario
-        ],
-
-
         ['header' => 'OTRAS OPCIONES'],
         [
             'text' => 'Salir',
