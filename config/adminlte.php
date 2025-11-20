@@ -302,6 +302,17 @@ return [
      'menu' => [
         ['header' => 'MENÚ PRINCIPAL'],
         [
+            'text' => 'Ventas',
+            // Asegúrate de definir la ruta para Ventas si no está definida
+            'route' => 'ventas.index', 
+            'icon' => 'fas fa-cash-register text-danger',
+        ],
+        [
+            'text' => 'Inventario',
+            'route' => 'inventario.index',
+            'icon' => 'fas fa-warehouse text-dark',
+        ],
+        [
             'text' => 'Devoluciones',
             // Asegúrate de definir la ruta para Devoluciones si no está definida
             'route' => '', 
@@ -311,23 +322,6 @@ return [
             'text' => 'Turnos',
             'route' => 'turnos.index',
             'icon' => 'fas fa-clock text-indigo',
-        ],
-        [
-            'text' => 'Ventas',
-            // Asegúrate de definir la ruta para Ventas si no está definida
-            'route' => 'ventas.index', 
-            'icon' => 'fas fa-cash-register text-danger',
-        ],
-        [
-            'text' => 'Detalle de Venta',
-            // Asegúrate de definir la ruta para Detalle de Venta si no está definida
-            'route' => 'DetalleVenta.index', 
-            'icon' => 'fas fa-file-invoice-dollar text-pink',
-        ],
-        [
-            'text' => 'Inventario',
-            'route' => 'inventario.index',
-            'icon' => 'fas fa-warehouse text-dark',
         ],
         ['header' => 'OTRAS OPCIONES'],
         [

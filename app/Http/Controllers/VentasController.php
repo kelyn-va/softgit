@@ -2,25 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Clientes;
 use App\Models\Empleado;
-use App\Models\ventas;
+use App\Models\Ventas;
 use App\Models\Producto;
 use Illuminate\Http\Request;
-
+use App\Models\DetalleVenta;
 
 class VentasController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        $ventas = ventas::with('empleado', 'producto')->get();
+        $ventas = Ventas::with(['empleado', 'detalles.producto'])->get();
+
         return view('ventas.index', compact('ventas'));
     }
 
-    // 🟦 Formulario de creación
     public function create()
     {
         $empleados = Empleado::all();
@@ -29,69 +25,52 @@ class VentasController extends Controller
         return view('ventas.create', compact('empleados', 'productos'));
     }
 
-    // 🟦 Guardar nueva venta
     public function store(Request $request)
     {
         $request->validate([
             'metodo_pago' => 'required',
             'idempleado' => 'required|exists:empleados,id',
-            'idproducto' => 'required|exists:productos,id'
+            'productos' => 'required|array',
+            'productos.*.id' => 'required|exists:productos,id',
+            'productos.*.cantidad' => 'required|integer|min:1'
         ]);
 
-        // Obtener precio del producto automáticamente
-        $producto = Producto::findOrFail($request->idproducto);
-
-        ventas::create([
-            'total' => $producto->precio,
+        // Crear venta
+        $venta = Ventas::create([
+            'total' => 0,
             'metodo_pago' => $request->metodo_pago,
             'idempleado' => $request->idempleado,
-            'idproducto' => $request->idproducto
+            'idproducto' => null
         ]);
+
+        $totalVenta = 0;
+
+        foreach ($request->productos as $p) {
+            $producto = Producto::findOrFail($p['id']);
+            $cantidad = $p['cantidad'];
+            $subtotal = $producto->precio * $cantidad;
+
+            DetalleVenta::create([
+                'idventa' => $venta->id,
+                'idProducto' => $producto->id,
+                'cantidad' => $cantidad,
+                'precio_unitario' => $producto->precio,
+                'subtotal' => $subtotal
+            ]);
+
+            $totalVenta += $subtotal;
+        }
+
+        $venta->update(['total' => $totalVenta]);
 
         return redirect()->route('ventas.index')->with('success', 'Venta registrada correctamente');
     }
-    /**
-     * Show the form for creating a new resource.
-     */
-   
-    /**
-     * Display the specified resource.
-     */
-    public function show(ventas $ventas)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit($id)
+    public function destroy($id)
     {
-     
-     $empleados = Empleado::all();
-        
-        $ventas= ventas::findorfail($id);
-        return view('ventas.edit',compact('ventas', 'clientes', 'empleados'));
-    }
+        $venta = Ventas::findOrFail($id);
+        $venta->delete();
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, $id)
-    {
-        $ventas = ventas::findorfail($id);
-        $ventas->update($request->all());
-
-        return redirect()->route('ventas.index')->with('success', 'Venta actualizada exitosamente.');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy( $id)
-    {
-        $ventas= ventas::findorfail($id);
-        $ventas->delete();
         return redirect()->route('ventas.index')->with('success', 'Venta eliminada correctamente.');
     }
 }
