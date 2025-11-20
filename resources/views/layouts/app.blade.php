@@ -4,7 +4,7 @@
 
 {{-- Header corto (título del módulo) --}}
 @section('content_header')
-    <h1 class="m-0">@yield('page-title', 'Admin Panel')</h1>
+    <h1 class="m-0">@yield('page-title', 'SOFTGIT')</h1>
 @stop
 
 {{-- Contenido principal --}}

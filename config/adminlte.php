@@ -301,12 +301,6 @@ return [
 
      'menu' => [
         ['header' => 'MENÚ PRINCIPAL'],
-
-        [
-            'text' => 'Clientes',
-            'route' => 'clientes.index',
-            'icon' => 'fas fa-user-friends text-info',
-        ],
         [
             'text' => 'Proveedores',
             'route' => 'proveedor.index',
@@ -338,23 +332,6 @@ return [
             // Asegúrate de definir la ruta para Ventas si no está definida
             'route' => 'ventas.index', 
             'icon' => 'fas fa-cash-register text-danger',
-        ],
-        [
-            'text' => 'Auditoría',
-            // Asegúrate de definir la ruta para Auditoría si no está definida
-            'route' => 'Auditoria.index', 
-            'icon' => 'fas fa-magnifying-glass-chart text-dark',
-        ],
-        [
-            'text' => 'Métodos de Pago',
-            'route' => 'metodoPago.index',
-            'icon' => 'fas fa-credit-card text-purple',
-        ],
-        [
-            'text' => 'Pagos',
-            // CORRECCIÓN: Usamos la ruta 'pagos.index' que creamos
-            'route' => 'pagos.index', 
-            'icon' => 'fas fa-money-bill-wave text-success',
         ],
         [
             'text' => 'Detalle de Venta',

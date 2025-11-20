@@ -15,14 +15,17 @@ return new class extends Migration
             $table->id();
             $table->datetime('fecha');
             $table->decimal('total', 10, 2);
+            
+            // Información del cliente (sin tabla separada)
+            $table->string('cliente_nombre', 100);
+            $table->string('cliente_telefono', 15)->nullable();
+            $table->string('cliente_email', 100)->nullable();
+            
+            // Relación con empleado
+            $table->unsignedBigInteger('idempleado');
+            $table->foreign('idempleado')->references('id')->on('empleados');
+            
             $table->timestamps();
-            $table->unsignedBigInteger('idCliente');
-            $table->foreign('idCliente')->references('id')->on('clientes');
-            $table ->unsignedBigInteger('idempleado');
-            $table ->foreign('idempleado')->references('id')->on('empleados');
-            
-
-            
         });
     }
 

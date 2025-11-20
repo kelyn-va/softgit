@@ -17,19 +17,20 @@ class Empleado extends Model
         
     ];
 
+    /**
+     * Relación: Un empleado pertenece a un turno
+     */
     public function turno()
-
-        {
+    {
         return $this->belongsTo(Turno::class, 'idTurno');
     }
 
-    public function auditorias()
-    {
-        return $this->hasMany(Auditoria::class, 'idEmpleado');
-    }
+    /**
+     * Relación: Un empleado tiene muchas ventas
+     */
     public function ventas()
     {
-        return $this->hasMany(Ventas::class, 'idempleado');
+        return $this->hasMany(ventas::class, 'idempleado');
     }
 
 

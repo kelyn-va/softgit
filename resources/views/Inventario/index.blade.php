@@ -51,7 +51,7 @@
                         <tr>
                             <td>{{ $Inventario->id }}</td>
 
-                            {{-- MOSTRAR PRODUCTO ASOCIADO -
+                            {{-- MOSTRAR PRODUCTO ASOCIADO --}}
                             <td>{{ $Inventario->Cantidad }}</td>
                             <td>{{ $Inventario->FechaActualizacion }}</td>
 

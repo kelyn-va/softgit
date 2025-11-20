@@ -144,16 +144,6 @@
     <!-- Fila 1 -->
     <div class="card-menu">
       <div>
-        <div class="icono-fallback"><i class="fas fa-users"></i></div>
-        <h5>Clientes</h5>
-        <p class="text-muted">Gestiona los clientes del sistema.</p>
-      </div>
-      <a href="{{ route('clientes.index') }}" class="btn-entrar">Ir a Clientes</a>
-    </div>
-    
-
-    <div class="card-menu">
-      <div>
         <div class="icono-fallback"><i class="fas fa-cubes"></i></div>
         <h5>Productos</h5>
         <p class="text-muted">Gestiona el inventario de productos.</p>
@@ -188,7 +178,6 @@
       <a href="{{route('proveedor.index')}}" class="btn-entrar">Ir a Proveedores</a>
     </div>
 
-    <!-- Fila 2 -->
     <div class="card-menu">
       <div>
         <div class="icono-fallback"><i class="fas fa-cash-register"></i></div>
@@ -198,6 +187,7 @@
       <a href="{{route('ventas.index')}}" class="btn-entrar">Ir a Ventas</a>
     </div>
 
+    <!-- Fila 2 -->
     <div class="card-menu">
       <div>
         <div class="icono-fallback"><i class="fas fa-undo-alt"></i></div>
@@ -232,36 +222,6 @@
         <p class="text-muted">Gestiona los detalles por venta.</p>
       </div>
       <a href="{{route('DetalleVenta.index')}}" class="btn-entrar">Ir a Detalle de Venta</a>
-    </div>
-  </div>
-
-  <!-- Fila 3 centrada -->
-  <div class="menu-fila-centrada">
-    <div class="card-menu">
-      <div>
-        <div class="icono-fallback"><i class="fas fa-credit-card"></i></div>
-        <h5>Métodos de Pago</h5>
-        <p class="text-muted">Configura formas de pago aceptadas.</p>
-      </div>
-      <a href="{{route('metodoPago.index')}}" class="btn-entrar">Ir a Métodos de Pago</a>
-    </div>
-
-    <div class="card-menu">
-      <div>
-        <div class="icono-fallback"><i class="fas fa-money-bill-wave"></i></div>
-        <h5>Pagos</h5>
-        <p class="text-muted">Registra y revisa pagos recibidos.</p>
-      </div>
-      <a href="{{route('pagos.index')}}" class="btn-entrar">Ir a Pagos</a>
-    </div>
-
-    <div class="card-menu">
-      <div>
-        <div class="icono-fallback"><i class="fas fa-user-shield"></i></div>
-        <h5>Auditoría</h5>
-        <p class="text-muted">Revisa logs y auditorías del sistema.</p>
-      </div>
-      <a href="{{route('Auditoria.index')}}" class="btn-entrar">Ir a Auditoría</a>
     </div>
   </div>
 
