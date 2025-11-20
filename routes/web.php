@@ -12,17 +12,37 @@ use App\Http\Controllers\PagosController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\TurnoController;
 use App\Http\Controllers\ProveedorController;
+use App\Http\Controllers\usersController;
 use App\Http\Controllers\VentasController;
+use Illuminate\Support\Facades\Auth;
 
-// Ruta principal
+
+
+
+//RUTA PRINCIPAL
 Route::get('/', function () {
+    return redirect()->route('login');
+});
+
+Route::get('/welcome', function () {
     return view('welcome');
 })->name('welcome');
 
-// Ruta alternativa para home (AdminLTE a veces la busca)
-Route::get('/home', function () {
-    return redirect()->route('welcome');
-})->name('home');
+
+//rutas para login
+Route::get('/login',[usersController::class,'verlogin'])->name('login');
+Route::post('/loginsubmit',[usersController::class,'login'])->name('login.submit');
+
+Route::get('/logout', function () {
+    Auth::logout();
+    return redirect()->route('login');
+})->name('logout');
+
+//RUTAS REGISTRO
+Route::get('/registro', [usersController::class, 'verRegistro'])->name('registro');
+Route::post('/registro-submit', [usersController::class, 'registro'])->name('registro.submit');
+
+
 
 // -------------------- INVENTARIO --------------------
 Route::get('/inventario/index', [InventarioController::class, 'index'])->name('inventario.index');
