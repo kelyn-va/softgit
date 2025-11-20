@@ -16,8 +16,7 @@ return new class extends Migration
             $table->string('nombre');
             $table->text('descripcion')->nullable();
             $table->decimal('precio', 10, 2);
-            $table->integer('stock')->default(0);
-            $table->string('codigoBarras')->unique()->nullable();
+            $table->integer('stock') ;
             
             // Relación con categoría
             $table->unsignedBigInteger('idCategoria');

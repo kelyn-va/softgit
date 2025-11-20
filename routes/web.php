@@ -40,13 +40,7 @@ Route::post('/turnos/destroy/{id}', [TurnoController::class, 'destroy'])->name('
 Route::get('/turnos/edit/{id}', [TurnoController::class, 'edit'])->name('turnos.edit');
 Route::post('/turnos/update/{id}', [TurnoController::class, 'update'])->name('turnos.update');
 
-// -------------------- CLIENTES --------------------
-Route::get('/clientes/index', [ClienteController::class, 'index'])->name('clientes.index');
-Route::get('/clientes/create', [ClienteController::class, 'create'])->name('clientes.create');
-Route::post('/clientes/store', [ClienteController::class, 'store'])->name('clientes.store');
-Route::post('/clientes/destroy/{id}', [ClienteController::class, 'destroy'])->name('clientes.destroy');
-Route::get('/clientes/edit/{id}', [ClienteController::class, 'edit'])->name('clientes.edit');
-Route::post('/clientes/update/{id}', [ClienteController::class, 'update'])->name('clientes.update');
+
 
 // -------------------- CATEGORÍAS --------------------
 Route::get('/categorias/index', [CategoriasController::class, 'index'])->name('categorias.index');
@@ -74,32 +68,6 @@ Route::post('/producto/destroy/{id}',[ProductoController::class,'destroy'])->nam
 Route::get('/producto/edit/{id}',[ProductoController::class,'edit'])->name('productos.edit');
 Route::post('/producto/update/{id}',[ProductoController::class,'update'])->name('productos.update');
 
-// -------------------- EMPLEADOS --------------------
-
-Route::get('/empleado/index',[EmpleadoController::class,'index'])->name('empleados.index');
-Route::get('/empleado/create',[EmpleadoController::class,'create'])->name('empleados.create');
-Route::post('/empleado/store',[EmpleadoController::class,'store'])->name('empleados.store');
-Route::post('/empleado/destroy/{id}',[EmpleadoController::class,'destroy'])->name('empleados.destroy');
-Route::get('/empleado/edit/{id}',[EmpleadoController::class,'edit'])->name('empleados.edit');
-Route::post('/empleado/update/{id}',[EmpleadoController::class,'update'])->name('empleados.update');
-
-// -------------------- AUDITORÍAS --------------------
-Route::get('/Auditoria/index',[AuditoriaController::class,'index'])->name('Auditoria.index');
-Route::get('/Auditoria/create',[AuditoriaController::class,'create'])->name('Auditoria.create');
-Route::post('/Auditoria/store',[AuditoriaController::class,'store'])->name('Auditoria.store');
-Route::post('/Auditoria/destroy/{id}',[AuditoriaController::class,'destroy'])->name('Auditoria.destroy');
-Route::get('/Auditoria/edit/{id}',[AuditoriaController::class,'edit'])->name('Auditoria.edit');
-Route::post('/Auditoria/update/{id}',[AuditoriaController::class,'update'])->name('Auditoria.update');
-
-// -------------------- MÉTODOS DE PAGO --------------------
-
-Route::get('/metodoPago/index',[MetodoPagoController::class,'index'])->name('metodoPago.index');
-Route::get('/metodoPago/create',[MetodoPagoController::class,'create'])->name('metodoPago.create');
-Route::post('/metodoPago/store',[MetodoPagoController::class,'store'])->name('metodoPago.store');
-Route::post('/metodoPago/destroy/{id}',[MetodoPagoController::class,'destroy'])->name('metodoPago.destroy');
-Route::get('/metodoPago/edit/{id}',[MetodoPagoController::class,'edit'])->name('metodoPago.edit');
-Route::post('/metodoPago/update/{id}',[MetodoPagoController::class,'update'])->name('metodoPago.update');
-
 // -------------------- VENTAS --------------------
 Route::get('/ventas/index',[VentasController::class,'index'])->name('ventas.index');
 Route::get('/ventas/create',[VentasController::class,'create'])->name('ventas.create');
@@ -107,6 +75,7 @@ Route::post('/ventas/store',[VentasController::class,'store'])->name('ventas.sto
 Route::post('/ventas/destroy/{id}',[VentasController::class,'destroy'])->name('ventas.destroy');
 Route::get('/ventas/edit/{id}',[VentasController::class,'edit'])->name('ventas.edit');
 Route::post('/ventas/update/{id}',[VentasController::class,'update'])->name('ventas.update');
+Route::resource('ventas', VentasController::class);
 
 // -------------------- DETALLE VENTAS --------------------
 Route::get('/DetalleVenta/index',[DetalleVentaController::class,'index'])->name('DetalleVenta.index');

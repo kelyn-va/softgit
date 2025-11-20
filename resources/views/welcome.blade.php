@@ -197,14 +197,7 @@
       <a href="#" class="btn-entrar">Ir a Devoluciones</a>
     </div>
 
-    <div class="card-menu">
-      <div>
-        <div class="icono-fallback"><i class="fas fa-id-badge"></i></div>
-        <h5>Empleados</h5>
-        <p class="text-muted">Gestiona el personal y sus datos.</p>
-      </div>
-      <a href="{{route('empleados.index')}}" class="btn-entrar">Ir a Empleados</a>
-    </div>
+    
 
     <div class="card-menu">
       <div>

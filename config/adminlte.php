@@ -308,11 +308,6 @@ return [
             'icon' => 'fas fa-rotate-left text-secondary',
         ],
         [
-            'text' => 'Empleados',
-            'route' =>'empleados.index',
-            'icon' => 'fas fa-id-badge text-primary',
-        ],
-        [
             'text' => 'Turnos',
             'route' => 'turnos.index',
             'icon' => 'fas fa-clock text-indigo',

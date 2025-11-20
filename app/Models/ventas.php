@@ -8,39 +8,21 @@ class ventas extends Model
 {
     public $table = "ventas";
     protected $fillable = [
-        'fecha',
         'total',
-        'cliente_nombre',
-        'cliente_telefono',
-        'cliente_email',
-        'idempleado'
+        'metodo_pago',
+        'idempleado',
+        'idproducto'
     ];
 
-    protected $casts = [
-        'fecha' => 'datetime',
-    ];
+   
 
-    /**
-     * Relación: Una venta pertenece a un empleado
-     */
-    public function empleado()
+   public function empleado()
     {
         return $this->belongsTo(Empleado::class, 'idempleado');
     }
 
-    /**
-     * Relación: Una venta tiene muchos detalles
-     */
-    public function detalleVentas()
+    public function producto()
     {
-        return $this->hasMany(DetalleVenta::class, 'idventa');
-    }
-
-    /**
-     * Relación: Una venta puede tener devoluciones
-     */
-    public function devoluciones()
-    {
-        return $this->hasMany(Devolucion::class, 'idventa');
+        return $this->belongsTo(Producto::class, 'idproducto');
     }
 }

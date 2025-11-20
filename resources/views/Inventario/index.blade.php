@@ -15,9 +15,7 @@
             🔙<i class="bi bi-arrow-left iconBack">Volver </i>
         </a>
 
-        <a href="{{route('inventario.create')}}" class="crearBtn">
-            ➕<i class="bi bi-plus-circle"></i> Crear Inventario
-        </a>
+        
 
         @if (session('success'))
             <script>
@@ -138,56 +136,7 @@
         </div>
     </div>
 
-    <!-- Tabla de Inventario -->
-    <div class="card custom-card shadow-lg border-0 mt-4">
-        <div class="card-header bg-info text-white">
-            <h5 class="mb-0">📊 Movimientos de Inventario</h5>
-        </div>
-        <div class="card-body">
-            <table class="table table-hover align-middle text-center mb-0">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Cantidad</th>
-                        <th>Cantidad Mínima</th>
-                        <th>Fecha de Actualización</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    @forelse ($inventarios as $inventario)
-                        <tr>
-                            <td>{{ $inventario->id }}</td>
-                            <td>{{ $inventario->cantidad }}</td>
-                            <td>{{ $inventario->cantidad_minima }}</td>
-                            <td>{{ $inventario->fecha_actualizacion->format('d/m/Y H:i') }}</td>
-
-                            <td>
-                                <div class="d-flex justify-content-center gap-2">
-                                    <a href="{{route('inventario.edit', $inventario->id)}}" class="btnActualizar d-flex gap-2 align-items-center">
-                                        <i class="bi bi-pencil-square"></i> Actualizar
-                                    </a>
-
-                                    <form action="{{route('inventario.destroy', $inventario->id)}}" method="POST" onclick="confirmarEliminacion(event)">
-                                        @csrf
-                                        <button type="submit" class="btnEliminar d-flex gap-2 align-items-center">
-                                            <i class="bi bi-trash"></i> Eliminar
-                                        </button>
-                                    </form>
-                                </div>
-                            </td>
-                        </tr>
-                    @empty
-                        <tr>
-                            <td colspan="5" class="text-muted">No hay movimientos de inventario registrados</td>
-                        </tr>
-                    @endforelse
-                </tbody>
-
-            </table>
-        </div>
-    </div>
+    
 </div>
 
 <script>

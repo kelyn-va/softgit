@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Clientes;
 use App\Models\Empleado;
 use App\Models\ventas;
+use App\Models\Producto;
 use Illuminate\Http\Request;
+
 
 class VentasController extends Controller
 {
@@ -14,33 +16,44 @@ class VentasController extends Controller
      */
     public function index()
     {
-        $ventas = ventas::all();
+        $ventas = ventas::with('empleado', 'producto')->get();
         return view('ventas.index', compact('ventas'));
-
     }
 
+    // 🟦 Formulario de creación
+    public function create()
+    {
+        $empleados = Empleado::all();
+        $productos = Producto::all();
+
+        return view('ventas.create', compact('empleados', 'productos'));
+    }
+
+    // 🟦 Guardar nueva venta
+    public function store(Request $request)
+    {
+        $request->validate([
+            'metodo_pago' => 'required',
+            'idempleado' => 'required|exists:empleados,id',
+            'idproducto' => 'required|exists:productos,id'
+        ]);
+
+        // Obtener precio del producto automáticamente
+        $producto = Producto::findOrFail($request->idproducto);
+
+        ventas::create([
+            'total' => $producto->precio,
+            'metodo_pago' => $request->metodo_pago,
+            'idempleado' => $request->idempleado,
+            'idproducto' => $request->idproducto
+        ]);
+
+        return redirect()->route('ventas.index')->with('success', 'Venta registrada correctamente');
+    }
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        $clientes = Clientes::all();
-        $empleados  = Empleado::all();
-        return view('ventas.create', compact ('clientes','empleados'));
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        ventas::create(
-            $request->all()
-        );
-
-        return redirect()->route('ventas.index')->with('success', 'Venta creada exitosamente.');
-    }
-
+   
     /**
      * Display the specified resource.
      */
@@ -54,7 +67,7 @@ class VentasController extends Controller
      */
     public function edit($id)
     {
-     $clientes = Clientes::all();
+     
      $empleados = Empleado::all();
         
         $ventas= ventas::findorfail($id);
