@@ -14,13 +14,17 @@ class ProductoController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        $productos = Producto::all();
-        return view('Producto.index', compact('productos'));
+   public function index()
+{
+    $productos = Producto::all();
 
+   
+    $categorias = Categorias::all();
+    $proveedores = Proveedor::all();
 
-    }
+    return view('Producto.index', compact('productos', 'categorias', 'proveedores'));
+}
+
 
     /**
      * Show the form for creating a new resource.
@@ -37,7 +41,7 @@ class ProductoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ProductoRequest $request)
     {
     {
         
@@ -61,20 +65,20 @@ class ProductoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit( $id)
-    {
-        $productos = Producto::findorFail($id);
-        $categorias = Categorias::all();
-        $proveedores = Proveedor::all();
-        $inventarios = Inventario::all();
-        return view('Producto.edit', compact('productos' , 'categorias','proveedores','inventarios'));
-    
-    }
+   public function edit($id)
+{
+    $productos = Producto::findOrFail($id);
+    $categorias = Categorias::all();
+    $proveedores = Proveedor::all();
+
+    return view('Producto.edit', compact('productos', 'categorias', 'proveedores'));
+}
+
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(ProductoRequest $request, $id)
     {
         $productos = Producto::findorFail($id);
         $productos->update($request->all());

@@ -25,8 +25,8 @@ class EmpleadoController extends Controller
     public function create()
 
     {
-        $turnos=Turno::all();
-        return view('Empleado.create',compact('turnos'));
+       
+        return view('Empleado.create');
     }
 
     /**
@@ -56,8 +56,8 @@ class EmpleadoController extends Controller
     {
 
         $empleados=Empleado::findorFail($id);
-        $turnos=Turno::all();
-        return view('Empleado.edit',compact('empleados','turnos'));
+       
+        return view('Empleado.edit',compact('empleados'));
     }
 
     /**

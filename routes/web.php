@@ -52,13 +52,6 @@ Route::post('/inventario/destroy/{id}', [InventarioController::class, 'destroy']
 Route::get('/inventario/edit/{id}', [InventarioController::class, 'edit'])->name('inventario.edit');
 Route::post('/inventario/update/{id}', [InventarioController::class, 'update'])->name('inventario.update');
 
-// -------------------- TURNOS --------------------
-Route::get('/turnos/index', [TurnoController::class, 'index'])->name('turnos.index');
-Route::get('/turnos/create', [TurnoController::class, 'create'])->name('turnos.create');
-Route::post('/turnos/store', [TurnoController::class, 'store'])->name('turnos.store');
-Route::post('/turnos/destroy/{id}', [TurnoController::class, 'destroy'])->name('turnos.destroy');
-Route::get('/turnos/edit/{id}', [TurnoController::class, 'edit'])->name('turnos.edit');
-Route::post('/turnos/update/{id}', [TurnoController::class, 'update'])->name('turnos.update');
 
 
 
@@ -106,38 +99,13 @@ Route::get('/DetalleVenta/edit/{id}',[DetalleVentaController::class,'edit'])->na
 Route::post('/DetalleVenta/update/{id}',[DetalleVentaController::class,'update'])->name('DetalleVenta.update');
 
 
+// -------------------- EMPLEADOS --------------------
 
+Route::get('/empleados/index',[EmpleadoController::class,'index'])->name('empleados.index');
+Route::get('/empleados/create',[EmpleadoController::class,'create'])->name('empleados.create');
+Route::post('/empleados/store',[EmpleadoController::class,'store'])->name('empleados.store');
+Route::post('/empleados/destroy/{id}',[EmpleadoController::class,'destroy'])->name('empleados.destroy');
+Route::get('/empleados/edit/{id}',[EmpleadoController::class,'edit'])->name('empleados.edit');
+Route::post('/empleados/update/{id}',[EmpleadoController::class,'update'])->name('empleados.update');
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// -------------------- PAGOS --------------------
-Route::get('/pagos/index',[PagosController::class,'index'])->name('pagos.index');
-Route::get('/pagos/create',[PagosController::class,'create'])->name('pagos.create');
-Route::post('/pagos/store',[PagosController::class,'store'])->name('pagos.store');
-Route::post('/pagos/destroy/{id}',[PagosController::class,'destroy'])->name('pagos.destroy');
-Route::get('/pagos/edit/{id}',[PagosController::class,'edit'])->name('pagos.edit');
-Route::post('/pagos/update/{id}',[PagosController::class,'update'])->name('pagos.update');
 
