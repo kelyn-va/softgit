@@ -419,23 +419,6 @@
         <a href="{{route('ventas.index')}}" class="btn-entrar">Ir a Ventas</a>
       </div>
 
-      <div class="card-menu">
-        <div>
-          <div class="icono-fallback"><i class="fas fa-undo-alt"></i></div>
-          <h5>Devoluciones</h5>
-          <p class="text-muted">Controla devoluciones.</p>
-        </div>
-        <a href="#" class="btn-entrar">Ir a Devoluciones</a>
-      </div>
-
-      <div class="card-menu">
-        <div>
-          <div class="icono-fallback"><i class="fas fa-file-invoice-dollar"></i></div>
-          <h5>Detalle Venta</h5>
-          <p class="text-muted">Detalles por venta.</p>
-        </div>
-        <a href="{{route('DetalleVenta.index')}}" class="btn-entrar">Ir a Detalle Venta</a>
-      </div>
 
       <div class="card-menu">
         <div>

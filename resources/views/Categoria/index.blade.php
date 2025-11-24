@@ -116,10 +116,6 @@
             <i class="fas fa-arrow-left"></i> Volver
         </a>
 
-        <form action="{{ route('categorias.index') }}" method="GET" class="d-flex search-box">
-             <input type="text" name="buscar" class="form-control clean-input shadow-sm" placeholder="Buscar categoría por nombre...">
-        </form>
-
         <a href="{{ route('categorias.create') }}" class="btn btn-action-primary d-flex align-items-center gap-2">
             <i class="fas fa-plus"></i> Crear Categoría
         </a>
@@ -149,7 +145,7 @@
 
                                     <form action="{{ route('categorias.destroy', $categoria->id) }}" method="POST" onsubmit="return confirmarEliminacion(event)">
                                         @csrf
-                                        @method('DELETE') <button type="submit" class="btn btn-danger btn-sm btn-action-table d-flex align-items-center gap-1">
+                                         <button type="submit" class="btn btn-danger btn-sm btn-action-table d-flex align-items-center gap-1">
                                             <i class="fas fa-trash-alt"></i> </button>
                                     </form>
                                 </div>

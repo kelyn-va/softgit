@@ -104,7 +104,7 @@
 
                     <form action="{{ route('empleados.update', $empleados->id) }}" method="POST">
                         @csrf
-                        @method('PUT') {{-- Importante para las actualizaciones en Laravel --}}
+                      {{-- Importante para las actualizaciones en Laravel --}}
 
                         <div class="mb-3">
                             <label for="nombre" class="form-label">Nombre</label>

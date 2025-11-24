@@ -99,7 +99,7 @@
 
                     <form action="{{ route('categorias.update', $categorias->id) }}" method="POST">
                         @csrf
-                        @method('PUT') 
+                        
 
                         <div class="mb-4">
                             <label for="nombre" class="form-label">Nombre de la Categoría</label>

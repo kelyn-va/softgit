@@ -34,7 +34,7 @@ class ProductoController extends Controller
         $productos = Producto::all();
         $categorias = Categorias::all();
         $proveedores = Proveedor::all();
-       ;
+    
         return view('Producto.create', compact('productos','categorias', 'proveedores', ));
     }
 

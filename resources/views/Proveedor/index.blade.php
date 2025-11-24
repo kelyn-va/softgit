@@ -151,7 +151,7 @@
 
                                         <form action="{{ route('proveedor.destroy', $Proveedor->id) }}" method="POST" onsubmit="return confirmarEliminacion(event)">
                                             @csrf
-                                            @method('DELETE') <button type="submit" class="btn btn-delete btn-sm btn-action-table d-flex align-items-center gap-1">
+                                            <button type="submit" class="btn btn-delete btn-sm btn-action-table d-flex align-items-center gap-1">
                                                 <i class="fas fa-trash-alt"></i>
                                             </button>
                                         </form>

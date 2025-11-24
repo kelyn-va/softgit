@@ -238,7 +238,7 @@
                                         {{-- Formulario Eliminar (Solo icono) --}}
                                         <form action="{{ route('empleados.destroy', $empleado->id) }}" method="POST" onsubmit="return confirmarEliminacion(event)">
                                             @csrf
-                                            @method('DELETE')
+                                           
                                             <button type="submit" class="btn btn-delete btn-action-table">
                                                 <i class="fas fa-trash-alt"></i>
                                             </button>
