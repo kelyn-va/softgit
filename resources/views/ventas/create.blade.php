@@ -286,6 +286,7 @@
                         </button>
                     </td>
 
+                    <input type="hidden" name="productos[${id}][id]" value="${id}">
                     <input type="hidden" name="productos[${id}][cantidad]" value="${cantidad}">
                 </tr>
             `;

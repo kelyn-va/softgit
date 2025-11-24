@@ -17,8 +17,6 @@ return new class extends Migration
             $table->string('cargo');
             $table->string('usuario');
             $table->string('contraseña');
-            $table->unsignedBigInteger('idTurno');
-            $table->foreign('idTurno')->references('id')->on('turnos');
             $table->timestamps();
         });
     }
