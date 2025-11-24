@@ -189,7 +189,7 @@
 
                                     <form action="{{ route('productos.destroy',$producto->id) }}" method="POST" onsubmit="return confirmarEliminacion(event)">
                                         @csrf
-                                        @method('DELETE')
+                                       
                                         <button class="btn btn-danger btn-sm btn-action-table">
                                             <i class="fas fa-trash-alt"></i>
                                         </button>

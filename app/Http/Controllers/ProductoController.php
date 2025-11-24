@@ -34,24 +34,23 @@ class ProductoController extends Controller
         $productos = Producto::all();
         $categorias = Categorias::all();
         $proveedores = Proveedor::all();
-       ;
+       
         return view('Producto.create', compact('productos','categorias', 'proveedores', ));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(ProductoRequest $request)
-    {
-    {
-        
-        Producto::create(
-            $request->all()
-        );
-        return redirect()->route('productos.index')->with('success', 'producto creado correctamente');;
+   public function store(ProductoRequest $request)
+{
+    try {
+        $producto = Producto::create($request->all());
+        return redirect()->back()->with('success', 'CREADO: ' . json_encode($producto));
+    } catch (\Exception $e) {
+        return redirect()->back()->with('error', $e->getMessage('success', 'producto creado correctamente.'));
     }
+}
 
-    }
     
 
     /**
@@ -79,11 +78,15 @@ class ProductoController extends Controller
      * Update the specified resource in storage.
      */
     public function update(ProductoRequest $request, $id)
-    {
-        $productos = Producto::findorFail($id);
-        $productos->update($request->all());
-        return redirect()->route('productos.index')->with('success', 'producto creado correctamente.');
-    }
+{
+    $producto = Producto::findOrFail($id);
+
+    $producto->update($request->all());
+
+    return redirect()->route('productos.index')
+        ->with('success', 'Producto actualizado correctamente.');
+}
+
 
     /**
      * Remove the specified resource from storage.
@@ -91,7 +94,7 @@ class ProductoController extends Controller
     public function destroy ($id)
     {
         
-        $productos = Producto::findorFail($id);
+        $productos = Producto::findOrFail($id);
         $productos->delete();
         return redirect()->route('productos.index')->with('success', 'producto Eliminado correctamente');
     }

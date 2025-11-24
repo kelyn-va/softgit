@@ -127,6 +127,8 @@
                         <input type="number" name="stock" class="form-control clean-input" required placeholder="Ej: 50">
                     </div>
 
+                    
+
                     <!-- Campo Categoría -->
                     <div class="col-md-4">
                         <label class="form-label">Categoría</label>
