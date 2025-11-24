@@ -24,10 +24,9 @@ class ProductoRequest extends FormRequest
             'descripcion' => 'required|string|max:255',
             'precio' => 'required|numeric|min:0',
             'stock' => 'required|integer|min:0',
-            'codigoBarras' => 'required|string|max:50|unique:productos,codigoBarras,' . $this->route('producto'),
             'idCategoria' => 'required|exists:categorias,id',
             'idProveedor' => 'required|exists:proveedor,id',
-            'idInventario' => 'required|exists:inventario,id',
+           
         ];
     }
 
@@ -42,14 +41,9 @@ class ProductoRequest extends FormRequest
             'precio.numeric' => 'El precio debe ser un número.',
             'stock.required' => 'El stock es obligatorio.',
             'stock.integer' => 'El stock debe ser un número entero.',
-            'codigoBarras.required' => 'El código de barras es obligatorio.',
-            'codigoBarras.unique' => 'Este código de barras ya está registrado.',
-            'idCategoria.required' => 'Debes seleccionar una categoría.',
-            'idCategoria.exists' => 'La categoría seleccionada no existe.',
             'idProveedor.required' => 'Debes seleccionar un proveedor.',
             'idProveedor.exists' => 'El proveedor seleccionado no existe.',
-            'idInventario.required' => 'Debes asociar un inventario.',
-            'idInventario.exists' => 'El inventario seleccionado no existe.',
+            
         ];
     }
 }

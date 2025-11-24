@@ -12,10 +12,8 @@
 
         <div class="card-body">
 
-            <form action="{{ route('productos.update',  $productos->id) }}" method="POST">
-                @csrf  
-             
-
+            <form action="{{ route('productos.update', $productos->id) }}" method="POST">
+                @csrf
                 <div class="row g-3">
 
                     <div class="col-md-6">
