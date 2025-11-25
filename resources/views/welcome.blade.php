@@ -446,6 +446,15 @@
         <a href="{{route('empleados.index')}}" class="btn-entrar">Ir a Empleados</a>
       </div>
 
+      <div class="card-menu">
+      <div>
+        <div class="icono-fallback"><i class="fas fa-cash-register"></i></div>
+        <h5>Compras</h5>
+        <p class="text-muted">Administrar las compras realizadas.</p>
+      </div>
+      <a href="{{route('compras.index')}}" class="btn-entrar">Ir a compras</a>
+    </div>
+
     </div>
   </div>
 

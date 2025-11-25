@@ -4,6 +4,7 @@ use App\Http\Controllers\AuditoriaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\CompraController;
 use App\Http\Controllers\DetalleVentaController;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\InventarioController;
@@ -109,3 +110,11 @@ Route::get('/empleados/edit/{id}',[EmpleadoController::class,'edit'])->name('emp
 Route::post('/empleados/update/{id}',[EmpleadoController::class,'update'])->name('empleados.update');
 
 
+//--------------------Compras----------------------
+
+Route::get('/compras/index',[CompraController::class,'index'])->name('compras.index');
+Route::get('/compras/create',[CompraController::class,'create'])->name('compras.create');
+Route::post('/compras/store',[CompraController::class,'store'])->name('compras.store');
+Route::post('/compras/destroy/{id}',[CompraController::class,'destroy'])->name('compras.destroy');
+Route::get('/compras/edit/{id}',[CompraController::class,'edit'])->name('compras.edit');
+Route::post('/compras/update/{id}',[CompraController::class,'update'])->name('compras.update');
