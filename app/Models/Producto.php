@@ -8,19 +8,16 @@ class Producto extends Model
 {
      protected $table="productos";
 
-    protected $fillable=[
+    protected $fillable = [
         'nombre',
         'descripcion',
         'precio',
         'stock',
-        'codigoBarras',
         'idCategoria',
-        'idProveedor'
+        'idProveedor',
+    
     ];
 
-    /**
-     * Relación: Un producto pertenece a una categoría
-     */
     public function categoria()
     {
         return $this->belongsTo(Categorias::class,'idCategoria');
@@ -34,13 +31,7 @@ class Producto extends Model
         return $this->belongsTo(Proveedor::class,'idProveedor');
     }
 
-    /**
-     * Relación: Un producto tiene un inventario
-     */
-    public function inventario()
-    {
-        return $this->hasOne(Inventario::class,'idProducto');
-    }
+    
 
     /**
      * Relación: Un producto aparece en muchos detalles de venta

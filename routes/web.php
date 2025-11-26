@@ -12,17 +12,37 @@ use App\Http\Controllers\PagosController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\TurnoController;
 use App\Http\Controllers\ProveedorController;
+use App\Http\Controllers\usersController;
 use App\Http\Controllers\VentasController;
+use Illuminate\Support\Facades\Auth;
 
-// Ruta principal
+
+
+
+//RUTA PRINCIPAL
 Route::get('/', function () {
+    return redirect()->route('login');
+});
+
+Route::get('/welcome', function () {
     return view('welcome');
 })->name('welcome');
 
-// Ruta alternativa para home (AdminLTE a veces la busca)
-Route::get('/home', function () {
-    return redirect()->route('welcome');
-})->name('home');
+
+//rutas para login
+Route::get('/login',[usersController::class,'verlogin'])->name('login');
+Route::post('/loginsubmit',[usersController::class,'login'])->name('login.submit');
+
+Route::get('/logout', function () {
+    Auth::logout();
+    return redirect()->route('login');
+})->name('logout');
+
+//RUTAS REGISTRO
+Route::get('/registro', [usersController::class, 'verRegistro'])->name('registro');
+Route::post('/registro-submit', [usersController::class, 'registro'])->name('registro.submit');
+
+
 
 // -------------------- INVENTARIO --------------------
 Route::get('/inventario/index', [InventarioController::class, 'index'])->name('inventario.index');
@@ -32,13 +52,6 @@ Route::post('/inventario/destroy/{id}', [InventarioController::class, 'destroy']
 Route::get('/inventario/edit/{id}', [InventarioController::class, 'edit'])->name('inventario.edit');
 Route::post('/inventario/update/{id}', [InventarioController::class, 'update'])->name('inventario.update');
 
-// -------------------- TURNOS --------------------
-Route::get('/turnos/index', [TurnoController::class, 'index'])->name('turnos.index');
-Route::get('/turnos/create', [TurnoController::class, 'create'])->name('turnos.create');
-Route::post('/turnos/store', [TurnoController::class, 'store'])->name('turnos.store');
-Route::post('/turnos/destroy/{id}', [TurnoController::class, 'destroy'])->name('turnos.destroy');
-Route::get('/turnos/edit/{id}', [TurnoController::class, 'edit'])->name('turnos.edit');
-Route::post('/turnos/update/{id}', [TurnoController::class, 'update'])->name('turnos.update');
 
 
 
@@ -85,9 +98,14 @@ Route::post('/DetalleVenta/destroy/{id}',[DetalleVentaController::class,'destroy
 Route::get('/DetalleVenta/edit/{id}',[DetalleVentaController::class,'edit'])->name('DetalleVenta.edit');
 Route::post('/DetalleVenta/update/{id}',[DetalleVentaController::class,'update'])->name('DetalleVenta.update');
 
-// -------------------- INFORMES --------------------
 
+// -------------------- EMPLEADOS --------------------
 
-
+Route::get('/empleados/index',[EmpleadoController::class,'index'])->name('empleados.index');
+Route::get('/empleados/create',[EmpleadoController::class,'create'])->name('empleados.create');
+Route::post('/empleados/store',[EmpleadoController::class,'store'])->name('empleados.store');
+Route::post('/empleados/destroy/{id}',[EmpleadoController::class,'destroy'])->name('empleados.destroy');
+Route::get('/empleados/edit/{id}',[EmpleadoController::class,'edit'])->name('empleados.edit');
+Route::post('/empleados/update/{id}',[EmpleadoController::class,'update'])->name('empleados.update');
 
 

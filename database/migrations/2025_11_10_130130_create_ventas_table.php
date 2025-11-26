@@ -17,7 +17,7 @@ return new class extends Migration
             $table->enum('metodo_pago', ['efectivo', 'tarjeta', 'transferencia']) ->default('efectivo');
             $table->unsignedBigInteger('idempleado');
             $table->foreign('idempleado')->references('id')->on('empleados');
-            $table->unsignedBigInteger('idproducto');
+            $table->unsignedBigInteger('idproducto')->nullable();
             $table->foreign('idproducto')->references('id')->on('productos');
             
             $table->timestamps();

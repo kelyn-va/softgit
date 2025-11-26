@@ -12,37 +12,35 @@
 
         <div class="card-body">
 
-            <form action="{{ route('productos.update', $producto->id) }}" method="POST">
+            <form action="{{ route('productos.update', $productos->id) }}" method="POST">
                 @csrf
-                @method('PUT')
-
                 <div class="row g-3">
 
                     <div class="col-md-6">
                         <label class="form-label">Nombre</label>
-                        <input type="text" name="nombre" class="form-control" value="{{ $producto->nombre }}" required>
+                        <input type="text" name="nombre" class="form-control" value="{{ $productos->nombre }}" required>
                     </div>
 
                     <div class="col-md-6">
                         <label class="form-label">Precio</label>
-                        <input type="number" step="0.01" name="precio" class="form-control" value="{{ $producto->precio }}" required>
+                        <input type="number" step="0.01" name="precio" class="form-control" value="{{ $productos->precio }}" required>
                     </div>
 
                     <div class="col-md-12">
                         <label class="form-label">Descripción</label>
-                        <textarea name="descripcion" class="form-control" rows="3">{{ $producto->descripcion }}</textarea>
+                        <textarea name="descripcion" class="form-control" rows="3">{{ $productos->descripcion }}</textarea>
                     </div>
 
                     <div class="col-md-4">
                         <label class="form-label">Stock</label>
-                        <input type="number" name="stock" class="form-control" value="{{ $producto->stock }}" required>
+                        <input type="number" name="stock" class="form-control" value="{{ $productos->stock }}" required>
                     </div>
 
                     <div class="col-md-4">
                         <label class="form-label">Categoría</label>
                         <select name="idCategoria" class="form-select" required>
                             @foreach($categorias as $cat)
-                                <option value="{{ $cat->id }}" {{ $producto->idCategoria == $cat->id ? 'selected' : '' }}>
+                                <option value="{{ $cat->id }}" {{ $productos->idCategoria == $cat->id ? 'selected' : '' }}>
                                     {{ $cat->nombre }}
                                 </option>
                             @endforeach
@@ -53,7 +51,7 @@
                         <label class="form-label">Proveedor</label>
                         <select name="idProveedor" class="form-select" required>
                             @foreach($proveedores as $prov)
-                                <option value="{{ $prov->id }}" {{ $producto->idProveedor == $prov->id ? 'selected' : '' }}>
+                                <option value="{{ $prov->id }}" {{ $productos->idProveedor == $prov->id ? 'selected' : '' }}>
                                     {{ $prov->nombre }}
                                 </option>
                             @endforeach

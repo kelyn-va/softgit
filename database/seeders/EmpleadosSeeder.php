@@ -12,10 +12,10 @@ class EmpleadosSeeder extends Seeder
      */
     public function run(): void
     {
-        Empleado::create(['nombre' => 'Karen López', 'cargo' => 'Cajera', 'usuario' => 'klopez', 'contraseña' => ('123456'), 'idTurno' => 1]);
-        Empleado::create(['nombre' => 'Carlos Gómez', 'cargo' => 'Vendedor', 'usuario' => 'cgomez', 'contraseña' => ('123456'), 'idTurno' => 2]);
-        Empleado::create(['nombre' => 'María Torres', 'cargo' => 'Supervisora', 'usuario' => 'mtorres', 'contraseña' => ('123456'), 'idTurno' => 1]);
-        Empleado::create(['nombre' => 'Juan Pérez', 'cargo' => 'Administrador', 'usuario' => 'jperez', 'contraseña' => ('123456'), 'idTurno' => 2]);
+        Empleado::create(['nombre' => 'Karen López', 'cargo' => 'Cajera', 'usuario' => 'klopez', 'contraseña' => ('123456')]);
+        Empleado::create(['nombre' => 'Carlos Gómez', 'cargo' => 'Vendedor', 'usuario' => 'cgomez', 'contraseña' => ('123456')]);
+        Empleado::create(['nombre' => 'María Torres', 'cargo' => 'Supervisora', 'usuario' => 'mtorres', 'contraseña' => ('123456')]);   
+        Empleado::create(['nombre' => 'Juan Pérez', 'cargo' => 'Administrador', 'usuario' => 'jperez', 'contraseña' => ('123456')]);
         
         
 }
