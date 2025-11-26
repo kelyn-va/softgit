@@ -15,6 +15,7 @@ use App\Http\Controllers\TurnoController;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\usersController;
 use App\Http\Controllers\VentasController;
+use App\Http\Controllers\ReportesController;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -109,6 +110,14 @@ Route::post('/empleados/destroy/{id}',[EmpleadoController::class,'destroy'])->na
 Route::get('/empleados/edit/{id}',[EmpleadoController::class,'edit'])->name('empleados.edit');
 Route::post('/empleados/update/{id}',[EmpleadoController::class,'update'])->name('empleados.update');
 
+// -------------------- REPORTES --------------------
+Route::get('/reportes', [ReportesController::class, 'index'])->name('reportes.index');
+Route::get('/api/reportes/inventario', [ReportesController::class, 'getInventarioData']);
+Route::get('/api/reportes/ventas', [ReportesController::class, 'getVentasData']);
+Route::get('/api/reportes/ventas-categoria', [ReportesController::class, 'getVentasPorCategoria']);
+Route::get('/api/reportes/ventas-empleado', [ReportesController::class, 'getVentasPorEmpleado']);
+Route::get('/api/reportes/tendencia-ventas', [ReportesController::class, 'getTendenciaVentas']);
+Route::get('/api/reportes/stock-bajo', [ReportesController::class, 'getInventarioBajoStock']);
 
 //--------------------Compras----------------------
 
