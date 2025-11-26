@@ -430,6 +430,15 @@
       </div>
 
       <div class="card-menu">
+<<<<<<< HEAD
+      <div>
+        <div class="icono-fallback"><i class="fas fa-cash-register"></i></div>
+        <h5>Compras</h5>
+        <p class="text-muted">Administrar las compras realizadas.</p>
+      </div>
+      <a href="{{route('compras.index')}}" class="btn-entrar">Ir a compras</a>
+    </div>
+=======
         <div>
           <div class="icono-fallback"><i class="fas fa-chart-bar"></i></div>
           <h5>Reportes</h5>
@@ -437,6 +446,7 @@
         </div>
         <a href="{{route('reportes.index')}}" class="btn-entrar">Ir a Reportes</a>
       </div>
+>>>>>>> 879857f000a1975f42975ef652c517a5140ca042
 
     </div>
   </div>
