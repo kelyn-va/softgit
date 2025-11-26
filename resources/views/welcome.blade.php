@@ -446,6 +446,15 @@
         <a href="{{route('empleados.index')}}" class="btn-entrar">Ir a Empleados</a>
       </div>
 
+      <div class="card-menu">
+        <div>
+          <div class="icono-fallback"><i class="fas fa-chart-bar"></i></div>
+          <h5>Reportes</h5>
+          <p class="text-muted">Informes y análisis visual.</p>
+        </div>
+        <a href="{{route('reportes.index')}}" class="btn-entrar">Ir a Reportes</a>
+      </div>
+
     </div>
   </div>
 
