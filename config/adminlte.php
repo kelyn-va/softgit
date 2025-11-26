@@ -212,6 +212,7 @@ return [
             'route' => 'inventario.index',
             'icon' => 'fas fa-warehouse text-info',
         ],
+        
         [
             'text' => 'Categorías',
             'route' => 'categorias.index',
@@ -234,11 +235,20 @@ return [
        
 
         ['header' => 'ADMINISTRACIÓN'],
+        
         [
             'text' => 'Empleados',
             'route' => 'empleados.index',
             'icon' => 'fas fa-users text-indigo',
         ],
+        
+        [
+            'text' => 'Reportes',
+            'route' => 'reportes.index',
+            'icon' => 'fas fa-chart-bar text-primary',
+        ],
+
+
 
         ['header' => 'SESIÓN'],
         [
