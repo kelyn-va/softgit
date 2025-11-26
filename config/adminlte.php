@@ -312,6 +312,7 @@ return [
             'route' => 'inventario.index',
             'icon' => 'fas fa-warehouse text-dark',
         ],
+        
         [
             'text' => 'Devoluciones',
             // Asegúrate de definir la ruta para Devoluciones si no está definida
