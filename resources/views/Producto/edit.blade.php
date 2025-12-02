@@ -62,7 +62,7 @@
 
                 <div class="mt-4 d-flex justify-content-between">
                     <a href="{{ route('productos.index') }}" class="btn btn-secondary">Cancelar</a>
-                    <button class="btn btn-primary">Actualizar</button>
+                    <button type="submit" class="btn btn-primary">Actualizar</button>
                 </div>
 
             </form>

@@ -136,7 +136,7 @@
                     </thead>
                     <tbody>
                         @forelse ($proveedores as $Proveedor)
-                            <tr>
+                            <tr>  
                                 <td>{{ $Proveedor->id }}</td>
                                 <td>{{ $Proveedor->nombre }}</td>
                                 <td>{{ $Proveedor->contacto }}</td>

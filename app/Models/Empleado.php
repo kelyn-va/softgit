@@ -13,17 +13,14 @@ class Empleado extends Model
         'cargo',
         'usuario',
         'contraseña',
-        'idTurno'
+        
         
     ];
 
     /**
      * Relación: Un empleado pertenece a un turno
      */
-    public function turno()
-    {
-        return $this->belongsTo(Turno::class, 'idTurno');
-    }
+   
 
     /**
      * Relación: Un empleado tiene muchas ventas

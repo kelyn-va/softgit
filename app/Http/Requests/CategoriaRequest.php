@@ -23,6 +23,7 @@ class CategoriaRequest extends FormRequest
     {
         return [
             'nombre' => 'required|string|max:100|unique:categorias,nombre',
+           
         ];
     }
 
@@ -35,9 +36,12 @@ class CategoriaRequest extends FormRequest
     {
         return [
             'nombre.required' => 'El nombre es obligatorio.',
-            'nombre.string'   => 'El nombre debe ser una cadena de texto.',
-            'nombre.max'      => 'El nombre no puede tener más de 100 caracteres.',
+            'nombre.string'   => 'El nombre debe ser texto.',
+            'nombre.max'      => 'El nombre no puede exceder los 100 caracteres.',
             'nombre.unique'   => 'Este nombre ya está registrado.',
+            'nombre.regex'    => 'El nombre solo puede contener letras y espacios, no se permiten números.',
+
+            
         ];
     }
 }
