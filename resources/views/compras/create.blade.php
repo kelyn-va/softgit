@@ -27,7 +27,7 @@
                     <form action="{{ route('compras.store') }}" method="POST">
                         @csrf
                         <div class="mb-3">
-                            <label for="precioCompra" class="form-label fw-semibold">precio de Compra</label>
+                            <label for="precioCompra" class="form-label fw-semibold">Precio de Compra</label>
                             <input type="decimal" id="precioCompra" name="precioCompra"
                                 class="form-control @error('precioCompra') is-invalid @enderror">
                             @error('precioCompra')
@@ -36,7 +36,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="precioVenta" class="form-label fw-semibold">precio de Venta</label>
+                            <label for="precioVenta" class="form-label fw-semibold">Precio de Venta</label>
                             <input type="decimal" id="precioVenta" name="precioVenta"
                                 class="form-control @error('precioVenta') is-invalid @enderror">
                             @error('precioVenta')
@@ -57,12 +57,13 @@
 
                         <div class="mb-3">
                             <label for="Total" class="form-label fw-semibold">Total</label>
-                            <input type="decimal" id="Total" name="Total"
+                            <input type="text" id="Total" name="Total" readonly
                                 class="form-control @error('Total') is-invalid @enderror">
                             @error('Total')
-                            <div class="invalid-feedback">{{ $message }}</div>
+                                <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
+
 
                         <div class="form-group">
                         <label for="metodoPago">Método de Pago</label>
@@ -78,7 +79,7 @@
 
 
                         <div class="mb-3">
-                            <label for="idproveedor" class="form-label fw-semibold">idproveedor</label>
+                            <label for="idproveedor" class="form-label fw-semibold">Proveedor</label>
                             <select id="idproveedor" name="idproveedor"
                                 class="form-select @error('idproveedor') is-invalid @enderror">
                                 <option value="">-- Selecciona un proveedor --</option>
@@ -112,3 +113,19 @@
     </div>
 </div>
 @endsection      
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const precioCompra = document.getElementById("precioCompra");
+        const cantidad = document.getElementById("Cantidad");
+        const total = document.getElementById("Total");
+
+        function calcularTotal() {
+            const p = parseFloat(precioCompra.value) || 0;
+            const c = parseInt(cantidad.value) || 0;
+            total.value = (p * c).toFixed(2);
+        }
+
+        precioCompra.addEventListener("input", calcularTotal);
+        cantidad.addEventListener("input", calcularTotal);
+    });
+</script>
