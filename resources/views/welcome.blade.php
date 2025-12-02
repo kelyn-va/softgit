@@ -497,6 +497,14 @@
         </div>
         <a href="{{route('reportes.index')}}" class="btn-entrar">Ir a Reportes</a>
       </div>
+      <div class="card-menu">
+        <div>
+          <div class="icono-fallback"><i class="fas fa-sign-out-alt"></i></div>
+          <h5>Salir</h5>
+          <p class="text-muted">Cerrar sesión.</p>
+        </div>
+        <a href="{{route('logout')}}" class="btn-entrar">Salir</a>
+      </div>
 
 
     </div>
