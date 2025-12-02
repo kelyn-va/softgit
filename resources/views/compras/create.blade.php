@@ -84,7 +84,7 @@
                                 <option value="">-- Selecciona un proveedor --</option>
                                 @foreach ( $proveedores as  $proveedor)
                                     
-                                <option value=" {{$proveedor->id }}">{{$proveedor->id }}</option>
+                                <option value=" {{$proveedor->id }}">{{$proveedor->nombre }}</option>
                               @endforeach
                             </select>
                                 

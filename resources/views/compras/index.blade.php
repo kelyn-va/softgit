@@ -52,7 +52,7 @@
                         <th>Total</th>
                         <th>metodoPago</th>
                         <th>Cantidad</th>
-                        <th>idproveedor</th>
+                        <th>Proveedor</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -66,7 +66,8 @@
                         <td>{{$compra->Total }}</td>
                         <td>{{$compra->metodoPago  }}</td>
                         <td>{{$compra->Cantidad }}</td>
-                        <td>{{$compra->idproveedor }}</td>
+                        <td>{{$compra->proveedores->nombre }}</td>
+
 
                         <td>
                             <div class="d-flex justify-content-center gap-2">

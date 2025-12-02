@@ -15,7 +15,8 @@ class CompraController extends Controller
     public function index()
     {
         $compras = Compra::all();
-        return view('compras.index', compact('compras'));
+        $proveedores = Proveedor::all();
+        return view('compras.index', compact('compras', 'proveedores'));
     }
 
     /**
