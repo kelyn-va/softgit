@@ -5,7 +5,7 @@
     <!-- Título -->
     <div class="row mb-4">
         <div class="col-md-12">
-            <h1 class="h3 d-inline-block">📊 Reportes e Informes Visuales</h1>
+            <h1 class="h3 d-inline-block"> Reportes e Informes Visuales</h1>
             <button class="btn btn-primary float-end" onclick="exportarDatos()">
                 <i class="fas fa-download"></i> Exportar
             </button>
@@ -402,8 +402,8 @@
                 datasets: [{
                     data: valores,
                     backgroundColor: [
-                        '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF',
-                        '#FF9F40', '#FF6384', '#C9CBCF'
+                        '#FF6384', '#36A2EB', '#FFCE56', '#30d8d8ff', '#66d4ffff',
+                        '#FF9F40', '#2ba3f3ff', '#C9CBCF'
                     ]
                 }]
             },
@@ -463,8 +463,8 @@
                 datasets: [{
                     label: 'Ventas Diarias ($)',
                     data: valores,
-                    borderColor: '#FF6384',
-                    backgroundColor: 'rgba(255, 99, 132, 0.1)',
+                    borderColor: '#63faffff',
+                    backgroundColor: 'rgba(33, 201, 201, 0.62)',
                     fill: true,
                     tension: 0.3
                 }]
@@ -502,20 +502,20 @@
 
 <style>
     .border-left-primary {
-        border-left: 0.25rem solid #007bff;
+        border-left: 0.25rem solid #69a2dfff;
     }
     .border-left-success {
-        border-left: 0.25rem solid #28a745;
+        border-left: 0.25rem solid #108e92ff;
     }
     .border-left-warning {
-        border-left: 0.25rem solid #ffc107;
+        border-left: 0.25rem solid #169ed4ff;
     }
     .border-left-info {
         border-left: 0.25rem solid #17a2b8;
     }
     .text-primary { color: #007bff; }
-    .text-success { color: #28a745; }
-    .text-warning { color: #ffc107; }
+    .text-success { color: #20a3a3ff; }
+    .text-warning { color: #0dbfc5ff; }
     .text-info { color: #17a2b8; }
 </style>
 @endsection

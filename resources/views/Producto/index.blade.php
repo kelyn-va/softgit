@@ -131,16 +131,11 @@
 
     <div class="d-flex justify-content-between align-items-center mb-4">
         <a href="{{ route('welcome') }}" class="btn btn-back btn-action-primary d-flex align-items-center gap-2">
+                
             <i class="fas fa-arrow-left"></i> Volver
         </a>
-
-        <form action="{{ route('productos.index') }}" method="GET" class="d-flex w-50 mx-4">
-            <input type="text" name="buscar" class="form-control clean-input shadow-sm" placeholder="Buscar producto por nombre o descripción...">
-        </form>
-
-        <button class="btn btn-action-primary" data-bs-toggle="modal" data-bs-target="#crearProductoModal">
-            <i class="fas fa-plus me-1"></i> Crear Producto
-        </button>
+<a href="{{ route('productos.create') }}" class="btn btn-action-primary"><i class="fas fa-plus me-1"></i> Crear Producto</a>
+        
     </div>
 
     <div class="card clean-card shadow-lg border-0">
@@ -187,7 +182,7 @@
                                         <i class="fas fa-pencil-alt"></i>
                                     </a>
 
-                                    <form action="{{ route('productos.destroy',$producto->id) }}" method="POST" onsubmit="return confirmarEliminacion(event)">
+                                    <form action="{{ route('productos.destroy',$producto->id) }}" method="POST" onclick="confirmarEliminacion(event)">
                                         @csrf
                                        
                                         <button class="btn btn-danger btn-sm btn-action-table">
@@ -210,93 +205,30 @@
 </div>
 
 <script>
-function confirmarEliminacion(event) {
-    event.preventDefault();
-    const form = event.target;
+    function confirmarEliminacion(event) {
+        event.preventDefault();
+        const form = event.target.closest('form'); // Asegurarse de obtener el formulario
 
-    Swal.fire({
-        title: "¿Eliminar producto?",
-        text: "Esta acción no se puede revertir",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#dc3545", // Rojo de Bootstrap
-        cancelButtonColor: "#6c757d", // Gris de Bootstrap
-        confirmButtonText: "Sí, Eliminar",
-        cancelButtonText: "Cancelar"
-    }).then(result => {
-        if (result.isConfirmed) form.submit();
-    });
-}
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "¡No podrás revertir esto!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#dc3545', // Rojo
+            cancelButtonColor: '#6c757d', // Gris
+            confirmButtonText: 'Sí, eliminar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                form.submit();
+            }
+        });
+    }
 </script>
 
-<div class="modal fade" id="crearProductoModal" tabindex="-1" aria-labelledby="crearProductoModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
 
-      <div class="modal-header modal-header-clean">
-        <h5 class="modal-title" id="crearProductoModalLabel"><i class="fas fa-box me-2"></i> Registrar Nuevo Producto</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-      <form action="{{ route('productos.store') }}" method="POST">
-        @csrf
-        
-        <div class="modal-body">
-
-          <div class="row g-3">
-
-            <div class="col-md-6">
-              <label class="form-label fw-bold text-dark">Nombre</label>
-              <input type="text" name="nombre" class="form-control" required>
-            </div>
-
-            <div class="col-md-6">
-              <label class="form-label fw-bold text-dark">Precio</label>
-              <input type="number" step="0.01" name="precio" class="form-control" required>
-            </div>
-
-            <div class="col-md-12">
-              <label class="form-label fw-bold text-dark">Descripción</label>
-              <textarea name="descripcion" class="form-control" rows="3"></textarea>
-            </div>
-
-            <div class="col-md-4">
-              <label class="form-label fw-bold text-dark">Stock</label>
-              <input type="number" name="stock" class="form-control" required>
-            </div>
-
-            <div class="col-md-4">
-              <label class="form-label fw-bold text-dark">Categoría</label>
-              <select name="idCategoria" class="form-select" required>
-                @foreach($categorias as $categoria)
-                  <option value="{{ $categoria->id }}">{{ $categoria->nombre }}</option>
-                @endforeach
-              </select>
-            </div>
-
-            <div class="col-md-4">
-              <label class="form-label fw-bold text-dark">Proveedor</label>
-              <select name="idProveedor" class="form-select" required>
-                @foreach($proveedores as $proveedor)
-                  <option value="{{ $proveedor->id }}">{{ $proveedor->nombre }}</option>
-                @endforeach
-              </select>
-            </div>
-
-          </div>
-
-        </div>
-
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <button class="btn btn-primary">Guardar Producto</button>
-        </div>
-
-      </form>
-
-    </div>
-  </div>
-</div>
-
+<script src="https://unpkg.com/sweetalert2@11.26.3/dist/sweetalert2.all.min.js"></script>
 
 @endsection

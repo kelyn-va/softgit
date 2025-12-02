@@ -231,7 +231,19 @@ return [
             'text' => 'Proveedores',
             'route' => 'proveedor.index',
             'icon' => 'fas fa-truck text-dark',
+
+
         ],
+           [
+            'text' => 'Compras',
+            'route' => 'compras.index',
+            'icon' => '  ',
+
+
+        ],
+
+
+
        
 
         ['header' => 'ADMINISTRACIÓN'],

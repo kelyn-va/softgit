@@ -111,7 +111,7 @@
                                 class="form-control clean-input @error('nombre') is-invalid @enderror" 
                                 value="{{ old('nombre') }}"
                                 placeholder="Ej: Distribuidora Central S.A."
-                                required
+                              
                             >
                             @error('nombre')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -128,7 +128,7 @@
                                 class="form-control clean-input @error('contacto') is-invalid @enderror"
                                 value="{{ old('contacto') }}"
                                 placeholder="Ej: Juan Pérez"
-                                required
+                               
                             >
                             @error('contacto')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -145,7 +145,7 @@
                                 class="form-control clean-input @error('telefono') is-invalid @enderror"
                                 value="{{ old('telefono') }}"
                                 placeholder="Ej: +57 300 123 4567"
-                                required
+                               
                             >
                             @error('telefono')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -162,8 +162,7 @@
                                 class="form-control clean-input @error('direccion') is-invalid @enderror"
                                 value="{{ old('direccion') }}"
                                 placeholder="Ej: Carrera 10 # 5-20, Bogotá"
-                                required
-                            >
+                    >
                             @error('direccion')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror

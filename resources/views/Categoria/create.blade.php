@@ -106,8 +106,8 @@
                             <input type="text" id="nombre" name="nombre" 
                                 class="form-control clean-input @error('nombre') is-invalid @enderror"
                                 placeholder="Ej: Electrónica, Ropa, Hogar..."
-                                value="{{ old('nombre') }}"
-                                required>
+                                value="{{ old('nombre') }}" oninput="this.value = this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '')"
+                                >
                             
                             @error('nombre')
                                 <div class="invalid-feedback">{{ $message }}</div>

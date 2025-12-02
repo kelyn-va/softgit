@@ -98,7 +98,7 @@
 
                     <form action="{{ route('proveedor.update', $Proveedor->id) }}" method="POST">
                         @csrf
-                        @method('PUT') <div class="mb-3">
+         <div class="mb-3">
                             <label for="nombre" class="form-label">Nombre del Proveedor</label>
                             <input 
                                 type="text" 

@@ -43,12 +43,8 @@ class ProductoController extends Controller
      */
    public function store(ProductoRequest $request)
 {
-    try {
-        $producto = Producto::create($request->all());
-        return redirect()->back()->with('success', 'CREADO: ' . json_encode($producto));
-    } catch (\Exception $e) {
-        return redirect()->back()->with('error', $e->getMessage('success', 'producto creado correctamente.'));
-    }
+   Producto::create($request->all());
+    return redirect()->route('productos.index')->with('success', 'producto creado correctamente.');
 }
 
     
