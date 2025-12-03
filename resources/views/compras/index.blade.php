@@ -95,7 +95,7 @@
                 
             <i class="fas fa-arrow-left"></i> Volver
         </a>
-<a href="{{ route('productos.create') }}" class="btn btn-action-primary"><i class="fas fa-plus me-1"></i> Crear Producto</a>
+<a href="{{ route('compras.create') }}" class="btn btn-action-primary"><i class="fas fa-plus me-1"></i> Crear Compra </a>
         
     </div>
 
