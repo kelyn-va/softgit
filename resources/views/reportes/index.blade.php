@@ -500,6 +500,7 @@
     });
 </script>
 
+
 <style>
     .border-left-primary {
         border-left: 0.25rem solid #69a2dfff;
@@ -519,3 +520,5 @@
     .text-info { color: #17a2b8; }
 </style>
 @endsection
+
+
