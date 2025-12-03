@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Compra;
+use App\Models\Producto;
 use App\Models\Proveedor;
 use Illuminate\Http\Request;
 use PhpParser\Node\ComplexType;
@@ -27,7 +28,8 @@ class CompraController extends Controller
         $compras = Compra::all();
         
         $proveedores = Proveedor::all();
-        return view('compras.create', compact('compras', 'proveedores'));
+        $productos = Producto::all();
+        return view('compras.create', compact('compras', 'proveedores', 'productos'));
     }
 
     /**
