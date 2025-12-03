@@ -41,4 +41,9 @@ class Producto extends Model
         return $this->hasMany(DetalleVenta::class,'idProducto');
     }
 
+    public function compras()
+    {
+        return $this->hasMany(Compra::class,'idproducto');
+
+}
 }

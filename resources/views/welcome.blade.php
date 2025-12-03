@@ -481,7 +481,7 @@
 
       <div class="card-menu">
   <div>
-    <div class="icono-fallback"><i class="fas fa-cash-register"></i></div>
+    <div class="icono-fallback"><i class="fas fa-shopping-cart text-primary"></i></div>
     <h5>Compras</h5>
     <p class="text-muted">Administrar las compras realizadas.</p>
   </div>

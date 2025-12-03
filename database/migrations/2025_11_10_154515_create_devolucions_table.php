@@ -16,7 +16,7 @@ return new class extends Migration
             
             // Relación con la venta original
             $table->unsignedBigInteger('idventa');
-            $table->foreign('idventa')->references('id')->on('ventas')->onDelete('cascade');
+            $table->foreign('idventa')->references('id')->on('ventas');
             
             // Cantidad devuelta
             $table->integer('cantidad');

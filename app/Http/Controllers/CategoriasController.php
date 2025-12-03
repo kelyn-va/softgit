@@ -57,12 +57,21 @@ class CategoriasController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy( $id)
-    {
-        $categorias= Categorias::findorfail($id);
-        $categorias->delete();
+    public function destroy( $id){
+   // Buscar la categoría
+    $categoria = Categorias::findOrFail($id);
 
-        return redirect()->route('categorias.index')->with('success', 'Categoria  eliminada  correctamente.');
+    try {
+        // Intentar eliminar
+        $categoria->delete();
 
+        return redirect()->route('categorias.index')
+            ->with('success', 'Categoría eliminada correctamente.');
+    } catch (\Illuminate\Database\QueryException $e) {
+
+        return redirect()->route('categorias.index')
+            ->with('error', 'No se puede eliminar esta categoría porque tiene productos asociados.');
     }
+
+}
 }

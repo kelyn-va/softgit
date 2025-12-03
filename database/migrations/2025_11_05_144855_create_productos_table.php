@@ -20,11 +20,11 @@ return new class extends Migration
             
             // Relación con categoría
             $table->unsignedBigInteger('idCategoria');
-            $table->foreign('idCategoria')->references('id')->on('categorias')->onDelete('cascade');
+            $table->foreign('idCategoria')->references('id')->on('categorias');
             
             // Relación con proveedor
             $table->unsignedBigInteger('idProveedor');
-            $table->foreign('idProveedor')->references('id')->on('proveedor')->onDelete('cascade');
+            $table->foreign('idProveedor')->references('id')->on('proveedor');
             
             $table->timestamps();
         });

@@ -95,7 +95,7 @@
                 
             <i class="fas fa-arrow-left"></i> Volver
         </a>
-<a href="{{ route('compras.create') }}" class="btn btn-action-primary"><i class="fas fa-plus me-1"></i> Crear compra</a>
+<a href="{{ route('compras.create') }}" class="btn btn-action-primary"><i class="fas fa-plus me-1"></i> Crear Compra </a>
         
     </div>
 
@@ -111,6 +111,8 @@
                         <th>metodoPago</th>
                         <th>Cantidad</th>
                         <th>Proveedor</th>
+                        <th>Producto</th>
+
                     </tr>
                 </thead>
                 <tbody>
@@ -125,6 +127,7 @@
                         <td>{{$compra->metodoPago  }}</td>
                         <td>{{$compra->Cantidad }}</td>
                         <td>{{$compra->proveedores->nombre }}</td>
+                        <td>{{$compra->productos->nombre }}</td>
 
 
                         <td>

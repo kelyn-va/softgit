@@ -200,75 +200,65 @@ return [
     |--------------------------------------------------------------------------
     */
 
-    'menu' => [
-        ['header' => 'GESTIÓN DE INVENTARIO'],
-        [
-            'text' => 'Productos',
-            'route' => 'productos.index',
-            'icon' => 'fas fa-boxes text-primary',
-        ],
-        [
-            'text' => 'Inventario',
-            'route' => 'inventario.index',
-            'icon' => 'fas fa-warehouse text-info',
-        ],
-        
-        [
-            'text' => 'Categorías',
-            'route' => 'categorias.index',
-            'icon' => 'fas fa-tags text-warning',
-        ],
-        
-        ['header' => 'VENTAS Y CONTACTOS'],
-        [
-            'text' => 'Ventas',
-            'route' => 'ventas.index',
-            'icon' => 'fas fa-cash-register text-success',
-        ],
-     
-      
-        [
-            'text' => 'Proveedores',
-            'route' => 'proveedor.index',
-            'icon' => 'fas fa-truck text-dark',
+'menu' => [
+    ['header' => 'GESTIÓN DE INVENTARIO'],
 
-
-        ],
-           [
-            'text' => 'Compras',
-            'route' => 'compras.index',
-            'icon' => '  ',
-
-
-        ],
-
-
-
-       
-
-        ['header' => 'ADMINISTRACIÓN'],
-        
-        [
-            'text' => 'Empleados',
-            'route' => 'empleados.index',
-            'icon' => 'fas fa-users text-indigo',
-        ],
-        
-        [
-            'text' => 'Reportes',
-            'route' => 'reportes.index',
-            'icon' => 'fas fa-chart-bar text-primary',
-        ],
-
-
-
-        ['header' => 'SESIÓN'],
-        [
-            'text' => 'Cerrar sesión',
-            'url' => 'logout',
-            'icon' => 'fas fa-sign-out-alt text-danger',
-        ],
+    [
+        'text' => 'Productos',
+        'route' => 'productos.index',
+        'icon' => 'fas fa-boxes text-primary',
     ],
+    [
+        'text' => 'Inventario',
+        'route' => 'inventario.index',
+        'icon' => 'fas fa-warehouse text-info',
+    ],
+    [
+        'text' => 'Categorías',
+        'route' => 'categorias.index',
+        'icon' => 'fas fa-tags text-warning',
+    ],
+
+    ['header' => 'VENTAS Y CONTACTOS'],
+
+    [
+        'text' => 'Ventas',
+        'route' => 'ventas.index',
+        'icon' => 'fas fa-cash-register text-success',
+    ],
+    [
+        'text' => 'Proveedores',
+        'route' => 'proveedor.index',
+        'icon' => 'fas fa-truck text-dark',
+    ],
+
+    [
+        'text' => 'Compras',
+        'route' => 'compras.index',
+        'icon' => 'fas fa-shopping-cart text-primary',  // ← ICONO COMPATIBLE
+    ],
+
+    ['header' => 'ADMINISTRACIÓN'],
+
+    [
+        'text' => 'Empleados',
+        'route' => 'empleados.index',
+        'icon' => 'fas fa-users text-indigo',
+    ],
+    [
+        'text' => 'Reportes',
+        'route' => 'reportes.index',
+        'icon' => 'fas fa-chart-bar text-primary',
+    ],
+
+    ['header' => 'SESIÓN'],
+
+    [
+        'text' => 'Cerrar sesión',
+        'url' => 'logout',
+        'icon' => 'fas fa-sign-out-alt text-danger',
+    ],
+],
 
 
     /*

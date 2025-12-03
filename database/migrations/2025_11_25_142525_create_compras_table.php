@@ -20,8 +20,11 @@ return new class extends Migration
             $table->integer('Cantidad');
             
             $table->unsignedBigInteger('idproveedor');
-            $table->foreign('idproveedor')->references('id')->on('proveedor')->onDelete('cascade');
-            $table->timestamps();
+            $table->foreign('idproveedor')->references('id')->on('proveedor');
+            
+            $table->unsignedBigInteger('idproducto');
+            $table->foreign('idproducto')->references('id')->on('productos');
+             $table->timestamps();
         });
     }
 

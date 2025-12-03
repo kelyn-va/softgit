@@ -25,6 +25,7 @@ class CompraController extends Controller
     public function create()
     {
         $compras = Compra::all();
+        
         $proveedores = Proveedor::all();
         return view('compras.create', compact('compras', 'proveedores'));
     }

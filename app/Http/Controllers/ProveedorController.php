@@ -69,11 +69,19 @@ class ProveedorController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
-    {
-        $proveedores = Proveedor::findorFail($id);
-        $proveedores->delete();
+   public function destroy($id)
+{
+    $proveedor = Proveedor::findOrFail($id);
 
-        return redirect()->route('proveedor.index')->with('success', 'Proveedor eliminado  correctamente.');
+    try {
+        $proveedor->delete();
+
+        return redirect()->route('proveedor.index')
+            ->with('success', 'Proveedor eliminado correctamente.');
+    } catch (\Illuminate\Database\QueryException $e) {
+
+        return redirect()->route('proveedor.index')
+            ->with('error', 'No se puede eliminar este proveedor porque tiene compras o productos asociados.');
     }
+}
 }

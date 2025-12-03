@@ -82,10 +82,10 @@
                             <label for="idproveedor" class="form-label fw-semibold">Proveedor</label>
                             <select id="idproveedor" name="idproveedor"
                                 class="form-select @error('idproveedor') is-invalid @enderror">
-                                <option value="">-- Selecciona un proveedor --</option>
+                                <option value="">Selecciona un proveedor </option>
                                 @foreach ( $proveedores as  $proveedor)
                                     
-                                <option value=" {{$proveedor->id }}">{{$proveedor->nombre }}</option>
+                                <option value=" {{$proveedor->id }}">{{$proveedor->nombre}}</option>
                               @endforeach
                             </select>
                                 
@@ -96,12 +96,32 @@
                         </div>
 
 
+                         <div class="mb-3">
+                            <label for="idproducto" class="form-label fw-semibold">Producto</label>
+                            <select id="idproducto" name="idproducto"
+                                class="form-select @error('idproducto') is-invalid @enderror">
+                                <option value=""> Selecciona un producto</option>
+                                @foreach ( $proveedores as  $proveedor)
+                                    
+                                <option value=" {{$producto->id }}">{{$producto->nombre}}</option>
+                              @endforeach
+                            </select>
+                                
+                                
+                            @error('idproducto')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+
+
+
 
 
 
                         <div class="text-end">
                             <button type="submit" class="crearBtn">
-                                ➕ <i class="bi bi-person-plus"></i> Crear Compra
+                                 <i class="bi bi-person-plus"></i> Crear Compra
                             </button>
                         </div>
                     </form>

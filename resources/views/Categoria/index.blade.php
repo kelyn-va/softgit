@@ -184,4 +184,18 @@
         });
     }
 </script>
+
+<!-- script para tablas relacionadas  -->
+@if(session('error'))
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        Swal.fire({
+            icon: 'error',
+            title: '¡Atención!',
+            text: "{{ session('error') }}",
+            confirmButtonText: 'Aceptar',
+        });
+    });
+</script>
+@endif
 @endsection
