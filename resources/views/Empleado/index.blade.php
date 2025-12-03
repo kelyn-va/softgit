@@ -180,10 +180,8 @@
     {{-- Botones de Acción (Volver, Búsqueda y Crear) --}}
     <div class="d-flex justify-content-between align-items-center gap-3 mb-4">
         
-        {{-- Botón Volver --}}
-        <a href="{{ route('welcome') }}" class="btn btn-back">
-            <i class="fas fa-arrow-left"></i> Volver
-        </a>
+       
+       
 
         {{-- Formulario de Búsqueda (Estilo limpio) --}}
         <form action="{{ route('empleados.index') }}" method="GET" class="d-flex search-box input-group w-50">

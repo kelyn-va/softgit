@@ -129,14 +129,11 @@
 
 <div class="container">
 
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <a href="{{ route('welcome') }}" class="btn btn-back btn-action-primary d-flex align-items-center gap-2">
-                
-            <i class="fas fa-arrow-left"></i> Volver
-        </a>
-<a href="{{ route('productos.create') }}" class="btn btn-action-primary"><i class="fas fa-plus me-1"></i> Crear Producto</a>
-        
-    </div>
+    <div class="d-flex justify-content-end mb-3">
+    <a href="{{ route('productos.create') }}" class="btn btn-action-primary">
+        <i class="fas fa-plus me-1"></i> Crear producto
+    </a>
+</div>
 
     <div class="card clean-card shadow-lg border-0">
         <div class="card-body p-0">

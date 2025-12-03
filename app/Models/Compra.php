@@ -13,7 +13,8 @@ class Compra extends Model
         'Total',
         'metodoPago',
         'Cantidad',
-        'idproveedor'
+        'idproveedor',
+        'idproducto'
     ];
 
      public function compra()

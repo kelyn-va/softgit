@@ -94,7 +94,7 @@
             {{-- Botón de volver --}}
             <div class="mb-4 text-start">
                 <a href="{{ route('empleados.index') }}" class="btn btn-back">
-                    <i class="fas fa-arrow-left"></i> Volver
+                    <i class="fas fa-arrow-left"></i> Volver a empleados
                 </a>
             </div>
 

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CompraRequest;
+use App\Http\Requests\comprasRequest;
 use App\Models\Compra;
 use App\Models\Producto;
 use App\Models\Proveedor;
@@ -35,7 +37,7 @@ class CompraController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CompraRequest $request)
     {
         Compra::create(
                 $request->all());
@@ -63,7 +65,7 @@ class CompraController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(CompraRequest $request, $id)
     {
         $compra = Compra::findorFail($id);
         $compra->update($request->all());

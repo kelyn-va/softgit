@@ -112,9 +112,7 @@
 
     <div class="d-flex justify-content-start align-items-center gap-3 mb-4">
         
-        <a href="{{ route('welcome') }}" class="btn btn-back d-inline-flex align-items-center gap-2">
-            <i class="fas fa-arrow-left"></i> Volver
-        </a>
+        
 
         <a href="{{ route('proveedor.create') }}" class="btn btn-action-primary d-inline-flex align-items-center gap-2 ms-auto">
             <i class="fas fa-plus"></i> Crear Proveedor

@@ -209,7 +209,7 @@
 
                 <div class="mt-5 d-flex justify-content-between">
                     <a href="{{ route('productos.index') }}" class="btn btn-cancel-secondary d-flex align-items-center gap-2">
-                        <i class="fas fa-arrow-left"></i> Cancelar y Volver
+                        <i class="fas fa-arrow-left"></i>  Volver a productos
                     </a>
                     <button class="btn btn-action-primary d-flex align-items-center gap-2">
                         <i class="fas fa-save"></i> Guardar Producto
