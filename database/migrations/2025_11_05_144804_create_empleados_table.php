@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('empleados', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->string('cargo');
-            $table->string('usuario');
-            $table->string('contraseña');
+            $table->string('telefono');
+            $table->string('correo')->unique();
+            $table->string('cargo')->default('vendedor'); 
             $table->timestamps();
         });
     }

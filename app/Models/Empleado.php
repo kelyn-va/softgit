@@ -6,21 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Empleado extends Model
 {
-    protected $table="empleados";
+    protected $table = "empleados";
 
-    protected $fillable=[
+    protected $fillable = [
         'nombre',
+        'telefono',
+        'correo',
         'cargo',
-        'usuario',
-        'contraseña',
-        
-        
     ];
-
-    /**
-     * Relación: Un empleado pertenece a un turno
-     */
-   
 
     /**
      * Relación: Un empleado tiene muchas ventas
@@ -29,9 +22,4 @@ class Empleado extends Model
     {
         return $this->hasMany(ventas::class, 'idempleado');
     }
-
-
-
-
-
 }

@@ -6,42 +6,52 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class EmpleadoRequest extends FormRequest
 {
-    /**
-     * Determina si el usuario está autorizado a realizar la solicitud.
-     */
     public function authorize(): bool
     {
         return true;
     }
 
-    /**
-     * Reglas de validación para los campos del formulario Empleado.
-     */
     public function rules(): array
     {
         return [
-            'nombre'      => 'required|string|max:100',
-            'cargo'       => 'required|string|max:100',
-            'usuario'     => 'required|string|max:50|unique:empleados,usuario',
-            'contraseña'  => 'required|string|min:6',
-            'idTurno'     => 'required|integer|exists:turnos,id',
+            // Nombre solo letras y espacios
+            'nombre' => 'required|string|max:100|regex:/^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+$/',
+
+            // Teléfono solo números, mínimo 7 máx 15
+            'telefono' => 'required|digits_between:7,15',
+
+            // Correo único
+            'correo' => 'required|email|max:100|unique:empleados,correo,' . $this->id,
+
+            // Cargo: solo letras y espacios
+            'cargo' => 'required|string|max:50|regex:/^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+$/',
         ];
     }
 
-    /**
-     * Mensajes personalizados para los errores de validación.
-     */
     public function messages(): array
     {
         return [
-            'nombre.required'      => 'El nombre es obligatorio.',
-            'cargo.required'       => 'El cargo es obligatorio.',
-            'usuario.required'     => 'El usuario es obligatorio.',
-            'usuario.unique'       => 'Este usuario ya existe.',
-            'contraseña.required'  => 'La contraseña es obligatoria.',
-            'contraseña.min'       => 'La contraseña debe tener al menos 6 caracteres.',
-            'idTurno.required'     => 'Debe seleccionar un turno.',
-            'idTurno.exists'       => 'El turno seleccionado no es válido.',
+            // nombre
+            'nombre.required' => 'El nombre es obligatorio.',
+            'nombre.string'   => 'El nombre debe ser texto.',
+            'nombre.max'      => 'El nombre no puede exceder 100 caracteres.',
+            'nombre.regex'    => 'El nombre solo puede contener letras y espacios.',
+
+            // telefono
+            'telefono.required' => 'El teléfono es obligatorio.',
+            'telefono.digits_between' => 'El teléfono debe tener entre 7 y 15 dígitos.',
+
+            // correo
+            'correo.required' => 'El correo es obligatorio.',
+            'correo.email'    => 'Debe ingresar un correo válido.',
+            'correo.max'      => 'El correo no debe exceder 100 caracteres.',
+            'correo.unique'   => 'Este correo ya está registrado.',
+
+            // cargo
+            'cargo.required' => 'El cargo es obligatorio.',
+            'cargo.string'   => 'El cargo debe ser texto.',
+            'cargo.max'      => 'El cargo no puede exceder 50 caracteres.',
+            'cargo.regex'    => 'El cargo solo puede contener letras y espacios.',
         ];
     }
 }
