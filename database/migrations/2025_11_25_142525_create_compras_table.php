@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
              $table->decimal('precioCompra');
             $table->decimal('precioVenta');
-            $table->decimal('Total');
+            $table->decimal('Total', 12, 2);
             $table->enum('metodoPago', ['Efectivo', 'Tarjeta ', 'Transferencia', ]);            
             $table->integer('Cantidad');
             

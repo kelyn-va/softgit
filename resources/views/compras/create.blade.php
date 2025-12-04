@@ -31,7 +31,7 @@
         padding: 0.6rem 1rem;
         background: #ffffff !important;
         transition: all 0.2s;
-        color: var(--text-dark) !important; /* FIX DEL TEXTO */
+        color: var(--text-dark) !important;
     }
 
     .clean-input:focus {
@@ -56,6 +56,7 @@
         transition: background-color 0.2s ease;
         text-decoration: none;
     }
+
     .btn-action-primary:hover {
         background-color: #0069d9 !important;
     }
@@ -70,6 +71,7 @@
         transition: background-color 0.2s ease;
         text-decoration: none;
     }
+
     .btn-back:hover {
         background-color: #daeafc !important;
         color: #0056b3 !important;
@@ -82,12 +84,11 @@
         <div class="col-md-10">
 
             <div class="mb-3 text-start">
-                <a href="{{ route('compras.index') }}" class="volverBtn d-inline-flex align-items-center gap-1 btn-back">
-                 <i class="bi bi-arrow-left-circle"></i> Volver a compras
+                <a href="{{ route('compras.index') }}" class="volverBtn btn-back d-inline-flex align-items-center gap-1">
+                    <i class="bi bi-arrow-left-circle"></i> Volver a compras
                 </a>
             </div>
 
-            {{-- Tarjeta del formulario --}}
             <div class="card clean-card shadow-lg border-0">
                 <div class="card-body p-4">
 
@@ -101,7 +102,7 @@
 
                                 <div class="mb-3">
                                     <label class="form-label fw-semibold">Precio de Compra</label>
-                                    <input type="decimal" id="precioCompra" name="precioCompra"
+                                    <input type="number" step="0.01" id="precioCompra" name="precioCompra"
                                         class="form-control clean-input @error('precioCompra') is-invalid @enderror">
                                     @error('precioCompra')
                                         <div class="invalid-feedback">{{ $message }}</div>
@@ -110,7 +111,7 @@
 
                                 <div class="mb-3">
                                     <label class="form-label fw-semibold">Precio de Venta</label>
-                                    <input type="decimal" id="precioVenta" name="precioVenta"
+                                    <input type="number" step="0.01" id="precioVenta" name="precioVenta"
                                         class="form-control clean-input @error('precioVenta') is-invalid @enderror">
                                     @error('precioVenta')
                                         <div class="invalid-feedback">{{ $message }}</div>
@@ -119,7 +120,7 @@
 
                                 <div class="mb-3">
                                     <label class="form-label fw-semibold">Cantidad</label>
-                                    <input type="int" id="Cantidad" name="Cantidad"
+                                    <input type="number" step="1" id="Cantidad" name="Cantidad"
                                         class="form-control clean-input @error('Cantidad') is-invalid @enderror">
                                     @error('Cantidad')
                                         <div class="invalid-feedback">{{ $message }}</div>
@@ -128,7 +129,7 @@
 
                                 <div class="mb-3">
                                     <label class="form-label fw-semibold">Total</label>
-                                    <input type="text" id="Total" name="Total" readonly
+                                    <input type="number" step="0.01" id="Total" name="Total" readonly
                                         class="form-control clean-input @error('Total') is-invalid @enderror">
                                     @error('Total')
                                         <div class="invalid-feedback">{{ $message }}</div>
@@ -143,15 +144,12 @@
                                 <div class="mb-3">
                                     <label class="form-label fw-semibold">Método de Pago</label>
                                     <select name="metodoPago" id="metodoPago"
-                                        class="form-control clean-input @error('metodoPago') is-invalid @enderror">
+                                            class="form-select clean-input @error('metodoPago') is-invalid @enderror">
                                         <option value="">Seleccione un método</option>
                                         <option value="Efectivo">Efectivo</option>
                                         <option value="Tarjeta">Tarjeta</option>
                                         <option value="Transferencia">Transferencia</option>
                                     </select>
-                                    @error('metodoPago')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
                                 </div>
 
                                 <div class="mb-3">
@@ -163,9 +161,6 @@
                                             <option value="{{ $proveedor->id }}">{{ $proveedor->nombre }}</option>
                                         @endforeach
                                     </select>
-                                    @error('idproveedor')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
                                 </div>
 
                                 <div class="mb-3">
@@ -177,9 +172,6 @@
                                             <option value="{{ $producto->id }}">{{ $producto->nombre }}</option>
                                         @endforeach
                                     </select>
-                                    @error('idproducto')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
                                 </div>
 
                             </div>
@@ -212,7 +204,11 @@ document.addEventListener("DOMContentLoaded", function() {
     function calcularTotal() {
         const p = parseFloat(precioCompra.value) || 0;
         const c = parseInt(Cantidad.value) || 0;
-        Total.value = (p * c).toFixed(2);
+
+        let total = p * c;
+
+        // Si es entero lo muestra sin decimales, si no, con dos
+        Total.value = Number.isInteger(total) ? total : total.toFixed(2);
     }
 
     precioCompra.addEventListener("input", calcularTotal);

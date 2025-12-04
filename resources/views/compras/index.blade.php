@@ -3,50 +3,26 @@
 @section('title', 'Administrar compra')
 
 @section('titleContent')
-<h1 class="text-center my-4 fw-bold text-dark">compras</h1>
+<h1 class="text-center my-4 fw-bold text-dark">Compras</h1>
 @endsection
 
-
 @section('content')
+
 <style>
-    /* --- VARIABLES DE ESTILO LIMPIO Y AZUL PASTEL --- */
     :root {
-        --primary-soft-blue: #007bff; /* Azul primario para acentos */
-        --light-blue-bg: #f0f7ff; /* Fondo de card y tabla muy claro */
-        --header-bg: #d0e7ff; /* Azul pastel para encabezados */
-        --text-dark: #344767; /* Color de texto oscuro para legibilidad */
-        --card-border: #daeafc; /* Borde sutil */
-        --btn-edit: #007bff; /* Azul para editar */
-        --btn-edit-hover: #0056b3;
+        --primary-soft-blue: #007bff;
+        --light-blue-bg: #f0f7ff;
+        --header-bg: #d0e7ff;
+        --text-dark: #344767;
+        --card-border: #daeafc;
     }
 
-    /* Estilo para el contenedor de la tabla */
-    .clean-card {
-        background-color: var(--light-blue-bg) !important;
-        border-radius: 12px !important; /* Menos redondeado */
+    .custom-card {
+        background-color: white !important;
+        border-radius: 12px !important;
         border: 1px solid var(--card-border) !important;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* Sombra sutil */
-    }
-    
-    /* Estilo de la cabecera de la tabla */
-    .table thead {
-        background-color: var(--header-bg) !important;
-        color: var(--text-dark) !important;
-    }
-    .table thead th {
-        border-color: #c4daee !important;
-        font-weight: 600;
-        text-transform: uppercase;
     }
 
-    /* Input de búsqueda */
-    .clean-input {
-        border-radius: 8px !important;
-        border: 1px solid var(--card-border) !important;
-        padding: 0.5rem 1rem;
-    }
-
-    /* Botones de acción principal (Crear, Volver) */
     .btn-action-primary {
         background-color: var(--primary-soft-blue) !important;
         border: none !important;
@@ -56,23 +32,37 @@
         font-weight: 600;
         transition: background-color 0.2s ease;
     }
+
     .btn-action-primary:hover {
         background-color: #0069d9 !important;
     }
 
-    /* Botón Volver específico */
-    .btn-back {
-        background-color: #e9f5ff !important;
-        color: var(--primary-soft-blue) !important;
-        border: 1px solid var(--card-border) !important;
+    .btnActualizar, .btnEliminar {
+        font-weight: 600;
+        border: none;
+        border-radius: 6px;
+        padding: 6px 10px;
+        display: inline-flex;
+        align-items: center;
+        cursor: pointer;
     }
-    .btn-back:hover {
-        background-color: #daeafc !important;
-        color: #0056b3 !important;
+
+    .btnActualizar {
+        background-color: #4dabf7;
+        color: #fff;
+    }
+    .btnActualizar:hover {
+        background-color: #339af0;
+    }
+
+    .btnEliminar {
+        background-color: #ff6b6b;
+        color: #fff;
+    }
+    .btnEliminar:hover {
+        background-color: #fa5252;
     }
 </style>
-
-
 
 @if (session('success'))
 <script>
@@ -89,65 +79,71 @@
 @endif
 
 <div class="container py-4">
-<div class="d-flex justify-content-end mb-3">
-    <a href="{{ route('compras.create') }}" class="btn btn-action-primary">
-        <i class="fas fa-plus me-1"></i> Crear Compra
-    </a>
-</div>
+
+    <div class="d-flex justify-content-end mb-3">
+        <a href="{{ route('compras.create') }}" class="btn-action-primary">
+            <i class="fas fa-plus me-1"></i> Crear Compra
+        </a>
+    </div>
 
     <div class="card custom-card shadow-lg border-0">
         <div class="card-body">
             <table class="table table-striped table-hover align-middle text-center mb-0">
-                <thead style="background: #a8dadc; color:#fff;">
+                <thead style="background: var(--header-bg); color: var(--text-dark);">
                     <tr>
                         <th>ID</th>
-                        <th>precioCompra</th>
-                        <th>precioVenta</th>
+                        <th>Precio Compra</th>
+                        <th>Precio Venta</th>
                         <th>Total</th>
-                        <th>metodoPago</th>
+                        <th>Método Pago</th>
                         <th>Cantidad</th>
                         <th>Proveedor</th>
                         <th>Producto</th>
-
+                        <th>Acciones</th>
                     </tr>
                 </thead>
+
                 <tbody>
                     @foreach ($compras as $compra)
-
-
                     <tr>
-                        <td>{{$compra->id }}</td>
-                        <td>{{$compra->precioCompra }}</td>
-                        <td>{{$compra->precioVenta }}</td>
-                        <td>{{$compra->Total }}</td>
-                        <td>{{$compra->metodoPago  }}</td>
-                        <td>{{$compra->Cantidad }}</td>
-                        <td>{{$compra->proveedores->nombre }}</td>
-                        <td>{{$compra->productos->nombre }}</td>
+                        <td>{{ $compra->id }}</td>
+                        <td>{{ number_format($compra->precioCompra, 0, ',', '.') }}</td>
+                        <td>{{ number_format($compra->precioVenta, 0, ',', '.') }}</td>
+                        <td>
+                            {{ 
+                                fmod($compra->Total,1) == 0 
+                                ? number_format($compra->Total, 0, ',', '.')
+                                : number_format($compra->Total, 2, ',', '.')
+                            }}
+                        </td>
+                        <td>{{ $compra->metodoPago }}</td>
+                        <td>{{ $compra->Cantidad }}</td>
 
+                        <td>{{ $compra->proveedor->nombre ?? 'Sin proveedor' }}</td>
+                        <td>{{ $compra->producto->nombre ?? 'Sin producto' }}</td>
 
                         <td>
                             <div class="d-flex justify-content-center gap-2">
-                                <a href="{{ route('compras.edit', $compra->id) }}" class="btnActualizar d-flex gap-2 align-items-center">
-                                    ✏️ <i class="bi bi-pencil-square"></i> Actualizar
+                                <a href="{{ route('compras.edit', $compra->id) }}" class="btnActualizar">
+                                    ✏️ Editar
                                 </a>
 
                                 <form action="{{ route('compras.destroy', $compra->id) }}" method="POST" onsubmit="return confirmarEliminacion(event)">
                                     @csrf
-
-                                    <button type="submit" class="btnEliminar d-flex gap-2 align-items-center">
-                                        🗑️ <i class="bi bi-trash"></i> Eliminar
+                                    <button type="submit" class="btnEliminar">
+                                        🗑️ Eliminar
                                     </button>
                                 </form>
                             </div>
                         </td>
+
                     </tr>
-                    
                     @endforeach
                 </tbody>
             </table>
         </div>
     </div>
+
 </div>
 
 <script>
@@ -157,7 +153,7 @@
 
         Swal.fire({
             title: '¿Estás seguro?',
-            text: "¡No podrás revertir esto!",
+            text: "No podrás revertir esto.",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -171,4 +167,5 @@
         });
     }
 </script>
-@endsection      
+
+@endsection
