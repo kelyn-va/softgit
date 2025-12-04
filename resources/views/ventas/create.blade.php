@@ -204,9 +204,26 @@
                 </button>
             </div>
 
+
+
+            @if(session('stock_alert'))
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: '¡Stock insuficiente!',
+            html: `
+                <b>Producto:</b> {{ session('stock_alert')['producto'] }}<br>
+                <b>Stock disponible:</b> {{ session('stock_alert')['stock'] }}<br>
+                <b>Cantidad ingresada:</b> {{ session('stock_alert')['solicitado'] }}
+            `,
+            confirmButtonText: 'Entendido',
+        });
+    </script>
+@endif
         </form>
     </div>
 </div>
+
 
 @stop
 
