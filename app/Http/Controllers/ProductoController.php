@@ -14,13 +14,28 @@ class ProductoController extends Controller
     /**
      * Display a listing of the resource.
      */
-   public function index()
+public function index(Request $request)
 {
-    $productos = Producto::all();
-
-   
     $categorias = Categorias::all();
     $proveedores = Proveedor::all();
+
+    // Consulta base con relaciones
+    $query = Producto::with('categoria', 'proveedor');
+
+    // Filtros
+    if ($request->filled('categoria')) {
+        $query->where('idcategoria', $request->categoria);
+    }
+
+    if ($request->filled('proveedor')) {
+        $query->where('idproveedor', $request->proveedor);
+    }
+
+    if ($request->filled('buscar')) {
+        $query->where('nombre', 'like', '%' . $request->buscar . '%');
+    }
+
+    $productos = $query->get();
 
     return view('Producto.index', compact('productos', 'categorias', 'proveedores'));
 }
