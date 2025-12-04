@@ -23,12 +23,10 @@
                     <label for="tipoReporte" class="form-label">Tipo de Reporte</label>
                     <select class="form-select" id="tipoReporte" onchange="cambiarReporte()">
                         <option value="">-- Seleccionar --</option>
-                        <option value="inventario">Inventario</option>
                         <option value="ventas">Ventas</option>
                         <option value="ventasCategoria">Ventas por Categoría</option>
                         <option value="ventasEmpleado">Ventas por Empleado</option>
-                        <option value="tendencia">Tendencia de Ventas</option>
-                        <option value="stockBajo">Stock Bajo</option>
+                        
                     </select>
                 </div>
 
@@ -105,22 +103,6 @@
             </div>
         </div>
         <div class="col-md-3">
-            <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="text-success text-uppercase mb-1"><small><b>Productos en Stock</b></small></div>
-                    <div class="h3 mb-0" id="productosStock">0</div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card border-left-warning shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="text-warning text-uppercase mb-1"><small><b>Stock Bajo</b></small></div>
-                    <div class="h3 mb-0" id="stockBajo">0</div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
             <div class="card border-left-info shadow h-100 py-2">
                 <div class="card-body">
                     <div class="text-info text-uppercase mb-1"><small><b>Transacciones</b></small></div>
@@ -155,18 +137,7 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-lg-12 mb-4">
-            <div class="card shadow">
-                <div class="card-header bg-warning text-white">
-                    <h6 class="m-0">Tendencia de Ventas</h6>
-                </div>
-                <div class="card-body">
-                    <canvas id="chartTendencia"></canvas>
-                </div>
-            </div>
-        </div>
-    </div>
+    
 
     <!-- Tabla de Datos -->
     <div class="card shadow mb-4">

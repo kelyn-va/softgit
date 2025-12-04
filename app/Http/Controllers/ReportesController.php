@@ -34,8 +34,8 @@ class ReportesController extends Controller
 
         // Filtro por categoría
         if ($request->categoria_id) {
-            $query->whereHas('producto', function ($q) {
-                $q->where('idCategoria', request('categoria_id'));
+            $query->whereHas('producto', function ($q) use ($request) {
+                $q->where('idCategoria', $request->categoria_id);
             });
         }
 
