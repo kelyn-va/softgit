@@ -81,7 +81,15 @@ class CompraController extends Controller
         $compras->delete();
         return redirect()->route('compras.index')->with('success', 'compra  Eliminada correctamente');
     }
+
+    public function productosPorProveedor($id)
+{
+    $productos = Producto::where('idproveedor', $id)->get();
+    return response()->json($productos);
+}
+
     }
+    
 
     
    

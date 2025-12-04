@@ -165,13 +165,10 @@
 
                                 <div class="mb-3">
                                     <label class="form-label fw-semibold">Producto</label>
-                                    <select id="idproducto" name="idproducto"
-                                        class="form-select clean-input @error('idproducto') is-invalid @enderror">
+                                    <select id="idproducto" name="idproducto" class="form-select clean-input" disabled>
                                         <option value="">Selecciona un producto</option>
-                                        @foreach ($productos as $producto)
-                                            <option value="{{ $producto->id }}">{{ $producto->nombre }}</option>
-                                        @endforeach
                                     </select>
+
                                 </div>
 
                             </div>
@@ -213,5 +210,39 @@ document.addEventListener("DOMContentLoaded", function() {
 
     precioCompra.addEventListener("input", calcularTotal);
     Cantidad.addEventListener("input", calcularTotal);
+
+    
 });
+
+document.addEventListener("DOMContentLoaded", function() {
+    const selectProveedor = document.getElementById("idproveedor");
+    const selectProducto = document.getElementById("idproducto");
+
+    selectProveedor.addEventListener("change", function() {
+        let proveedorId = this.value;
+
+        selectProducto.innerHTML = '<option value="">Cargando productos...</option>';
+        selectProducto.disabled = true;
+
+        if (proveedorId) {
+            fetch(`/productos-proveedor/${proveedorId}`)
+            .then(response => response.json())
+            .then(data => {
+                selectProducto.innerHTML = '<option value="">Selecciona un producto</option>';
+
+                data.forEach(producto => {
+                    const option = document.createElement("option");
+                    option.value = producto.id;
+                    option.textContent = producto.nombre;
+                    selectProducto.appendChild(option);
+                });
+
+                selectProducto.disabled = false;
+            });
+        } else {
+            selectProducto.innerHTML = '<option value="">Selecciona un proveedor primero</option>';
+        }
+    });
+});
+
 </script>

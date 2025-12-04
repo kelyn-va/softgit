@@ -119,8 +119,8 @@
                         <td>{{ $compra->metodoPago }}</td>
                         <td>{{ $compra->Cantidad }}</td>
 
-                        <td>{{ $compra->proveedor->nombre ?? 'Sin proveedor' }}</td>
-                        <td>{{ $compra->producto->nombre ?? 'Sin producto' }}</td>
+                        <td>{{ $compra->proveedores->nombre ?? 'Sin proveedor' }}</td>
+                        <td>{{ $compra->productos->nombre ?? 'Sin producto' }}</td>
 
                         <td>
                             <div class="d-flex justify-content-center gap-2">

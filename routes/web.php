@@ -127,3 +127,4 @@ Route::post('/compras/store',[CompraController::class,'store'])->name('compras.s
 Route::post('/compras/destroy/{id}',[CompraController::class,'destroy'])->name('compras.destroy');
 Route::get('/compras/edit/{id}',[CompraController::class,'edit'])->name('compras.edit');
 Route::post('/compras/update/{id}',[CompraController::class,'update'])->name('compras.update');
+Route::get('/productos-proveedor/{id}', [CompraController::class, 'productosPorProveedor']);
