@@ -15,13 +15,14 @@ class CompraController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        $compras = Compra::all();
-        $proveedores = Proveedor::all();
-        $productos = Producto::all();
-        return view('compras.index', compact('compras', 'proveedores', 'productos'));
-    }
+public function index()
+{
+    $compras = Compra::with(['proveedores','productos'])->get();
+    $proveedores = Proveedor::all();
+    $productos = Producto::all();
+    return view('compras.index', compact('compras','proveedores','productos'));
+}
+
 
     /**
      * Show the form for creating a new resource.
