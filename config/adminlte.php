@@ -204,15 +204,23 @@ return [
     ['header' => 'GESTIÓN DE INVENTARIO'],
 
     [
+        'text' => 'Inventario',
+        'route' => 'inventario.index',
+        'icon' => 'fas fa-warehouse text-info',
+    ],                                                                          
+
+    [
         'text' => 'Productos',
         'route' => 'productos.index',
         'icon' => 'fas fa-boxes text-primary',
     ],
+
     [
-        'text' => 'Inventario',
-        'route' => 'inventario.index',
-        'icon' => 'fas fa-warehouse text-info',
+        'text' => 'Proveedores',
+        'route' => 'proveedor.index',
+        'icon' => 'fas fa-truck text-dark',
     ],
+    
     [
         'text' => 'Categorías',
         'route' => 'categorias.index',
@@ -226,11 +234,7 @@ return [
         'route' => 'ventas.index',
         'icon' => 'fas fa-cash-register text-success',
     ],
-    [
-        'text' => 'Proveedores',
-        'route' => 'proveedor.index',
-        'icon' => 'fas fa-truck text-dark',
-    ],
+    
 
     [
         'text' => 'Compras',

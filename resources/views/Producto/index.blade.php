@@ -236,4 +236,7 @@ function confirmarEliminacion(event) {
 }
 </script>
 
+<script src="https://unpkg.com/sweetalert2@11"></script>
+
+
 @endsection

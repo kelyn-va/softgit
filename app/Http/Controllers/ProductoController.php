@@ -88,7 +88,7 @@ public function index(Request $request)
     /**
      * Update the specified resource in storage.
      */
-    public function update(ProductoRequest $request, $id)
+    public function update(Request $request, $id)
 {
     $producto = Producto::findOrFail($id);
 
