@@ -8,31 +8,25 @@ class ventas extends Model
 {
     public $table = "ventas";
     protected $fillable = [
-        'fecha',
         'total',
-        'idCliente',
-        'idempleado'
-
+        'metodo_pago',
+        'idempleado',
+        'idproducto'
     ];
 
-    public function cliente()
-    {
-        return $this->belongsTo(Clientes::class, 'idCliente');
-    }
+   
 
-    public function empleado()
+   public function empleado()
     {
         return $this->belongsTo(Empleado::class, 'idempleado');
     }
 
-    public function detalleVentas()
-    
+    public function producto()
     {
-        return $this->hasMany(DetalleVenta::class, 'idventa');
+        return $this->belongsTo(Producto::class, 'idproducto');
     }
-
-    public function pagos()
-    {
-        return $this->hasMany(pagos::class, 'idventa');
-    }
+    public function detalles()
+{
+    return $this->hasMany(DetalleVenta::class, 'idventa');
+}
 }

@@ -1,102 +1,338 @@
-@extends('layouts.app')
+@extends('adminlte::page')
 
-@section('title', 'Crear Nueva Venta')
+@section('title', 'Registrar Venta')
 
-@section('titleContent')
-    <header class="encabezado-ventas shadow-sm">
-        <h1>Registrar Nueva Venta</h1>
-        <p>Completa los campos para registrar una nueva transacción</p>
-    </header>
-@endsection
+@section('css')
+<style>
+    /* --- VARIABLES DE ESTILO LIMPIO Y AZUL PASTEL --- */
+    :root {
+        --primary-soft-blue: #007bff; /* Azul primario */
+        --light-blue-bg: #f0f7ff; /* Fondo de card muy claro/tabla */
+        --header-bg: #d0e7ff; /* Azul pastel para encabezados de tabla */
+        --text-dark: #344767; /* Color de texto oscuro */
+        --card-border: #daeafc; /* Borde sutil */
+    }
+
+    /* Adaptar el Card de AdminLTE al estilo clean */
+    .card {
+        border-radius: 12px !important;
+        border: 1px solid var(--card-border) !important;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    }
+    .card-header {
+        background-color: white !important;
+        border-bottom: 1px solid var(--card-border) !important;
+        color: var(--text-dark);
+        font-weight: 700;
+    }
+    
+    /* Estilo de campos de formulario (limpio) */
+    .form-control, .input-group-text, .custom-select {
+        border-radius: 8px !important;
+        border: 1px solid var(--card-border) !important;
+        color: var(--text-dark);
+    }
+    .form-control:focus, .custom-select:focus {
+        border-color: var(--primary-soft-blue) !important;
+        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    }
+
+    /* Botón Principal (Guardar Venta) - Verde */
+    .btn-action-success {
+        background-color: #28a745 !important; 
+        border: none !important;
+        color: white !important;
+        border-radius: 8px;
+        padding: 10px 20px;
+        font-weight: 600;
+        transition: background-color 0.2s ease;
+    }
+    .btn-action-success:hover {
+        background-color: #1e7e34 !important;
+    }
+
+    /* Botón Agregar Producto (Azul) */
+    .btn-action-primary {
+        background-color: var(--primary-soft-blue) !important;
+        border: none !important;
+        color: white !important;
+        border-radius: 8px;
+        padding: 8px 15px;
+        font-weight: 600;
+        transition: background-color 0.2s ease;
+    }
+    .btn-action-primary:hover {
+        background-color: #0069d9 !important;
+    }
+
+    /* Tabla de productos agregados */
+    #tablaProductos thead {
+        background-color: var(--header-bg) !important;
+        color: var(--text-dark) !important;
+    }
+    #tablaProductos thead th {
+        border-color: #c4daee !important;
+        font-weight: 600;
+    }
+
+    /* Botón de eliminar fila (Rojo) */
+    .btn-danger {
+        background-color: #dc3545 !important;
+        border-color: #dc3545 !important;
+        border-radius: 6px !important;
+        font-weight: 700;
+    }
+</style>
+@stop
+
+@section('content_header')
+    <h1 class="fw-bold text-dark">Registrar Nueva Venta</h1>
+@stop
 
 @section('content')
 
-<div class="container py-4">
+<div class="card">
+    <div class="card-body">
+        <form action="{{ route('ventas.store') }}" method="POST">
+            @csrf
 
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card custom-card shadow-lg border-0">
-                <div class="card-header bg-primary text-white">
-                    <h5 class="mb-0">Formulario de Registro de Venta</h5>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="form-group">
+                        <label for="idempleado" class="fw-semibold">Empleado</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user-tie"></i></span>
+                            </div>
+                            <select name="idempleado" id="idempleado" class="form-control custom-select" required>
+                                <option value="">Seleccione el empleado</option>
+                                @foreach($empleados as $e)
+                                    <option value="{{ $e->id }}" {{ old('idempleado') == $e->id ? 'selected' : '' }}>
+                                        {{ $e->nombre }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                        @error('idempleado')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
                 </div>
-                <div class="card-body">
-                    
-                    {{-- Formulario de Creación --}}
-                    <form action="{{ route('ventas.store') }}" method="POST">
-                        @csrf
-                        
-                        {{-- Campo de Fecha --}}
-                        <div class="mb-3">
-                            <label for="fecha" class="form-label">Fecha de Venta</label>
-                            {{-- Se usa type="date" para facilitar la selección --}}
-                            <input type="date" class="form-control @error('fecha') is-invalid @enderror" id="fecha" name="fecha" value="{{ old('fecha', date('Y-m-d')) }}" required>
-                            @error('fecha')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
 
-                        {{-- Campo de Total --}}
-                        <div class="mb-3">
-                            <label for="total" class="form-label">Total de Venta</label>
-                            {{-- Se usa type="number" para asegurar el formato numérico --}}
-                            <input type="number" step="0.01" min="0" class="form-control @error('total') is-invalid @enderror" id="total" name="total" value="{{ old('total') }}" placeholder="Ej: 150.75" required>
-                            @error('total')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        {{-- Campo de Cliente (idCliente) --}}
-                        <div class="mb-3">
-                            <label for="idCliente" class="form-label">Cliente</label>
-                            {{-- Se asume que $clientes es una colección de todos los clientes disponible en el controlador --}}
-                            <select class="form-select @error('idCliente') is-invalid @enderror" id="idCliente" name="idCliente" required>
-                                <option value="">Seleccione un Cliente</option>
-                                {{-- Itera sobre la colección de clientes --}}
-                                @foreach ($clientes as $cliente)
-                                    <option value="{{ $cliente->id }}" {{ old('idCliente') == $cliente->id ? 'selected' : '' }}>
-                                        {{ $cliente->Nombre }} {{-- Asume que el modelo Cliente tiene un campo 'Nombre' --}}
-                                    </option>
-                                @endforeach
+                <div class="col-md-6 mb-4">
+                    <div class="form-group">
+                        <label for="metodo_pago" class="fw-semibold">Método de Pago</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-money-check-alt"></i></span>
+                            </div>
+                            <select name="metodo_pago" id="metodo_pago" class="form-control custom-select" required>
+                                <option value="efectivo" {{ old('metodo_pago') == 'efectivo' ? 'selected' : '' }}>Efectivo</option>
+                                <option value="tarjeta" {{ old('metodo_pago') == 'tarjeta' ? 'selected' : '' }}>Tarjeta</option>
+                                <option value="transferencia" {{ old('metodo_pago') == 'transferencia' ? 'selected' : '' }}>Transferencia</option>
                             </select>
-                            @error('idCliente')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
                         </div>
-
-                        {{-- Campo de Empleado (idempleado) --}}
-                        <div class="mb-3">
-                            <label for="idempleado" class="form-label">Empleado que Registra</label>
-                            {{-- Se asume que $empleados es una colección de todos los empleados disponible en el controlador --}}
-                            <select class="form-select @error('idempleado') is-invalid @enderror" id="idempleado" name="idempleado" required>
-                                <option value="">Seleccione un Empleado</option>
-                                {{-- Itera sobre la colección de empleados --}}
-                                @foreach ($empleados as $empleado)
-                                    <option value="{{ $empleado->id }}" {{ old('idempleado') == $empleado->id ? 'selected' : '' }}>
-                                        {{ $empleado->nombre }} {{-- Asume que el modelo Empleado tiene un campo 'Nombre' --}}
-                                    </option>
-                                @endforeach
-                            </select>
-                            @error('idempleado')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        
-                        {{-- Botones de acción --}}
-                        <div class="d-flex justify-content-end gap-2 mt-4">
-                            <a href="{{ route('ventas.index') }}" class="btn btn-secondary">Cancelar</a>
-                            <button type="submit" class="crearBtn">Guardar Venta</button>
-                        </div>
-                    </form>
-
+                        @error('metodo_pago')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
 
+            <hr class="my-4">
+
+            <h4 class="fw-bold text-dark mb-3"><i class="fas fa-cart-plus"></i> Añadir Productos</h4>
+            <div class="row align-items-end mb-4">
+                
+                <div class="col-md-7">
+                    <div class="form-group">
+                        <label for="productoSelect">Producto</label>
+                        <select id="productoSelect" class="form-control custom-select">
+                            <option value="">Seleccione un producto</option>
+                            @foreach($productos as $p)
+                                <option value="{{ $p->id }}" data-precio="{{ $p->precio }}">
+                                    {{ $p->nombre }} - ${{ number_format($p->precio, 2) }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="cantidadInput">Cantidad</label>
+                        <input type="number" id="cantidadInput" class="form-control" min="1" disabled value="1" placeholder="Mínimo 1">
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <button type="button" id="agregarProducto" class="btn btn-action-primary w-100" disabled>
+                        <i class="fas fa-plus"></i> Agregar
+                    </button>
+                </div>
+            </div>
+
+            <h4 class="fw-bold text-dark mb-3 mt-5"><i class="fas fa-list"></i> Resumen del Pedido</h4>
+
+            <div class="table-responsive mb-4">
+                <table class="table table-bordered table-striped" id="tablaProductos">
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th style="width: 15%">Cantidad</th>
+                            <th style="width: 20%">Subtotal</th>
+                            <th style="width: 10%">Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{-- Filas de productos inyectadas por JS --}}
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="2" class="text-right fw-bold">TOTAL VENTA:</td>
+                            <td colspan="2" class="fw-bold"><span id="totalVentaDisplay">$0.00</span></td>
+                            <input type="hidden" name="total" id="totalVentaInput" value="0.00">
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+
+            <div class="text-right">
+                <button type="submit" class="btn btn-action-success d-inline-flex align-items-center gap-2">
+                    <i class="fas fa-money-bill-wave"></i> Finalizar y Guardar Venta
+                </button>
+            </div>
+
+
+
+            @if(session('stock_alert'))
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: '¡Stock insuficiente!',
+            html: `
+                <b>Producto:</b> {{ session('stock_alert')['producto'] }}<br>
+                <b>Stock disponible:</b> {{ session('stock_alert')['stock'] }}<br>
+                <b>Cantidad ingresada:</b> {{ session('stock_alert')['solicitado'] }}
+            `,
+            confirmButtonText: 'Entendido',
+        });
+    </script>
+@endif
+        </form>
+    </div>
 </div>
 
-<footer>
-    Realizado por <b>Karen Julieth Sepúlveda Sánchez</b> - <b>Vanessa García Corzo</b> | 2025
-</footer>
 
-@endsection
+@stop
+
+@section('js')
+<script>
+    let productos = @json($productos);
+    let totalVenta = 0;
+
+    function actualizarTotal() {
+        totalVenta = 0;
+        document.querySelectorAll('#tablaProductos tbody tr').forEach(row => {
+            // El subtotal se puede calcular del input oculto, o se puede parsear directamente del TD
+            const subtotalText = row.querySelector('td:nth-child(3)').textContent;
+            // Quitamos el '$' y parseamos
+            const subtotal = parseFloat(subtotalText.replace('$', '')); 
+            totalVenta += subtotal;
+        });
+
+        // Actualizar el display y el input oculto
+        document.getElementById('totalVentaDisplay').textContent = `$${totalVenta.toFixed(2)}`;
+        document.getElementById('totalVentaInput').value = totalVenta.toFixed(2);
+    }
+
+    // Cuando selecciona un producto → habilitar cantidad
+    document.getElementById('productoSelect').addEventListener('change', function() {
+        const selected = this.value !== "";
+        document.getElementById('cantidadInput').disabled = !selected;
+        document.getElementById('agregarProducto').disabled = !selected;
+        if(selected) {
+            document.getElementById('cantidadInput').focus();
+        }
+    });
+
+    // Agregar producto a la tabla
+    document.getElementById('agregarProducto').addEventListener('click', function() {
+        let id = document.getElementById('productoSelect').value;
+        let cantidad = parseInt(document.getElementById('cantidadInput').value);
+
+        // Buscar si el producto ya está en la lista (para actualizar cantidad/subtotal)
+        let existingRow = document.querySelector(`#tablaProductos tbody tr[data-product-id="${id}"]`);
+
+        if (!id || cantidad <= 0 || isNaN(cantidad)) {
+            alert("Por favor, selecciona un producto e introduce una cantidad válida.");
+            return;
+        }
+
+        let producto = productos.find(p => p.id == id);
+        let precioUnitario = producto.precio;
+        
+        let subtotalCalculado = precioUnitario * cantidad;
+
+        if (existingRow) {
+            // Producto ya existe, actualizar cantidad y subtotal
+            let oldCantidadInput = existingRow.querySelector(`input[name*="[cantidad]"]`);
+            let oldCantidad = parseInt(oldCantidadInput.value);
+            let newCantidad = oldCantidad + cantidad;
+            
+            let newSubtotal = precioUnitario * newCantidad;
+
+            // Actualizar la fila visible
+            existingRow.querySelector('td:nth-child(2)').textContent = newCantidad;
+            existingRow.querySelector('td:nth-child(3)').textContent = `$${newSubtotal.toFixed(2)}`;
+            
+            // Actualizar inputs ocultos para el backend
+            oldCantidadInput.value = newCantidad;
+
+        } else {
+            // Producto es nuevo, crear nueva fila
+            let fila = `
+                <tr data-product-id="${id}">
+                    <td>${producto.nombre}</td>
+                    <td>${cantidad}</td>
+                    <td>$${subtotalCalculado.toFixed(2)}</td>
+                    <td>
+                        <button type="button" class="btn btn-danger btn-sm eliminar" data-id="${id}">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </td>
+
+                    <input type="hidden" name="productos[${id}][id]" value="${id}">
+                    <input type="hidden" name="productos[${id}][cantidad]" value="${cantidad}">
+                </tr>
+            `;
+            document.querySelector('#tablaProductos tbody').insertAdjacentHTML('beforeend', fila);
+        }
+
+        // Actualizar total
+        actualizarTotal();
+
+        // Reiniciar selección
+        document.getElementById('productoSelect').value = "";
+        document.getElementById('cantidadInput').value = "1"; // Dejar en 1 para la siguiente
+        document.getElementById('cantidadInput').disabled = true;
+        document.getElementById('agregarProducto').disabled = true;
+    });
+
+    // Eliminar producto de la tabla
+    document.addEventListener('click', function(e) {
+        if (e.target.closest('.eliminar')) {
+            e.preventDefault();
+            const row = e.target.closest('tr');
+            row.remove();
+            
+            // Actualizar total después de eliminar
+            actualizarTotal();
+        }
+    });
+    
+    // Inicializar total al cargar por si hay viejos datos (aunque no se espera en create)
+    document.addEventListener('DOMContentLoaded', actualizarTotal);
+</script>
+@stop

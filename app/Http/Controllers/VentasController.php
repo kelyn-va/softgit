@@ -2,83 +2,96 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Clientes;
 use App\Models\Empleado;
-use App\Models\ventas;
+use App\Models\Ventas;
+use App\Models\Producto;
 use Illuminate\Http\Request;
+use App\Models\DetalleVenta;
 
 class VentasController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        $ventas = ventas::all();
-        return view('ventas.index', compact('ventas'));
+        $ventas = Ventas::with(['empleado', 'detalles.producto'])->get();
 
+        return view('ventas.index', compact('ventas'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        $clientes = Clientes::all();
-        $empleados  = Empleado::all();
-        return view('ventas.create', compact ('clientes','empleados'));
+        $empleados = Empleado::all();
+        $productos = Producto::all();
+
+        return view('ventas.create', compact('empleados', 'productos'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
-    {
-        ventas::create(
-            $request->all()
-        );
+{
+    $request->validate([
+        'metodo_pago' => 'required',
+        'idempleado' => 'required|exists:empleados,id',
+        'productos' => 'required|array',
+        'productos.*.id' => 'required|exists:productos,id',
+        'productos.*.cantidad' => 'required|integer|min:1'
+    ]);
 
-        return redirect()->route('ventas.index')->with('success', 'Venta creada exitosamente.');
+    // 🔍 VALIDACIÓN DE STOCK ANTES DE CREAR LA VENTA
+    foreach ($request->productos as $p) {
+    $producto = Producto::findOrFail($p['id']);
+
+    if ($p['cantidad'] > $producto->stock) {
+        return back()->with('stock_alert', [
+            'producto' => $producto->nombre,
+            'stock' => $producto->stock,
+            'solicitado' => $p['cantidad']
+        ])->withInput();
+    }
+}
+
+    // Crear venta
+    $venta = Ventas::create([
+        'total' => 0,
+        'metodo_pago' => $request->metodo_pago,
+        'idempleado' => $request->idempleado,
+        'idproducto' => null
+    ]);
+
+    $totalVenta = 0;
+
+    foreach ($request->productos as $p) {
+        $producto = Producto::findOrFail($p['id']);
+        $cantidad = $p['cantidad'];
+        $subtotal = $producto->precio * $cantidad;
+
+        // 🧮 Crear detalle
+        DetalleVenta::create([
+            'idventa' => $venta->id,
+            'idProducto' => $producto->id,
+            'cantidad' => $cantidad,
+            'precio_unitario' => $producto->precio,
+            'subtotal' => $subtotal
+        ]);
+
+        // 🔻 Reducir stock
+        $producto->stock -= $cantidad;
+        $producto->save();
+
+        $totalVenta += $subtotal;
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(ventas $ventas)
-    {
-        //
-    }
+    $venta->update(['total' => $totalVenta]);
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit($id)
-    {
-     $clientes = Clientes::all();
-     $empleados = Empleado::all();
-        
-        $ventas= ventas::findorfail($id);
-        return view('ventas.edit',compact('ventas', 'clientes', 'empleados'));
-    }
+    return redirect()->route('ventas.index')->with('success', 'Venta registrada correctamente');
+}
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, $id)
-    {
-        $ventas = ventas::findorfail($id);
-        $ventas->update($request->all());
 
-        return redirect()->route('ventas.index')->with('success', 'Venta actualizada exitosamente.');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy( $id)
+    public function destroy($id)
     {
-        $ventas= ventas::findorfail($id);
-        $ventas->delete();
+        $venta = Ventas::findOrFail($id);
+        $venta->delete();
+
         return redirect()->route('ventas.index')->with('success', 'Venta eliminada correctamente.');
     }
+
+    
 }

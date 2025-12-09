@@ -25,14 +25,14 @@ class EmpleadoController extends Controller
     public function create()
 
     {
-        $turnos=Turno::all();
-        return view('Empleado.create',compact('turnos'));
+       
+        return view('Empleado.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(EmpleadoRequest $request)
     {
         Empleado::create(
             $request->all()
@@ -56,14 +56,14 @@ class EmpleadoController extends Controller
     {
 
         $empleados=Empleado::findorFail($id);
-        $turnos=Turno::all();
-        return view('Empleado.edit',compact('empleados','turnos'));
+       
+        return view('Empleado.edit',compact('empleados'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request,  $id)
+    public function update(EmpleadoRequest $request,  $id)
     {
         $empleados = Empleado::findorFail($id);
         $empleados->update($request->all());

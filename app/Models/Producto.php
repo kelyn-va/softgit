@@ -8,16 +8,14 @@ class Producto extends Model
 {
      protected $table="productos";
 
-    protected $fillable=[
+    protected $fillable = [
         'nombre',
         'descripcion',
         'precio',
         'stock',
-        'codigoBarras',
         'idCategoria',
         'idProveedor',
-        'idInventario'
-        
+    
     ];
 
     public function categoria()
@@ -25,22 +23,27 @@ class Producto extends Model
         return $this->belongsTo(Categorias::class,'idCategoria');
     }
 
-
+    /**
+     * Relación: Un producto pertenece a un proveedor
+     */
     public function proveedor()
     {
         return $this->belongsTo(Proveedor::class,'idProveedor');
-    } 
-
-
-    public function inventario()
-    {
-        return $this->belongsTo(Inventario::class,'idInventario');
     }
 
+    
+
+    /**
+     * Relación: Un producto aparece en muchos detalles de venta
+     */
     public function detalleVentas()
     {
         return $this->hasMany(DetalleVenta::class,'idProducto');
-        
     }
 
+    public function compras()
+    {
+        return $this->hasMany(Compra::class,'idproducto');
+
+}
 }

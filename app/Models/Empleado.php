@@ -6,34 +6,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class Empleado extends Model
 {
-    protected $table="empleados";
+    protected $table = "empleados";
 
-    protected $fillable=[
+    protected $fillable = [
         'nombre',
+        'telefono',
+        'correo',
         'cargo',
-        'usuario',
-        'contraseña',
-        'idTurno'
-        
     ];
 
-    public function turno()
-
-        {
-        return $this->belongsTo(Turno::class, 'idTurno');
-    }
-
-    public function auditorias()
-    {
-        return $this->hasMany(Auditoria::class, 'idEmpleado');
-    }
+    /**
+     * Relación: Un empleado tiene muchas ventas
+     */
     public function ventas()
     {
-        return $this->hasMany(Ventas::class, 'idempleado');
+        return $this->hasMany(ventas::class, 'idempleado');
     }
-
-
-
-
-
 }

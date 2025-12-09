@@ -14,21 +14,20 @@ return new class extends Migration
         Schema::create('productos', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->string('descripcion');
-            $table->decimal('precio', 10,2);
-            $table->integer('stock');
-            $table->string('codigoBarras');
+            $table->text('descripcion')->nullable();
+            $table->decimal('precio', 10, 2);
+            $table->integer('stock') ;
+            
+            // Relación con categoría
             $table->unsignedBigInteger('idCategoria');
             $table->foreign('idCategoria')->references('id')->on('categorias');
+            
+            // Relación con proveedor
             $table->unsignedBigInteger('idProveedor');
             $table->foreign('idProveedor')->references('id')->on('proveedor');
-            $table->unsignedBigInteger('idInventario');
-            $table->foreign('idInventario')->references('id')->on('inventario');
-
+            
             $table->timestamps();
         });
-
-        
     }
 
     /**

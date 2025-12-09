@@ -4,6 +4,7 @@ use App\Http\Controllers\AuditoriaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\CompraController;
 use App\Http\Controllers\DetalleVentaController;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\InventarioController;
@@ -12,17 +13,38 @@ use App\Http\Controllers\PagosController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\TurnoController;
 use App\Http\Controllers\ProveedorController;
+use App\Http\Controllers\usersController;
 use App\Http\Controllers\VentasController;
+use App\Http\Controllers\ReportesController;
+use Illuminate\Support\Facades\Auth;
 
-// Ruta principal
+
+
+
+//RUTA PRINCIPAL
 Route::get('/', function () {
+    return redirect()->route('login');
+});
+
+Route::get('/welcome', function () {
     return view('welcome');
 })->name('welcome');
 
-// Ruta alternativa para home (AdminLTE a veces la busca)
-Route::get('/home', function () {
-    return redirect()->route('welcome');
-})->name('home');
+
+//rutas para login
+Route::get('/login',[usersController::class,'verlogin'])->name('login');
+Route::post('/loginsubmit',[usersController::class,'login'])->name('login.submit');
+
+Route::get('/logout', function () {
+    Auth::logout();
+    return redirect()->route('login');
+})->name('logout');
+
+//RUTAS REGISTRO
+Route::get('/registro', [usersController::class, 'verRegistro'])->name('registro');
+Route::post('/registro-submit', [usersController::class, 'registro'])->name('registro.submit');
+
+
 
 // -------------------- INVENTARIO --------------------
 Route::get('/inventario/index', [InventarioController::class, 'index'])->name('inventario.index');
@@ -32,21 +54,8 @@ Route::post('/inventario/destroy/{id}', [InventarioController::class, 'destroy']
 Route::get('/inventario/edit/{id}', [InventarioController::class, 'edit'])->name('inventario.edit');
 Route::post('/inventario/update/{id}', [InventarioController::class, 'update'])->name('inventario.update');
 
-// -------------------- TURNOS --------------------
-Route::get('/turnos/index', [TurnoController::class, 'index'])->name('turnos.index');
-Route::get('/turnos/create', [TurnoController::class, 'create'])->name('turnos.create');
-Route::post('/turnos/store', [TurnoController::class, 'store'])->name('turnos.store');
-Route::post('/turnos/destroy/{id}', [TurnoController::class, 'destroy'])->name('turnos.destroy');
-Route::get('/turnos/edit/{id}', [TurnoController::class, 'edit'])->name('turnos.edit');
-Route::post('/turnos/update/{id}', [TurnoController::class, 'update'])->name('turnos.update');
 
-// -------------------- CLIENTES --------------------
-Route::get('/clientes/index', [ClienteController::class, 'index'])->name('clientes.index');
-Route::get('/clientes/create', [ClienteController::class, 'create'])->name('clientes.create');
-Route::post('/clientes/store', [ClienteController::class, 'store'])->name('clientes.store');
-Route::post('/clientes/destroy/{id}', [ClienteController::class, 'destroy'])->name('clientes.destroy');
-Route::get('/clientes/edit/{id}', [ClienteController::class, 'edit'])->name('clientes.edit');
-Route::post('/clientes/update/{id}', [ClienteController::class, 'update'])->name('clientes.update');
+
 
 // -------------------- CATEGORÍAS --------------------
 Route::get('/categorias/index', [CategoriasController::class, 'index'])->name('categorias.index');
@@ -74,32 +83,6 @@ Route::post('/producto/destroy/{id}',[ProductoController::class,'destroy'])->nam
 Route::get('/producto/edit/{id}',[ProductoController::class,'edit'])->name('productos.edit');
 Route::post('/producto/update/{id}',[ProductoController::class,'update'])->name('productos.update');
 
-// -------------------- EMPLEADOS --------------------
-
-Route::get('/empleado/index',[EmpleadoController::class,'index'])->name('empleados.index');
-Route::get('/empleado/create',[EmpleadoController::class,'create'])->name('empleados.create');
-Route::post('/empleado/store',[EmpleadoController::class,'store'])->name('empleados.store');
-Route::post('/empleado/destroy/{id}',[EmpleadoController::class,'destroy'])->name('empleados.destroy');
-Route::get('/empleado/edit/{id}',[EmpleadoController::class,'edit'])->name('empleados.edit');
-Route::post('/empleado/update/{id}',[EmpleadoController::class,'update'])->name('empleados.update');
-
-// -------------------- AUDITORÍAS --------------------
-Route::get('/Auditoria/index',[AuditoriaController::class,'index'])->name('Auditoria.index');
-Route::get('/Auditoria/create',[AuditoriaController::class,'create'])->name('Auditoria.create');
-Route::post('/Auditoria/store',[AuditoriaController::class,'store'])->name('Auditoria.store');
-Route::post('/Auditoria/destroy/{id}',[AuditoriaController::class,'destroy'])->name('Auditoria.destroy');
-Route::get('/Auditoria/edit/{id}',[AuditoriaController::class,'edit'])->name('Auditoria.edit');
-Route::post('/Auditoria/update/{id}',[AuditoriaController::class,'update'])->name('Auditoria.update');
-
-// -------------------- MÉTODOS DE PAGO --------------------
-
-Route::get('/metodoPago/index',[MetodoPagoController::class,'index'])->name('metodoPago.index');
-Route::get('/metodoPago/create',[MetodoPagoController::class,'create'])->name('metodoPago.create');
-Route::post('/metodoPago/store',[MetodoPagoController::class,'store'])->name('metodoPago.store');
-Route::post('/metodoPago/destroy/{id}',[MetodoPagoController::class,'destroy'])->name('metodoPago.destroy');
-Route::get('/metodoPago/edit/{id}',[MetodoPagoController::class,'edit'])->name('metodoPago.edit');
-Route::post('/metodoPago/update/{id}',[MetodoPagoController::class,'update'])->name('metodoPago.update');
-
 // -------------------- VENTAS --------------------
 Route::get('/ventas/index',[VentasController::class,'index'])->name('ventas.index');
 Route::get('/ventas/create',[VentasController::class,'create'])->name('ventas.create');
@@ -107,6 +90,7 @@ Route::post('/ventas/store',[VentasController::class,'store'])->name('ventas.sto
 Route::post('/ventas/destroy/{id}',[VentasController::class,'destroy'])->name('ventas.destroy');
 Route::get('/ventas/edit/{id}',[VentasController::class,'edit'])->name('ventas.edit');
 Route::post('/ventas/update/{id}',[VentasController::class,'update'])->name('ventas.update');
+Route::resource('ventas', VentasController::class);
 
 // -------------------- DETALLE VENTAS --------------------
 Route::get('/DetalleVenta/index',[DetalleVentaController::class,'index'])->name('DetalleVenta.index');
@@ -117,38 +101,30 @@ Route::get('/DetalleVenta/edit/{id}',[DetalleVentaController::class,'edit'])->na
 Route::post('/DetalleVenta/update/{id}',[DetalleVentaController::class,'update'])->name('DetalleVenta.update');
 
 
+// -------------------- EMPLEADOS --------------------
 
+Route::get('/empleados/index',[EmpleadoController::class,'index'])->name('empleados.index');
+Route::get('/empleados/create',[EmpleadoController::class,'create'])->name('empleados.create');
+Route::post('/empleados/store',[EmpleadoController::class,'store'])->name('empleados.store');
+Route::post('/empleados/destroy/{id}',[EmpleadoController::class,'destroy'])->name('empleados.destroy');
+Route::get('/empleados/edit/{id}',[EmpleadoController::class,'edit'])->name('empleados.edit');
+Route::post('/empleados/update/{id}',[EmpleadoController::class,'update'])->name('empleados.update');
 
+// -------------------- REPORTES --------------------
+Route::get('/reportes', [ReportesController::class, 'index'])->name('reportes.index');
+Route::get('/api/reportes/inventario', [ReportesController::class, 'getInventarioData']);
+Route::get('/api/reportes/ventas', [ReportesController::class, 'getVentasData']);
+Route::get('/api/reportes/ventas-categoria', [ReportesController::class, 'getVentasPorCategoria']);
+Route::get('/api/reportes/ventas-empleado', [ReportesController::class, 'getVentasPorEmpleado']);
+Route::get('/api/reportes/tendencia-ventas', [ReportesController::class, 'getTendenciaVentas']);
+Route::get('/api/reportes/stock-bajo', [ReportesController::class, 'getInventarioBajoStock']);
 
+//--------------------Compras----------------------
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// -------------------- PAGOS --------------------
-Route::get('/pagos/index',[PagosController::class,'index'])->name('pagos.index');
-Route::get('/pagos/create',[PagosController::class,'create'])->name('pagos.create');
-Route::post('/pagos/store',[PagosController::class,'store'])->name('pagos.store');
-Route::post('/pagos/destroy/{id}',[PagosController::class,'destroy'])->name('pagos.destroy');
-Route::get('/pagos/edit/{id}',[PagosController::class,'edit'])->name('pagos.edit');
-Route::post('/pagos/update/{id}',[PagosController::class,'update'])->name('pagos.update');
-
+Route::get('/compras/index',[CompraController::class,'index'])->name('compras.index');
+Route::get('/compras/create',[CompraController::class,'create'])->name('compras.create');
+Route::post('/compras/store',[CompraController::class,'store'])->name('compras.store');
+Route::post('/compras/destroy/{id}',[CompraController::class,'destroy'])->name('compras.destroy');
+Route::get('/compras/edit/{id}',[CompraController::class,'edit'])->name('compras.edit');
+Route::post('/compras/update/{id}',[CompraController::class,'update'])->name('compras.update');
+Route::get('/productos-proveedor/{id}', [CompraController::class, 'productosPorProveedor']);

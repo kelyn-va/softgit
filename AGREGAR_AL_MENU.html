@@ -1,0 +1,221 @@
+<!-- 
+    EJEMPLO DE CÓMO AGREGAR REPORTES AL MENÚ DE NAVEGACIÓN
+    
+    Busca tu archivo de layout principal (probablemente en resources/views/layouts/app.blade.php o similar)
+    y agrega el siguiente código en la sección de menú.
+-->
+
+<!-- OPCIÓN 1: Si usas un menú horizontal -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{{ route('welcome') }}">Mi Aplicación</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('inventario.index') }}">
+                        <i class="fas fa-boxes"></i> Inventario
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('ventas.index') }}">
+                        <i class="fas fa-shopping-cart"></i> Ventas
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('productos.index') }}">
+                        <i class="fas fa-cube"></i> Productos
+                    </a>
+                </li>
+                
+                <!-- AGREGAR AQUÍ -->
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('reportes.index') }}">
+                        <i class="fas fa-chart-bar"></i> Reportes
+                    </a>
+                </li>
+                <!-- FIN AGREGAR -->
+                
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                        <i class="fas fa-user"></i> {{ Auth::user()->name }}
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="{{ route('logout') }}">Cerrar Sesión</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<!-- OPCIÓN 2: Si usas un menú lateral (AdminLTE) -->
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <a href="{{ route('welcome') }}" class="brand-link">
+        <img src="{{ asset('dist/img/logo.png') }}" alt="Logo" class="brand-image img-circle elevation-3">
+        <span class="brand-text font-weight-light">Mi Aplicación</span>
+    </a>
+
+    <div class="sidebar">
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
+                
+                <li class="nav-item">
+                    <a href="{{ route('welcome') }}" class="nav-link">
+                        <i class="nav-icon fas fa-home"></i>
+                        <p>Inicio</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{ route('inventario.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-boxes"></i>
+                        <p>Inventario</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{ route('ventas.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-shopping-cart"></i>
+                        <p>Ventas</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{ route('productos.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-cube"></i>
+                        <p>Productos</p>
+                    </a>
+                </li>
+
+                <!-- AGREGAR AQUÍ -->
+                <li class="nav-item">
+                    <a href="{{ route('reportes.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-chart-bar"></i>
+                        <p>
+                            Reportes
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                </li>
+                <!-- FIN AGREGAR -->
+
+                <li class="nav-item">
+                    <a href="{{route('logout')}}" class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        <i class="nav-icon fas fa-sign-out-alt"></i>
+                        <p>Cerrar Sesión</p>
+                    </a>
+                </li>
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
+            </ul>
+        </nav>
+    </div>
+</aside>
+
+
+<!-- OPCIÓN 3: Si usas un menú con ícono de gráficos en un dashboard -->
+<div class="row mt-4">
+    <div class="col-md-3 mb-3">
+        <div class="card text-center">
+            <div class="card-body">
+                <i class="fas fa-chart-bar fa-3x text-primary mb-3"></i>
+                <h5 class="card-title">Reportes</h5>
+                <p class="card-text">Ver informes visuales y análisis</p>
+                <a href="{{ route('reportes.index') }}" class="btn btn-primary">
+                    <i class="fas fa-arrow-right"></i> Acceder
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- OPCIÓN 4: Botón de acceso rápido en la esquina -->
+<a href="{{ route('reportes.index') }}" class="btn btn-primary rounded-circle fixed-bottom m-3" 
+   style="width: 60px; height: 60px; display: flex; align-items: center; justify-content: center;"
+   title="Reportes">
+    <i class="fas fa-chart-bar fa-2x"></i>
+</a>
+
+
+<!-- OPCIÓN 5: Badge con notificaciones (si hay datos importantes) -->
+<li class="nav-item">
+    <a href="{{ route('reportes.index') }}" class="nav-link">
+        <i class="fas fa-chart-bar"></i>
+        <span>Reportes</span>
+        @php
+            $stockBajo = \App\Models\Inventario::whereRaw('cantidad < cantidad_minima')->count();
+        @endphp
+        @if($stockBajo > 0)
+            <span class="badge badge-danger">{{ $stockBajo }}</span>
+        @endif
+    </a>
+</li>
+
+
+<!-- ESTILOS ADICIONALES (si deseas) -->
+<style>
+    .nav-link:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease;
+    }
+
+    .badge-danger {
+        background-color: #dc3545;
+        color: white;
+        padding: 0.25rem 0.5rem;
+        border-radius: 1rem;
+        font-size: 0.75rem;
+        margin-left: 0.5rem;
+    }
+
+    .fixed-bottom.btn {
+        bottom: 2rem;
+        right: 2rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .fixed-bottom.btn:hover {
+        transform: scale(1.1);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+</style>
+
+
+<!-- SCRIPT PARA MARCAR ACTIVO (Agregarlo en tu layout principal) -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const currentRoute = window.location.pathname;
+        const navLinks = document.querySelectorAll('.nav-link');
+        
+        navLinks.forEach(link => {
+            const href = link.getAttribute('href');
+            if (currentRoute.includes(href.replace('http://localhost:8000', ''))) {
+                link.classList.add('active');
+            }
+        });
+    });
+</script>
+
+
+<!-- INSTRUCCIONES -->
+<!--
+1. Elige la opción que mejor se adapte a tu diseño actual
+2. Copia el código en tu archivo de layout (probablemente app.blade.php)
+3. Asegúrate de que la ruta 'reportes.index' existe
+4. Verifica que los iconos de Font Awesome estén cargados
+
+ICONOS ALTERNATIVOS PARA REPORTES:
+- fas fa-chart-bar (gráfico de barras)
+- fas fa-chart-line (gráfico de líneas)
+- fas fa-chart-pie (gráfico de pastel)
+- fas fa-chart-area (gráfico de área)
+- fas fa-tachometer-alt (medidor)
+- fas fa-analytics (análisis)
+-->

@@ -14,13 +14,32 @@ class ProductoController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        $productos = Producto::all();
-        return view('Producto.index', compact('productos'));
+public function index(Request $request)
+{
+    $categorias = Categorias::all();
+    $proveedores = Proveedor::all();
 
+    // Consulta base con relaciones
+    $query = Producto::with('categoria', 'proveedor');
 
+    // Filtros
+    if ($request->filled('categoria')) {
+        $query->where('idcategoria', $request->categoria);
     }
+
+    if ($request->filled('proveedor')) {
+        $query->where('idproveedor', $request->proveedor);
+    }
+
+    if ($request->filled('buscar')) {
+        $query->where('nombre', 'like', '%' . $request->buscar . '%');
+    }
+
+    $productos = $query->get();
+
+    return view('Producto.index', compact('productos', 'categorias', 'proveedores'));
+}
+
 
     /**
      * Show the form for creating a new resource.
@@ -30,24 +49,19 @@ class ProductoController extends Controller
         $productos = Producto::all();
         $categorias = Categorias::all();
         $proveedores = Proveedor::all();
-        $inventario = Inventario::all();
-        return view('Producto.create', compact('productos','categorias', 'proveedores', 'inventario'));
+       
+        return view('Producto.create', compact('productos','categorias', 'proveedores', ));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-    {
-        
-        Producto::create(
-            $request->all()
-        );
-        return redirect()->route('productos.index')->with('success', 'producto creado correctamente');;
-    }
+   public function store(ProductoRequest $request)
+{
+   Producto::create($request->all());
+    return redirect()->route('productos.index')->with('success', 'producto creado correctamente.');
+}
 
-    }
     
 
     /**
@@ -61,25 +75,29 @@ class ProductoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit( $id)
-    {
-        $productos = Producto::findorFail($id);
-        $categorias = Categorias::all();
-        $proveedores = Proveedor::all();
-        $inventarios = Inventario::all();
-        return view('Producto.edit', compact('productos' , 'categorias','proveedores','inventarios'));
-    
-    }
+   public function edit($id)
+{
+    $productos = Producto::findOrFail($id);
+    $categorias = Categorias::all();
+    $proveedores = Proveedor::all();
+
+    return view('Producto.edit', compact('productos', 'categorias', 'proveedores'));
+}
+
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, $id)
-    {
-        $productos = Producto::findorFail($id);
-        $productos->update($request->all());
-        return redirect()->route('productos.index')->with('success', 'producto creado correctamente.');
-    }
+{
+    $producto = Producto::findOrFail($id);
+
+    $producto->update($request->all());
+
+    return redirect()->route('productos.index')
+        ->with('success', 'Producto actualizado correctamente.');
+}
+
 
     /**
      * Remove the specified resource from storage.
@@ -87,7 +105,7 @@ class ProductoController extends Controller
     public function destroy ($id)
     {
         
-        $productos = Producto::findorFail($id);
+        $productos = Producto::findOrFail($id);
         $productos->delete();
         return redirect()->route('productos.index')->with('success', 'producto Eliminado correctamente');
     }

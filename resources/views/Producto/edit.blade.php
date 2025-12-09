@@ -1,136 +1,90 @@
 @extends('layouts.app')
 
-@section('title', 'Crear Producto')
-
-@section('titleContent')
-    <h1 class="text-center my-4 fw-bold text-dark">Actualizar producto</h1>
-@endsection
+@section('title', 'Editar Producto')
 
 @section('content')
 
+<div class="container mt-4">
+    <div class="card shadow-lg border-0">
+        <div class="card-header bg-primary text-white fw-bold">
+            Editar Producto
+        </div>
 
-<div class="container py-4">
-    <div class="row justify-content-center">
-        <div class="col-md-8 col-lg-6">
+        <div class="card-body">
 
-            {{-- Botón de volver --}}
-            <div class="mb-3 text-start">
-                <a href="{{ route('productos.index') }}" class="volverBtn d-inline-flex align-items-center gap-1">
-                    🔙 <i class="bi bi-arrow-left-circle"></i> Volver
-                </a>
-            </div>
+            <form action="{{ route('productos.update', $productos->id) }}" method="POST">
+                @csrf
+                <div class="row g-3">
 
-            {{-- Tarjeta del formulario --}}
-            <div class="card custom-card shadow-lg border-0">
-                <div class="card-body p-4">
+                    <div class="col-md-6">
+                        <label class="form-label">Nombre</label>
+                        <input type="text" name="nombre" class="form-control" value="{{ $productos->nombre }}" required>
+                    </div>
 
-                    <form action="{{ route('productos.update',$productos->id) }}" method="POST">
-                        @csrf
+                    <div class="col-md-6">
+                        <label class="form-label">Precio</label>
+                        <input type="number" step="0.01" name="precio" class="form-control" value="{{ $productos->precio }}" required>
+                    </div>
 
-                        <div class="mb-3">
-                            <label for="nombre" class="form-label fw-semibold">Nombre</label>
-                            <input type="text" id="nombre" name="nombre" 
-                                class="form-control @error('nombre') is-invalid @enderror" value="{{ $productos->nombre }}">
-                            @error('Nombre')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
+                    <div class="col-md-12">
+                        <label class="form-label">Descripción</label>
+                        <textarea name="descripcion" class="form-control" rows="3">{{ $productos->descripcion }}</textarea>
+                    </div>
 
+                    <div class="col-md-4">
+                        <label class="form-label">Stock</label>
+                        <input type="number" name="stock" class="form-control" value="{{ $productos->stock }}" required>
+                    </div>
 
-                        <div class="mb-3">
-                            <label for="descripcion" class="form-label fw-semibold">descripcion</label>
-                            <input type="text" id="descripcion" name="descripcion" 
-                                class="form-control @error('descripcion') is-invalid @enderror" value="{{ $productos->descripcion}}">
-                            @error('descripcion')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Categoría</label>
+                        <select name="idCategoria" class="form-select select2" required>
+                            @foreach($categorias as $cat)
+                            <option value="{{ $cat->id }}" {{ $productos->idCategoria == $cat->id ? 'selected' : '' }}>
+                                {{ $cat->nombre }}
+                            </option>
+                            @endforeach
+                        </select>
+                    </div>
 
-
-                        <div class="mb-3">
-                            <label for="precio" class="form-label fw-semibold">precio</label>
-                            <input type="decimal" id="precio" name="precio" 
-                                class="form-control @error('precio') is-invalid @enderror" value="{{ $productos->precio}}">
-                            @error('precio')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-
-                        <div class="mb-3">
-                            <label for="stock" class="form-label fw-semibold">stock</label>
-                            <input type="int" id="stock" name="stock" 
-                                class="form-control @error('stock') is-invalid @enderror" value="{{ $productos->stock}}">
-                            @error('stock')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-
-                        <div class="mb-3">
-                            <label for="codigoBarras" class="form-label fw-semibold">codigoBarras</label>
-                            <input type="text" id="codigoBarras" name="codigoBarras" 
-                                class="form-control @error('codigoBarras') is-invalid @enderror" value="{{ $productos->codigoBarras}}">
-                            @error('codigoBarras')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-
-                         {{-- Categoria --}}
-            <div class="mb-3">
-                <label for="idCategoria" class="form-label">Categoria</label>
-                <select name="idCategoria" id="idCategoria" class="form-select form-select-sm" >
-                    <option value="">Seleccione una categoria</option>
-                    @foreach($categorias as $categoria)
-                        <option value="{{ $categoria->id }}" {{ $productos->idCategoria == $categoria->id ? 'selected' : '' }}>
-                            {{ $categoria->nombre }}
-                        </option>
-                    @endforeach
-                </select>
-            </div>
-
-
-
-            {{-- proveedor --}}
-            <div class="mb-3">
-                <label for="idproveedor" class="form-label">Proveedor</label>
-                <select name="idproveedor" id="idproveedor" class="form-select form-select-sm" >
-                    <option value="">Seleccione un proveedor</option>
-                    @foreach($proveedores as $proveedor)
-                        <option value="{{ $proveedor->id }}" {{ $productos->idProveedor == $proveedor->id ? 'selected' : '' }}>
-                            {{ $proveedor->nombre }}
-                        </option>
-                    @endforeach
-                </select>
-            </div>
-
-
-
-             {{-- proveedor --}}
-            <div class="mb-3">
-                <label for="idInventario" class="form-label">inventario</label>
-                <select name="idInventario" id="idInventario" class="form-select form-select-sm" >
-                    <option value="">Seleccione un invetario</option>
-                    @foreach($inventarios as $inventario)
-                        <option value="{{ $inventario->id }}" {{ $productos->idInventario == $inventario->id ? 'selected' : '' }}>
-                            {{ $inventario->id }}
-                        </option>
-                    @endforeach
-                </select>
-            </div>
-
-
-
-
-
-                        <div class="text-end">
-                            <button type="submit" class="crearBtn">
-                                ➕ <i class="bi bi-person-plus"></i> Actualizar producto
-                            </button>
-                        </div>
-                    </form>
+                    <div class="col-md-4">
+                        <label class="form-label">Proveedor</label>
+                        <select name="idProveedor" class="form-select" required>
+                            @foreach($proveedores as $prov)
+                            <option value="{{ $prov->id }}" {{ $productos->idProveedor == $prov->id ? 'selected' : '' }}>
+                                {{ $prov->nombre }}
+                            </option>
+                            @endforeach
+                        </select>
+                    </div>
 
                 </div>
-            </div>
+
+                <div class="mt-4 d-flex justify-content-between">
+                    <a href="{{ route('productos.index') }}" class="btn btn-secondary">Cancelar</a>
+                    <button type="submit" class="btn btn-primary">Actualizar</button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+@push('scripts')
+<script>
+    $(document).ready(function() {
+        $('.select2').select2({
+            placeholder: "Seleccione una categoría",
+            allowClear: true,
+            width: '100%'  // para que no se dañe el diseño
+        });
+    });x
+</script>
+
+@endpush
+
+
+
+
 @endsection

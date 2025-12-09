@@ -13,16 +13,14 @@ return new class extends Migration
     {
         Schema::create('ventas', function (Blueprint $table) {
             $table->id();
-            $table->datetime('fecha');
             $table->decimal('total', 10, 2);
+            $table->enum('metodo_pago', ['efectivo', 'tarjeta', 'transferencia']) ->default('efectivo');
+            $table->unsignedBigInteger('idempleado');
+            $table->foreign('idempleado')->references('id')->on('empleados');
+            $table->unsignedBigInteger('idproducto')->nullable();
+            $table->foreign('idproducto')->references('id')->on('productos');
+            
             $table->timestamps();
-            $table->unsignedBigInteger('idCliente');
-            $table->foreign('idCliente')->references('id')->on('clientes');
-            $table ->unsignedBigInteger('idempleado');
-            $table ->foreign('idempleado')->references('id')->on('empleados');
-            
-
-            
         });
     }
 
