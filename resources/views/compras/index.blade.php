@@ -143,10 +143,7 @@
                             <td>{{ $compra->proveedores->nombre ?? 'Sin proveedor' }}</td>
                             <td>{{ $compra->productos->nombre ?? 'Sin producto' }}</td>
                             <td>
-                                <div class="d-flex justify-content-center gap-2">
-                                    <a href="{{ route('compras.edit',$compra->id) }}" class="btn btn-edit btn-sm btn-action-table">
-                                        <i class="fas fa-pencil-alt"></i>
-                                    </a>
+                               
                                     <form action="{{ route('compras.destroy',$compra->id) }}" method="POST" onsubmit="return confirmarEliminacion(event)">
                                         @csrf
                                         <button type="submit" class="btn btn-delete btn-sm btn-action-table">

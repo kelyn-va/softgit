@@ -38,11 +38,11 @@
 
                     <div class="col-md-4">
                         <label class="form-label">Categoría</label>
-                        <select name="idCategoria" class="form-select" required>
+                        <select name="idCategoria" class="form-select select2" required>
                             @foreach($categorias as $cat)
-                                <option value="{{ $cat->id }}" {{ $productos->idCategoria == $cat->id ? 'selected' : '' }}>
-                                    {{ $cat->nombre }}
-                                </option>
+                            <option value="{{ $cat->id }}" {{ $productos->idCategoria == $cat->id ? 'selected' : '' }}>
+                                {{ $cat->nombre }}
+                            </option>
                             @endforeach
                         </select>
                     </div>
@@ -51,9 +51,9 @@
                         <label class="form-label">Proveedor</label>
                         <select name="idProveedor" class="form-select" required>
                             @foreach($proveedores as $prov)
-                                <option value="{{ $prov->id }}" {{ $productos->idProveedor == $prov->id ? 'selected' : '' }}>
-                                    {{ $prov->nombre }}
-                                </option>
+                            <option value="{{ $prov->id }}" {{ $productos->idProveedor == $prov->id ? 'selected' : '' }}>
+                                {{ $prov->nombre }}
+                            </option>
                             @endforeach
                         </select>
                     </div>
@@ -70,5 +70,21 @@
         </div>
     </div>
 </div>
+
+@push('scripts')
+<script>
+    $(document).ready(function() {
+        $('.select2').select2({
+            placeholder: "Seleccione una categoría",
+            allowClear: true,
+            width: '100%'  // para que no se dañe el diseño
+        });
+    });x
+</script>
+
+@endpush
+
+
+
 
 @endsection

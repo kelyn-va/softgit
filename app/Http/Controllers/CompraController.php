@@ -57,7 +57,7 @@ public function index()
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Compra $id)
+    public function edit($id)
     {
         $compra = Compra::findorFail($id);
         $proveedores = Proveedor::all();

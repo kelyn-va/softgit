@@ -6,6 +6,8 @@
 <h1 class="text-center my-4 fw-bold text-dark">Registro de Nuevo Producto</h1>
 @endsection
 
+
+
 @section('content')
 
 <style>
